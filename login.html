@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+     <head>
+        <title>Login/Register</title>
+     </head>
+     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+        *{
+            font-family: 'Poppins', sans-serif;
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+
+        }
+        form{
+            position: relative;
+            display: flex;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 10px;
+            width: 20rem;
+            background: #e4f4f6;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        input[type="text"], input[type="password"]{
+            box-sizing: border-box;
+            width: 16rem;
+            height: 2rem;
+            padding: 8px 15px;
+            font-size: 1rem;
+            margin: 0;
+            border-radius: 0;
+            border-top: 0;
+            border-left:0;
+            border-right: 0;
+            border-bottom: 0.5px solid lightgray;
+            box-shadow: rgb(0 0 0 / 8%) 0 -1px;
+        }
+        input[type="submit"] {
+        background-color: #0066ff;
+        color: #fff;
+        border: 0;
+        border-radius: 24px;
+        padding: 10px 16px;
+        font-size: 1rem;
+        font-weight: 600;
+        width: 16rem;
+        margin: 20px 0 10px 0;
+        cursor: pointer;
+        transition: background-color .3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #005ce6;
+        }
+        div.inputs{
+            border-radius: 1rem;
+            width:16rem;
+        }
+        ul {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+         }
+
+        li {
+            display: inline;
+        }
+        a {
+           display: inline;
+           font-size: 2rem;
+           text-decoration: none;
+           color: black;
+           margin: 10px;
+        } 
+        ul{
+            margin: 20px;
+        }
+        a:hover{
+            color: rgb(181, 181, 181);
+            transition: 0.5s ease-in-out;
+        }
+     </style>
+    <body>
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="news.asp">Company</a></li>
+            <li><a href="login.html">Log-In</a></li>
+            <li><a href="register.html">Register</a></li>
+        </ul>
+        <form action="login.php" method="POST">
+              <center><h1>Log-in</h1><br>
+              <div class="inputs">
+              <input type="text" name="email" id="email" placeholder="E-Mail" required><br>
+              <input type="password" name="password" id="password" placeholder="Password" required><br>
+              </div>
+              <input type="submit">
+              </center>
+        </form>
+
+    </body>
+
+
+</html>
