@@ -2,6 +2,7 @@
 <?php
 session_start();
 $a = 12;
+$b = 13;
 ?>
 <html>
 
