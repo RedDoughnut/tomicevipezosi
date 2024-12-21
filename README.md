@@ -8,4 +8,5 @@ To-Do:
 - [X] Da dodam funkcionalnost pravljenja kompanija
 - [ ] Da dodam funkcionalnost ulaganja u kompanije
 - [ ] Da dodam oglase za kompanije
+
 Ako imate neke sugestije samo recite 😘
