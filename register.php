@@ -328,6 +328,7 @@
     </symbol>
   </svg>
 </div>
+<p>Registrovanjem prihvatate <a href="tos.php">Uslove Koriscenja</a></p>
 <input type="submit" name="runCode"></center></form>
 
         <?php
