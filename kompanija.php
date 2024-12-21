@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
 session_start();
-
+$a = 12
 ?>
 <html>
 
