@@ -14,5 +14,4 @@ jobs:
         server: 185.27.134.11:21
         username: ${{ secrets.FTPUSERNAME }}
         password: ${{ secrets.FTPPASSWORD }}
-        protocol: ftps
         server-dir: htdocs/
