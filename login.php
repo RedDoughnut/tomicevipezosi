@@ -3,6 +3,8 @@
 <html>
      <head>
         <title>Login/Register</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="nav.css">
      </head>
      <script>
         function f() {
@@ -361,11 +363,11 @@
     <div id="snackbar"></div>
     <body>
         <ul class = "nav">
-            <li class = "nav"><a href="home.php"><button class = "navbut2">Home</button></a></li>
+            <li class = "nav"><a href="index.php"><button class = "navbut2">Home</button></a></li>
             <li class = "nav"><a href="company.php"><button class = "navbut2">My Company</button></a></li>
             <?php
         if(isset($_SESSION["user"])){
-            $conn = mysqli_connect('localhost', 'root', '', 'tomicevipezosi');
+            $conn = mysqli_connect('sql209.infinityfree.com', 'if0_37883576', 'Sigurno0612', 'if0_37883576_tomicevipezosi');
             if($conn->connect_error){
                 die('Connection Failed : '.$conn->connect_error);
             }else{
@@ -390,11 +392,11 @@
         <div class = "mobile-container" id = "mob-cont">
             <ul class="mobile">
                 <!--<a href="" class="close"></a> -->
-                <li class="mobile"> <a href="home.php"> <button class = "navbut2">Home</button> </a> </li>
+                <li class="mobile"> <a href="index.php"> <button class = "navbut2">Home</button> </a> </li>
                 <li class="mobile"> <a href="company.php"> <button class = "navbut">My Company</button> </a></li>
                 <?php
         if(isset($_SESSION["user"])){
-            $conn = mysqli_connect('localhost', 'root', '', 'tomicevipezosi');
+            $conn = mysqli_connect('sql209.infinityfree.com', 'if0_37883576', 'Sigurno0612', 'if0_37883576_tomicevipezosi');
             if($conn->connect_error){
                 die('Connection Failed : '.$conn->connect_error);
             }else{
@@ -414,11 +416,9 @@
                 
             </ul>
         </div>
-        
         <?php
-        
             if(isset($_SESSION['user'])){
-                $conn = mysqli_connect('localhost', 'root', '', 'tomicevipezosi');
+                $conn = mysqli_connect('sql209.infinityfree.com', 'if0_37883576', 'Sigurno0612', 'if0_37883576_tomicevipezosi');
                 if($conn->connect_error){
                     die('Connection Failed : '.$conn->connect_error);
                 }
@@ -426,7 +426,7 @@
                 $sql = "SELECT firstName FROM user WHERE email = '$email'";
                 $res = $conn->query($sql);
                 $res = $res -> fetch_assoc();
-                echo "<script>showToast('Uspesan log-in')</script>";
+                echo "<script>showToast('Vec si ulogovan!');</script>";
                 $conn->close();
             }
             else{
@@ -467,22 +467,16 @@
 
         <?php
         define('ENCRYPTION_KEY', 'Sigma-Gyatt-In-Ohio-Rizzler-Edge');
-function encrypt_password($password){
-    $iv = openssl_random_pseudo_bytes(16);
-    $encrypted = openssl_encrypt($password, 'AES-256-CBC', ENCRYPTION_KEY, 0, $iv);
-    return base64_encode($iv . $encrypted);
+function encrypt_password($password) {
+    return password_hash($password, PASSWORD_DEFAULT);
 }
-function decrypt_password($encrypted_password){
-    $data = base64_decode($encrypted_password);
-    $iv = substr($data, 0, 16);
-    $encrypted = substr($data, 16);
-    return openssl_decrypt($encrypted, 'AES-256-CBC', ENCRYPTION_KEY, 0, $iv);
-}
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['runCode']) && !isset($_SESSION['user'])) {
+            
                 $email = $_POST['email'];
                 $pass = $_POST['password'];
 
-                $conn = mysqli_connect('localhost', 'root', '', 'tomicevipezosi');
+                $conn = mysqli_connect('sql209.infinityfree.com', 'if0_37883576', 'Sigurno0612', 'if0_37883576_tomicevipezosi');
                 if($conn->connect_error){
                     die('Connection Failed : '.$conn->connect_error);
                 }else{
@@ -498,24 +492,26 @@ function decrypt_password($encrypted_password){
                         }
                     }
                     $result = $p;
-                    echo decrypt_password($result);
-                    if($pass == decrypt_password($result)){
+                    
+                    if(password_verify($pass, $result)){
                         $sql = "SELECT firstName FROM user WHERE email = '$email'";
                         $res = $conn->query($sql);
                         $res = $res -> fetch_assoc();
                         if(isset($_POST['remember'])){
                             $_SESSION['user'] = $email;
                         }
-                        echo "<script>showToast('Uspesan log-in')</script>";
+                        echo "<script>showToast('Uspesan Login');</script>";
+                        $_SESSION['user'] = $email;
+                        //$_SESSION['id'] = $p2;
+                        //echo "<script>location.reload();</script>";
                     }
                     else{
-                        echo "<script>showToast('Pogresni podaci')</script>";
+                        echo "<script>showToast('Pogresan email ili lozinka');</script>";
                     }
                 }
                     $conn->close();
                 }
 ?>
-
     </body>
 
 

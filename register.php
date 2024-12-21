@@ -2,8 +2,9 @@
 <!DOCTYPE html>
 <html>
      <head>
-        <title>Login/Register</title>
+        <title>Register</title>
         <link rel="stylesheet" href="nav.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
      </head>
      <script>
         function f() {
@@ -238,11 +239,11 @@
 }
     </script>
         <ul class = "nav">
-            <li class = "nav"><a href="home.php"><button class = "navbut2">Home</button></a></li>
+            <li class = "nav"><a href="index.php"><button class = "navbut2">Home</button></a></li>
             <li class = "nav"><a href="company.php"><button class = "navbut2">My Company</button></a></li>
             <?php
         if(isset($_SESSION["user"])){
-            $conn = mysqli_connect('localhost', 'root', '', 'tomicevipezosi');
+            $conn = mysqli_connect('sql209.infinityfree.com', 'if0_37883576', 'Sigurno0612', 'if0_37883576_tomicevipezosi');
             if($conn->connect_error){
                 die('Connection Failed : '.$conn->connect_error);
             }else{
@@ -255,7 +256,7 @@
             }
         }
         else{
-            echo "<li class = 'nav'><a href='login.php'><button class = 'navbut'>Log-In</button></a></li><li class = 'nav'><a href='register.php'><button class = 'navbut2'>Register</button></a></li>";
+            echo "<li class = 'nav'><a href='login.php'><button class = 'navbut2'>Log-In</button></a></li><li class = 'nav'><a href='register.php'><button class = 'navbut'>Register</button></a></li>";
         }
         ?>
         </ul>
@@ -268,11 +269,11 @@
         <div class = "mobile-container" id = "mob-cont">
             <ul class="mobile">
                 <!--<a href="" class="close"></a> -->
-                <li class="mobile"> <a href="home.php"> <button class = "navbut2">Home</button> </a> </li>
-                <li class="mobile"> <a href="company.php"> <button class = "navbut">My Company</button> </a></li>
+                <li class="mobile"> <a href="index.php"> <button class = "navbut2">Home</button> </a> </li>
+                <li class="mobile"> <a href="company.php"> <button class = "navbut2">My Company</button> </a></li>
                 <?php
         if(isset($_SESSION["user"])){
-            $conn = mysqli_connect('localhost', 'root', '', 'tomicevipezosi');
+            $conn = mysqli_connect('sql209.infinityfree.com', 'if0_37883576', 'Sigurno0612', 'if0_37883576_tomicevipezosi');
             if($conn->connect_error){
                 die('Connection Failed : '.$conn->connect_error);
             }else{
@@ -286,7 +287,7 @@
         }
         else{
             echo "<li class='mobile'> <a href='login.php'> <button class = 'navbut2'>Log-In</button> </a></li>
-                <li class='mobile'> <a href='register.php'> <button class = 'navbut2'>Register</button> </a></li>";
+                <li class='mobile'> <a href='register.php'> <button class = 'navbut'>Register</button> </a></li>";
         }
         ?>
                 
@@ -308,8 +309,9 @@
         <div id="snackbar"></div>
         <form method="POST">
                 <center>
-                <h1>Register</h1><br>
+                <h1>Register</h1>
                 <div class="inputs">
+                   <p style="margin: 0;font-size:1rem;">*Molimo koristite pravo ime!</p>
                   <input type="text" name="firstName" id="firstName" placeholder="First Name" style="border-radius: .5rem .5rem 0 0;" required><br>
                   <input type="text" name="lastName" id="lastName" placeholder="Last Name" style="border-radius: 0 0 0 0;" required><br>
                 <input type="text" name="email" id="email" placeholder="E-Mail" style="border-radius: 0 0 0 0;" required><br>
@@ -326,27 +328,20 @@
     </symbol>
   </svg>
 </div>
-<input type="submit" name="runCode"></center></form>'
+<input type="submit" name="runCode"></center></form>
 
         <?php
         define('ENCRYPTION_KEY', 'Sigma-Gyatt-In-Ohio-Rizzler-Edge');
-function encrypt_password($password){
-    $iv = openssl_random_pseudo_bytes(16);
-    $encrypted = openssl_encrypt($password, 'AES-256-CBC', ENCRYPTION_KEY, 0, $iv);
-    return base64_encode($iv . $encrypted);
+function encrypt_password($password) {
+    return password_hash($password, PASSWORD_DEFAULT);
 }
-function decrypt_password($encrypted_password){
-    $data = base64_decode($encrypted_password);
-    $iv = substr($data, 0, 16);
-    $encrypted = substr($data, 16);
-    return openssl_decrypt($encrypted, 'AES-256-CBC', ENCRYPTION_KEY, 0, $iv);
-}
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['runCode']) && !isset($_SESSION['user'])) {
                 $email = $_POST['email'];
                 $pass = $_POST['password'];
                 $firstName = $_POST['firstName'];
                 $lastName = $_POST['lastName'];
-                $conn = mysqli_connect('localhost', 'root', '', 'tomicevipezosi');
+                $conn = mysqli_connect('sql209.infinityfree.com', 'if0_37883576', 'Sigurno0612', 'if0_37883576_tomicevipezosi');
                 if($conn->connect_error){
                     die('Connection Failed : '.$conn->connect_error);
                 }else{

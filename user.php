@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <?php
 session_start();
-header('Content-Type: text/html; charset=utf-8');
 ?>
 <html>
 
@@ -9,6 +8,7 @@ header('Content-Type: text/html; charset=utf-8');
     <meta charset="utf-8">
     <title>Tomicevi Pezosi</title>
     <link rel="stylesheet" href="nav.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
@@ -138,11 +138,11 @@ header('Content-Type: text/html; charset=utf-8');
     </script>
     <script src="toast.js"></script>
     <ul class = "nav">
-            <li class = "nav"><a href="home.php"><button class = "navbut2">Home</button></a></li>
+            <li class = "nav"><a href="index.php"><button class = "navbut2">Home</button></a></li>
             <li class = "nav"><a href="company.php"><button class = "navbut2">My Company</button></a></li>
             <?php
         if(isset($_SESSION["user"])){
-            $conn = mysqli_connect('localhost', 'root', '', 'tomicevipezosi');
+            $conn = mysqli_connect('sql209.infinityfree.com', 'if0_37883576', 'Sigurno0612', 'if0_37883576_tomicevipezosi');
             if($conn->connect_error){
                 die('Connection Failed : '.$conn->connect_error);
             }else{
@@ -167,11 +167,11 @@ header('Content-Type: text/html; charset=utf-8');
         <div class = "mobile-container" id = "mob-cont">
             <ul class="mobile">
                 <!--<a href="" class="close"></a> -->
-                <li class="mobile"> <a href="home.php"> <button class = "navbut2">Home</button> </a> </li>
+                <li class="mobile"> <a href="index.php"> <button class = "navbut2">Home</button> </a> </li>
                 <li class="mobile"> <a href="company.php"> <button class = "navbut2">My Company</button> </a></li>
                 <?php
         if(isset($_SESSION["user"])){
-            $conn = mysqli_connect('localhost', 'root', '', 'tomicevipezosi');
+            $conn = mysqli_connect('sql209.infinityfree.com', 'if0_37883576', 'Sigurno0612', 'if0_37883576_tomicevipezosi');
             if($conn->connect_error){
                 die('Connection Failed : '.$conn->connect_error);
             }else{
@@ -193,7 +193,7 @@ header('Content-Type: text/html; charset=utf-8');
         </div>
         <div id="snackbar"></div>
         <?php
-        $conn = mysqli_connect('localhost', 'root', '', 'tomicevipezosi');
+        $conn = mysqli_connect('sql209.infinityfree.com', 'if0_37883576', 'Sigurno0612', 'if0_37883576_tomicevipezosi');
         if($conn->connect_error)
             die('Connection Failed : '.$conn->connect_error);
         if(isset($_SESSION["user"])){
@@ -218,7 +218,7 @@ header('Content-Type: text/html; charset=utf-8');
                 $email = $_POST['email'];
                 $firstName = $_POST['firstName'];
                 $lastName = $_POST['lastName'];
-                $conn = mysqli_connect('localhost', 'root', '', 'tomicevipezosi');
+                $conn = mysqli_connect('sql209.infinityfree.com', 'if0_37883576', 'Sigurno0612', 'if0_37883576_tomicevipezosi');
                 if($conn->connect_error){
                     die('Connection Failed : '.$conn->connect_error);
                 }else{
