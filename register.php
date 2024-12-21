@@ -328,7 +328,7 @@
     </symbol>
   </svg>
 </div>
-<p>Registrovanjem prihvatate <a href="tos.php">Uslove Koriscenja</a></p>
+<p class="font-size: 1rem;margin:0;">Registrovanjem prihvatate <a href="tos.php" class="font-size:1rem;margin: 0;text-decoration:underline;color:#00AA6D;">Uslove Koriscenja</a></p>
 <input type="submit" name="runCode"></center></form>
 
         <?php
@@ -359,9 +359,11 @@ function encrypt_password($password) {
                         }
                     }
                     }
+                    
                     $pass = encrypt_password($pass);
                     $sql = "INSERT INTO user(firstName, lastName, email, password) VALUES('$firstName', '$lastName', '$email', '$pass')";
                     if($conn->query($sql) == TRUE){
+                        $_SESSION['user'] = $email;
                         echo "Registracija uspesna! <a href='login.html'>Ulogujte se</a>";
                     }
                     else{
