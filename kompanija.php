@@ -3,6 +3,7 @@
 session_start();
 $a = 12;
 $b = 13;
+$c = 14;
 ?>
 <html>
 
