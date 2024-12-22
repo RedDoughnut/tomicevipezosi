@@ -90,10 +90,6 @@
         ul{
             margin: 20px;
         }
-        a:hover{
-            color: rgb(181, 181, 181);
-            transition: 0.5s ease-in-out;
-        }
         
         .checkbox-wrapper-4 * {
   box-sizing: border-box;
@@ -214,6 +210,9 @@
     transform: scale(0.9);
   }
 }
+a.tos{
+  
+}
      </style>
     <body>
         <script>
@@ -319,8 +318,9 @@
     </symbol>
   </svg>
 </div>
-<p class="font-size: 1rem;margin:0;">Registrovanjem prihvatate <a href="tos.php" class="font-size:1rem;margin: 0;text-decoration:underline;color:#00AA6D;">Uslove Koriscenja</a></p>
-<input type="submit" name="runCode"></center></form>
+</center>
+<p class="font-size: 1rem;margin:0;">Registrovanjem prihvatate <a href="tos.php" class="tos" style="font-size:1rem;margin: 0;text-decoration:underline;color:#00AA6D;">Uslove Koriscenja</a></p>
+<center><input type="submit" name="runCode"></center></form>
 
         <?php
         define('ENCRYPTION_KEY', 'Sigma-Gyatt-In-Ohio-Rizzler-Edge');
