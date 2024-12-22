@@ -318,9 +318,9 @@ a.tos{
     </symbol>
   </svg>
 </div>
-</center>
-<p class="font-size: 1rem;margin:0;">Registrovanjem prihvatate <a href="tos.php" class="tos" style="font-size:1rem;margin: 0;text-decoration:underline;color:#00AA6D;">Uslove Koriscenja</a></p>
-<center><input type="submit" name="runCode"></center></form>
+
+<p style="font-size: 1rem;margin:0;text-align:left;">Registrovanjem prihvatate <a href="tos.php" class="tos" style="font-size:1rem;margin: 0;text-decoration:underline;color:#00AA6D;">Uslove Koriscenja</a></p>
+<input type="submit" name="runCode"></center></form>
 
         <?php
         define('ENCRYPTION_KEY', 'Sigma-Gyatt-In-Ohio-Rizzler-Edge');
