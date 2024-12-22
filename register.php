@@ -94,10 +94,7 @@
             color: rgb(181, 181, 181);
             transition: 0.5s ease-in-out;
         }
-        p{
-            font-size: 1.3rem;
-            margin: 20px 20px 20px 30px;
-        }
+        
         .checkbox-wrapper-4 * {
   box-sizing: border-box;
   color: black;
