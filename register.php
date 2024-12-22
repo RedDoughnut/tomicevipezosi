@@ -319,7 +319,7 @@ a.tos{
   </svg>
 </div>
 
-<p style="font-size: 1rem;margin:0;text-align:left;">Registrovanjem prihvatate <a href="tos.php" class="tos" style="font-size:1rem;margin: 0;text-decoration:underline;color:#00AA6D;">Uslove Koriscenja</a></p>
+<p style="font-size: 1rem;margin:0;text-align:left;">Registrovanjem prihvatate <a href="tos.php" class="tos" style="font-size:1rem;margin: 0;text-decoration:underline;color:#0266FF;">Uslove Koriscenja</a></p>
 <input type="submit" name="runCode"></center></form>
 
         <?php
