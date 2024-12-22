@@ -86,13 +86,7 @@
         li {
             display: inline;
         }
-        a {
-           display: inline;
-           font-size: 2rem;
-           text-decoration: none;
-           color: black;
-           margin: 10px;
-        } 
+        
         ul{
             margin: 20px;
         }
