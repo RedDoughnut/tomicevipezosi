@@ -279,6 +279,7 @@
         <?php
         if($_SERVER["REQUEST_METHOD"] == "POST"){
             $conn = mysqli_connect('sql209.infinityfree.com', 'if0_37883576', 'Sigurno0612', 'if0_37883576_tomicevipezosi');
+            mysqli_set_charset($conn, "utf8");
             if($conn->connect_error){
                 die('Connection Failed : '.$conn->connect_error);
             }else{
