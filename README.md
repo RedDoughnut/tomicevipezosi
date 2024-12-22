@@ -4,7 +4,7 @@ PHP Website sa SQL databazom.
 https://tomicevipezosi.rf.gd/
 
 To-Do:
-- [X] CSS da sredim.
+- [ ] CSS da sredim.
 - [ ] Da dodam funkcionalnost ulaganja u kompanije
 - [ ] Da dodam oglase za kompanije
 
@@ -18,7 +18,7 @@ PHP Website with SQL database.
 https://tomicevipezosi.rf.gd/
 
 To-Do:
-- [X] Fix CSS and make it prettier overall
+- [ ] Fix CSS and make it prettier overall
 - [ ] Add the functionality of investing in companies
 - [ ] Add ads for companies and
 
