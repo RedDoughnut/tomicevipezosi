@@ -4,6 +4,7 @@
      <head>
         <title>Register</title>
         <link rel="stylesheet" href="nav.css">
+        <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
      </head>
      <script>
@@ -270,7 +271,7 @@ a.tos{
                 $email = $_SESSION['user'];
                 $sql = "SELECT firstName FROM user WHERE email = '$email'";
                 $res = $conn->query($sql);
-                $res = $res -> fetch_assoc();
+                $res = $res->fetch_assoc();
                 echo "<li class = 'mobile'><a href='user.php'><button class='navbut2'>" . $res['firstName'] . "</button></a></li>";
                 $conn->close();
             }
@@ -297,7 +298,7 @@ a.tos{
         }
      </script>
         <div id="snackbar"></div>
-        <form method="POST">
+        <form method="POST" accept-charset="utf-8">
                 <center>
                 <h1>Register</h1>
                 <div class="inputs">

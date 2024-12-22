@@ -4,6 +4,7 @@
      <head>
         <title>Napravi Kompaniju</title>
         <link rel="stylesheet" href="nav.css">
+        <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
      </head>
      <style>
@@ -263,7 +264,7 @@
             </ul>
         </div>
         <div id="snackbar"></div>
-        <form action="napravi_kompaniju.php" method="POST">
+        <form action="napravi_kompaniju.php" method="POST" accept-charset="utf-8">
         <center>
             <h1>Registracija Kompanije</h1>
             <div class="inputs">
