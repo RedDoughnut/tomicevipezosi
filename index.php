@@ -221,7 +221,8 @@ session_start();
                 for ($i = 0; $i < $hours; $i++) {
                     $rnd = mt_rand(-10000 * $menjanje, 10000 * $menjanje) / 10000;
                     if ($cenaAkcije <= 0) {
-                        $sql = "UPDATE `kompanija` SET `value`=0 WHERE `id`=" . $row['id'];
+                        $diwhihwdh = 0;
+                        $sql = "UPDATE `kompanija` SET `value`=$diwhihwdh WHERE `id`=" . $row['id'];
                         mysqli_query($conn, $sql);
                         break;
                     }
