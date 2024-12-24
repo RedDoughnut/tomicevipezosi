@@ -105,7 +105,7 @@ session_start();
         }
         .showup{
             height: 3rem;
-            font-size: 1.2rem;
+            font-size: 1rem;
             visibility: visible;
         }
         
