@@ -92,6 +92,8 @@ session_start();
             color: white;
         }
         .up{
+            display: flex;
+            justify-content: space-between;
             width: 100%;
             background-color: #4a4a4a;
             /*border-bottom: 1px solid white;*/
@@ -187,7 +189,7 @@ session_start();
                 
             </ul>
         </div>
-        <div class="up showup" id="up">Pogledajte naše <a href="tos.php">uslove korišćenja</a>!<a style="margin-left:100%;font-size:1.2rem;" onclick="XClick();">✕</a></div>
+        <div class="up showup" id="up">Pogledajte naše <a href="tos.php">uslove korišćenja</a>!<a style="text-align: right;font-size:1.2rem;" onclick="XClick();">✕</a></div>
         <div id="snackbar"></div>
     <h1>Lista kompanija</h1>
     <h2 id="diff"></h2>
