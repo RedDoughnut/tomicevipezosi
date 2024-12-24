@@ -34,7 +34,7 @@ $c = 14;
            font-size: 1rem;
            text-decoration: underline;
            color: #04AA6D;
-           margin: 10px;
+           
         } 
         a.nav {
            display: inline;
