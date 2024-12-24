@@ -71,9 +71,10 @@ session_start();
             font-size: 1.3rem;
             margin: 20px 20px 20px 30px;
         }
-        h1{
+        h2{
             margin: 20px 20px 20px 30px;
         }
+        
         table {
             border-collapse: collapse;
             width: 60%;
