@@ -94,7 +94,7 @@ session_start();
         .up{
             width: 100%;
             background-color: #4a4a4a;
-            border-bottom: 1px solid white;
+            /*border-bottom: 1px solid white;*/
             color: white;
             padding: 10px;
             visibility: hidden;
@@ -102,7 +102,10 @@ session_start();
         .showup{
             visibility: visible;
         }
-
+        .up:after{
+            display: inline-block;
+            content: "\00d7";
+        }
 </style>
 <body>
     <script>
@@ -113,15 +116,23 @@ session_start();
     <script>
     function myFunction(x) {
     x.classList.toggle("change");
-    const mobCont = document.getElementById("mob-cont");
+        const mobCont = document.getElementById("mob-cont");
 
-    if (mobCont.classList.contains("menu-open")) {
-        mobCont.classList.remove("menu-open"); // Hide menu
-    } else {
-        mobCont.classList.add("menu-open"); // Show menu
+        if (mobCont.classList.contains("menu-open")) {
+            mobCont.classList.remove("menu-open"); // Hide menu
+        } else {
+            mobCont.classList.add("menu-open"); // Show menu
+        }
     }
-
-}
+    function XClick(){
+        const obj = document.getElementById("up");
+        if(obj.classList.contains("showup")){
+            obj.classList.remove("showup");
+        }
+        else{
+            obj.classList.add("showup");
+        }
+    }
     </script>
     <script src="toast.js"></script>
     <ul class = "nav">
@@ -178,7 +189,7 @@ session_start();
                 
             </ul>
         </div>
-        <div class="up showup">Pogledajte naše <a href="tos.php">uslove korišćenja</a>!</div>
+        <div class="up showup" id="up">Pogledajte naše <a href="tos.php">uslove korišćenja</a>!<a style="text-align: right;" onclick="XClick();">X</a></div>
         <div id="snackbar"></div>
     <h1>Lista kompanija</h1>
     <h2 id="diff"></h2>
