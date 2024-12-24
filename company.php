@@ -372,6 +372,9 @@
                     $conn->close();
                 }
             }
+            else{
+                echo "<script>showToast('Svrsio!!!')</script>";
+            }
         ?>
     </body>
 
