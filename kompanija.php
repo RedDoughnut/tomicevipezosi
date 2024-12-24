@@ -280,38 +280,24 @@ $c = 14;
                     die('Connection Failed : '.$conn->connect_error);
                 }else{
                     $email = $_SESSION['user'];
-                    $sql = "SELECT balance, investicije FROM user WHERE email = '$email'";
+                    $sql = "SELECT balance FROM user WHERE email = '$email'";
                     $res = $conn->query($sql);
                     $res = $res -> fetch_assoc();
                     $bal = $res['balance'];
-                    $inv_KORISNIK = json_decode($res['investicije']);
                     $id = $_GET["id"];
-                    $sql = "SELECT stocks_available, stocks_sold, value, user_id FROM kompanija WHERE id = '$id'";
+                    $sql = "SELECT stocks_available, stocks_sold, value FROM kompanija WHERE id = '$id'";
                     $res = $conn->query($sql);
                     $res = $res -> fetch_assoc();
                     $stocks_available = $res['stocks_available'];
                     $stocks_sold = $res['stocks_sold'];
-                    $user_id = $res['user_id'];
                     $value = $res['value'];
                     $amount = $_POST['amount'];
                     if($amount > $stocks_available - $stocks_sold){
                         die("Nema dovoljno akcija!");
                     }
-                    if($bal < $amount * $value){
-                        die("<p>Nemaš keš</p>");
+                    if($bal < $amount * $value * 2000){
+                        
                     }
-                    $sql = "UPDATE user SET balance = balance - $amount*$value WHERE id = '$id'";
-                    mysqli_query($conn, $sql);
-                    $sql = "UPDATE user SET balance = balance + $amount*$value WHERE id = '$user_id'";
-                    mysqli_query($conn, $sql);
-                    $sql = "UPDATE kompanija SET stocks_sold = stocks_sold + $amount WHERE user_id = '$user_id'";
-                    mysqli_query($conn, $sql);
-                    
-
-
-
-
-
                 }
             }
 
