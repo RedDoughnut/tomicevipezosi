@@ -200,7 +200,7 @@ session_start();
     $conn = mysqli_connect('sql209.infinityfree.com', 'if0_37883576', 'Sigurno0612', 'if0_37883576_tomicevipezosi');
     mysqli_set_charset($conn, "utf8");
     $time_rn = time();
-    $time_interval = 3600;
+    $time_interval = 60;
     $time = mysqli_query($conn, $sql)->fetch_assoc()['time'];
     $hours = floor(($time_rn-$time)/$time_interval);
     echo "<h1>" . $time_rn - $time . "</h1>";
@@ -208,7 +208,7 @@ session_start();
     if($hours>0){
         $time_lost = ($time_rn-$time)%$time_interval;
         $final_time = $time_rn - $time_lost;
-        $sql = "UPDATE `last_updated` SET `time`='$time_rn' WHERE `id`=1";
+        $sql = "UPDATE `last_updated` SET `time`=$time_rn WHERE `id`=1";
         mysqli_query($conn, $sql);
         $sql = "SELECT * FROM kompanija";
         $res = mysqli_query($conn, $sql);
@@ -220,12 +220,12 @@ session_start();
                 for ($i = 0; $i < $hours; $i++) {
                     $rnd = mt_rand(-10000 * $menjanje, 10000 * $menjanje) / 10000;
                     if ($cenaAkcije <= 0) {
-                        $sql = "UPDATE `kompanija` SET `value`=0 WHERE `id`=" . $row['id'];
+                        //$sql = "UPDATE `kompanija` SET `value`=0 WHERE `id`=" . $row['id'];
                         break;
                     }
                     $cenaAkcije += ($rnd * $menjanje) / 100;
                 }
-                $sql = "UPDATE `kompanija` SET `value`='$cenaAkcije' WHERE `id`=" . $row['id'];
+                $sql = "UPDATE `kompanija` SET `value`=$cenaAkcije WHERE `id`=" . $row['id'];
                 mysqli_query($conn, $sql);
 
             }
