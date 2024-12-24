@@ -224,7 +224,9 @@ session_start();
                     }
                     $cenaAkcije += ($rnd * $menjanje) / 100;
                 }
-                $sql = "UPDATE 'kompanija' SET 'value'=$cenaAkcije WHERE id=$row['id']";
+                $sql = "UPDATE `kompanija` SET `value`='$cenaAkcije' WHERE id='$row['id']'";
+                mysqli_query($conn, $sql);
+
             }
         }
         
