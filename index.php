@@ -92,6 +92,12 @@ session_start();
             background-color: #04AA6D;
             color: white;
         }
+        .up{
+            width: 100%;
+            background-color: #4a4a4a;
+            border-bottom: 2px solid white;
+            color: white;
+        }
 
 </style>
 <body>
@@ -168,7 +174,7 @@ session_start();
                 
             </ul>
         </div>
-        <div ></div>
+        <div class="up">Pogledajte naše <a href="tos.php">uslove korišćenja</a>!</div>
         <div id="snackbar"></div>
     <h1>Lista kompanija</h1>
     <h2 id="diff"></h2>
