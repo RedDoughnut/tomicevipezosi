@@ -242,6 +242,7 @@ session_start();
     }
 ?>
 <script>
+        var a = 1;
         function a() {
             var time_rn = <?php echo json_encode($time_rn); ?>;
             var time = <?php echo json_encode($time); ?>;
@@ -254,10 +255,11 @@ session_start();
             }
 
             if (hours !== null) {
-                document.getElementById('hour').innerHTML = hours;
+                document.getElementById('hour').innerHTML = a;
             } else {
                 console.error('Invalid hours value');
             }
+            a++;
         }
         a();
         // Call the function every second
