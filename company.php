@@ -361,7 +361,8 @@
                     $res = $conn->query($sql);
                     $res = $res->fetch_assoc();
                     $id = $res['id'];
-                    $sql = "UPDATE kompanija SET description = '" . $_POST['description'] . "' WHERE user_id = '$id'";
+                    $desc = $_POST['description'];
+                    $sql = "UPDATE kompanija SET description = '$desc' WHERE user_id = '$id'";
                     if($conn->query($sql)){
                         echo "<script>showToast('Successfully saved!')</script>";
                     }
