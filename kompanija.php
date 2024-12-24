@@ -41,7 +41,7 @@ $c = 14;
            font-size: 2rem;
            text-decoration: none;
            color: black;
-           margin: 10px;
+           
         } 
         ul{
             margin: 20px;
