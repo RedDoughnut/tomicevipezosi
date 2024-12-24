@@ -171,7 +171,7 @@ session_start();
     if($conn->connect_error){
         die('Connection Failed : '.$conn->connect_error);
     }else{
-        $sql = "SELECT ticker, name, id, value FROM kompanija ORDER BY value";//LIMIT 5
+        $sql = "SELECT ticker, name, id, value FROM kompanija ORDER BY value DESC";//LIMIT 5
 
         $result = $conn->query($sql);
         $p = "";
@@ -210,7 +210,7 @@ session_start();
             $time_lost-=3600;
         }
         $final_time = $time_rn - $time_lost;
-        $sql = "UPDATE `last_updated` SET `time`='$final_time' WHERE `id`=1 DESC";
+        $sql = "UPDATE `last_updated` SET `time`='$final_time' WHERE `id`=1";
         mysqli_query($conn, $sql);
         $sql = "SELECT * FROM kompanija";
         $res = mysqli_query($conn, $sql);
@@ -231,6 +231,7 @@ session_start();
 
             }
         }
+        $hours = 0;
         
     }
 ?>
