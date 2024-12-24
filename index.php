@@ -63,7 +63,7 @@ session_start();
             margin: 20px;
         }
         a:hover{
-            color:rgb(0, 87, 55);
+            color:rgb(0, 117, 74);
             transition: 0.3s ease-in-out;
         }
         p{
