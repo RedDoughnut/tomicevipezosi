@@ -51,7 +51,6 @@ session_start();
            display: inline;
            font-size: 1rem;
            color: #04AA6D;
-           margin: 10px;
         } 
         a.nav {
            display: inline;
@@ -98,6 +97,10 @@ session_start();
             border-bottom: 1px solid white;
             color: white;
             padding: 10px;
+            visibility: hidden;
+        }
+        .showup{
+            visibility: show;
         }
 
 </style>
@@ -175,7 +178,7 @@ session_start();
                 
             </ul>
         </div>
-        <div class="up">Pogledajte naše <a href="tos.php">uslove korišćenja</a>!</div>
+        <div class="up showup">Pogledajte naše <a href="tos.php">uslove korišćenja</a>!</div>
         <div id="snackbar"></div>
     <h1>Lista kompanija</h1>
     <h2 id="diff"></h2>
