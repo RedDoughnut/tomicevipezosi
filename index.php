@@ -260,7 +260,7 @@ session_start();
                 console.error('Invalid hours value');
             }
         }
-
+        a();
         // Call the function every second
         setInterval(a, 1000);
     </script>
