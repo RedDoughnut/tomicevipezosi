@@ -78,7 +78,17 @@
             border-radius: 1rem;
             width:16rem;
         }
+        ul {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+         }
 
+        li {
+            display: inline;
+        }
+        
+        
         
         .checkbox-wrapper-4 * {
   box-sizing: border-box;
