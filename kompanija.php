@@ -284,20 +284,56 @@ $c = 14;
                     $res = $conn->query($sql);
                     $res = $res -> fetch_assoc();
                     $bal = $res['balance'];
+                    $inv_KORISNIK = json_decode($res['investicije'], true);
+                    $KORISNIK_id = $res["id"];
                     $id = $_GET["id"];
-                    $sql = "SELECT stocks_available, stocks_sold, value FROM kompanija WHERE id = '$id'";
+                    $sql = "SELECT stocks_available, stocks_sold, value, user_id, ticker, investicije FROM kompanija WHERE id = '$id'";
                     $res = $conn->query($sql);
                     $res = $res -> fetch_assoc();
                     $stocks_available = $res['stocks_available'];
                     $stocks_sold = $res['stocks_sold'];
+                    $VLASNIK_id = $res['user_id'];
                     $value = $res['value'];
                     $amount = $_POST['amount'];
+                    $ticker = $res['ticker'];
+                    $inv_KOMPANIJA = json_decode($res['investicije'], true);
+                    if($VLASNIK_id===$KORISNIK_id){
+                        die("Ne možeš da kupiš svoje akcije!");
+                    }
                     if($amount > $stocks_available - $stocks_sold){
                         die("Nema dovoljno akcija!");
                     }
                     if($bal < $amount * $value * 2000){
                         
                     }
+                    $sql = "UPDATE user SET balance = balance - $amount*$value WHERE id = '$KORISNIK_id'";
+                    mysqli_query($conn, $sql);
+                    $sql = "UPDATE user SET balance = balance + $amount*$value WHERE id = '$VLASNIK_id'";
+                    mysqli_query($conn, $sql);
+                    $sql = "UPDATE kompanija SET stocks_sold = stocks_sold + $amount WHERE user_id = '$VLASNIK_id'";
+                    mysqli_query($conn, $sql);
+                    if($inv_KORISNIK['ticker']!=NULL){
+                        $inv_KORISNIK['ticker'] = $amount;
+                    }
+                    else{
+                        $inv_KORISNIK['ticker'] += $amount;
+                    }
+
+                    if($inv_KOMPANIJA['ticker']!=NULL){
+                        $inv_KOMPANIJA['ticker'] = $amount;
+                    }
+                    else{
+                        $inv_KOMPANIJA['ticker'] += $amount;
+                    }
+                    
+
+
+
+
+
+
+
+
                 }
             }
 

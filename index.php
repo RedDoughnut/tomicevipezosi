@@ -151,7 +151,7 @@ session_start();
                 $res = $conn->query($sql);
                 $res = $res -> fetch_assoc();
                 echo "<li class = 'nav'><a href='user.php' class='nav'><button class='navbut2'>" . $res['firstName'] . "</button></a></li>";
-                echo "<li class = 'nav' style='font-size: 1rem;'>" . $res['balance'] . "T₱</li>";
+                echo "<li class = 'nav' style='font-size: 2rem;'>" . $res['balance'] . "T₱</li>";
               
                 $conn->close();
             }
@@ -182,9 +182,7 @@ session_start();
                 $res = $conn->query($sql);
                 $res = $res -> fetch_assoc();
                 echo "<li class = 'mobile'><a href='user.php'><button class='navbut2'>" . $res['firstName'] . "</button></a></li>";
-
-                echo "<li class = 'mobile'>" . $res['balance'] . "T₱</li>";
-
+                echo "<li class = 'mobile' style='font-size: 2rem;'>" . $res['balance'] . "T₱</li>";
                 $conn->close();
             }
         }
