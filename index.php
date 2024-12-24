@@ -102,10 +102,7 @@ session_start();
         .showup{
             visibility: visible;
         }
-        .up:after{
-            display: inline-block;
-            content: "\00d7";
-        }
+        
 </style>
 <body>
     <script>
@@ -189,7 +186,7 @@ session_start();
                 
             </ul>
         </div>
-        <div class="up showup" id="up">Pogledajte naše <a href="tos.php">uslove korišćenja</a>!<a style="text-align: right;" onclick="XClick();">X</a></div>
+        <div class="up showup" id="up">Pogledajte naše <a href="tos.php">uslove korišćenja</a>!<a style="margin-left:100%;font-size:1.2rem;" onclick="XClick();">✕</a></div>
         <div id="snackbar"></div>
     <h1>Lista kompanija</h1>
     <h2 id="diff"></h2>
