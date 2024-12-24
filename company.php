@@ -366,7 +366,9 @@
                     if($conn->query($sql)){
                         echo "<script>showToast('Successfully saved!')</script>";
                     }
-
+                    else{
+                        die($conn->connect_error);
+                    }
                     $conn->close();
                 }
             }
