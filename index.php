@@ -99,7 +99,7 @@ session_start();
             /*border-bottom: 1px solid white;*/
             color: white;
             padding: 10px;
-            height: 1.4rem;
+            
             visibility: hidden;
         }
         .showup{
