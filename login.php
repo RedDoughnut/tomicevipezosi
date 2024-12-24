@@ -83,14 +83,7 @@
         input:focus{
             outline: none;
         }
-        ul.nav {
-          list-style-type: none;
-          margin: 30px;
-          padding: 0;
-         }
-        ul.mobile{
-            list-style-type: none;
-        }
+        
 
         li.nav {
             display: inline;

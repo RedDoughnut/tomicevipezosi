@@ -162,6 +162,7 @@ session_start();
                 
             </ul>
         </div>
+        <div ></div>
         <div id="snackbar"></div>
     <h1>Lista kompanija</h1>
     <table>
