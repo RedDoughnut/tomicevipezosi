@@ -199,24 +199,35 @@ session_start();
     $sql = "SELECT time FROM last_updated WHERE id=1";
     $conn = mysqli_connect('sql209.infinityfree.com', 'if0_37883576', 'Sigurno0612', 'if0_37883576_tomicevipezosi');
     mysqli_set_charset($conn, "utf8");
-    echo "<h1>Hi! Hi! Hi!</h1>";
-    echo "<h1>" . time() . "</h1>";
+    $time_rn = time();
     $time = mysqli_query($conn, $sql)->fetch_assoc()['time'];
-    $hours = floor((time()-$time)/3600);
+    $hours = floor(($time_rn-$time)/3600);
     if($hours>0){
-        $sql = "UPDATE 'last_updated' SET 'time'=UNIX_TIMESTAMP() WHERE 1";
-        $menjanje = 3;
-        $brojAkcija = 2000;
-        $cenaKompanije = 2000;
-        $cenaAkcije = $cenaKompanije / $brojAkcija;
-
-        for ($i = 0; $i < $hours; $i++) {
-            $rnd = mt_rand(-10000 * $menjanje, 10000 * $menjanje) / 10000;
-            if ($cenaAkcije <= 0) {
-                break;
-            }
-            $cenaAkcije += ($rnd * $menjanje) / 100;
+        $time_lost = $time_rn-$time;
+        while($time_lost>=3600){
+            $time_lost-=3600;
         }
+        $final_time = $time_rn - $time_lost;
+        $sql = "UPDATE 'last_updated' SET 'time'=$final_time WHERE id=1";
+        mysqli_query($conn, $sql);
+        $sql = "SELECT * FROM kompanija";
+        $res = mysqli_query($conn, $sql);
+        if($res->num_rows>0){
+            while($row = $res->fetch_assoc()){
+                $menjanje = 3;
+                $cenaAkcije = $row["value"];
+
+                for ($i = 0; $i < $hours; $i++) {
+                    $rnd = mt_rand(-10000 * $menjanje, 10000 * $menjanje) / 10000;
+                    if ($cenaAkcije <= 0) {
+                        break;
+                    }
+                    $cenaAkcije += ($rnd * $menjanje) / 100;
+                }
+                $sql = "UPDATE 'kompanija' SET 'value'=$cenaAkcije WHERE id=$row['id']";
+            }
+        }
+        
     }
 ?>
 
