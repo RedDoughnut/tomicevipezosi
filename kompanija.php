@@ -318,14 +318,18 @@ $c = 14;
                     else{
                         $inv_KORISNIK['ticker'] += $amount;
                     }
-
+                    $inv_KORISNIK = json_encode($inv_KORISNIK);
                     if($inv_KOMPANIJA['ticker']!=NULL){
                         $inv_KOMPANIJA['ticker'] = $amount;
                     }
                     else{
                         $inv_KOMPANIJA['ticker'] += $amount;
                     }
-                    
+                    $inv_KOMPANIJA = json_encode($inv_KOMPANIJA);
+                    $sql = "UPDATE kompanija SET investicije = $inv_KOMPANIJA WHERE user_id='$VLASNIK_id'";
+                    mysqli_query($conn, $sql);
+                    $sql = "UPDATE user SET investicije = $inv_KORISNIK WHERE user_id='$KORISNIK_id'";
+                    mysqli_query($conn, $sql);
 
 
 
