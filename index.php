@@ -95,8 +95,9 @@ session_start();
         .up{
             width: 100%;
             background-color: #4a4a4a;
-            border-bottom: 2px solid white;
+            border-bottom: 1px solid white;
             color: white;
+            padding: 10px;
         }
 
 </style>
