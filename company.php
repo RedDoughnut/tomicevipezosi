@@ -112,9 +112,12 @@
             color: rgb(181, 181, 181);
             transition: 0.5s ease-in-out;
         }
-        p, a{
+        p{
             font-size: 1.3rem;
             margin: 20px 20px 20px 30px;
+        }
+        a{
+            font-size: 1.3rem;
         }
         h1{
             margin: 20px 20px 20px 30px;
