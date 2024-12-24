@@ -73,7 +73,11 @@ session_start();
         h1, h2{
             margin: 20px 20px 20px 30px;
         }
-        
+        @media only screen and (max-width:775px){
+            table{
+                margin: 20px 20px 20px 10px;
+            }
+        }
         table {
             border-collapse: collapse;
             width: 60%;
