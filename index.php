@@ -100,10 +100,12 @@ session_start();
             color: white;
             padding: 10px;
             height: 0;
+            font-size: 0;
             visibility: hidden;
         }
         .showup{
             height: 3rem;
+            font-size: 1.2rem;
             visibility: visible;
         }
         
