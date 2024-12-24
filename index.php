@@ -71,7 +71,7 @@ session_start();
             font-size: 1.3rem;
             margin: 20px 20px 20px 30px;
         }
-        h2{
+        h1, h2{
             margin: 20px 20px 20px 30px;
         }
         
