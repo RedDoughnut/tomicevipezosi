@@ -246,7 +246,7 @@ session_start();
             var time_rn = <?php echo json_encode($time_rn); ?>;
             var time = <?php echo json_encode($time); ?>;
             var hours = <?php echo json_encode($hours); ?>;
-
+            var_dump(time_rn);
             // Validate data before operations
             if (time_rn !== null && time !== null) {
                 document.getElementById('diff').innerText = time_rn - time;
