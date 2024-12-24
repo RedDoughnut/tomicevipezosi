@@ -95,6 +95,11 @@ session_start();
 </style>
 <body>
     <script>
+        function a(s) {
+            document.getElementById('diff').innerText = "Azurirano pre: " + s + "s"; 
+        }
+    </script>
+    <script>
     function myFunction(x) {
     x.classList.toggle("change");
     const mobCont = document.getElementById("mob-cont");
@@ -165,6 +170,7 @@ session_start();
         <div ></div>
         <div id="snackbar"></div>
     <h1>Lista kompanija</h1>
+    <h2 id="diff"></h2>
     <table>
         <?php
             $conn = mysqli_connect('sql209.infinityfree.com', 'if0_37883576', 'Sigurno0612', 'if0_37883576_tomicevipezosi');
@@ -196,8 +202,6 @@ session_start();
 ?>
         
     </table>
-    <h1 id="diff">S</h1>
-    <h1 id="hour">S</h1>
     <?php
     $sql = "SELECT time FROM last_updated WHERE id=1";
     $conn = mysqli_connect('sql209.infinityfree.com', 'if0_37883576', 'Sigurno0612', 'if0_37883576_tomicevipezosi');
@@ -207,7 +211,7 @@ session_start();
     $time = mysqli_query($conn, $sql)->fetch_assoc()['time'];
     $hours = floor(($time_rn-$time)/$time_interval);
     //echo "<h1>" . $time_rn - $time . "</h1>";
-    //echo "<h1>" . $hours . "</h1>";
+    echo "<script>a(". ($time_rn-$time) .")</script>";
     if($hours>0){
         $time_lost = ($time_rn-$time)%$time_interval;
         $final_time = $time_rn - $time_lost;
@@ -241,28 +245,7 @@ session_start();
         
     }
 ?>
-<script>
-        function a() {
-            var time_rn = <?php echo json_encode($time_rn); ?>;
-            var time = <?php echo json_encode($time); ?>;
-            var hours = <?php echo json_encode($hours); ?>;
-            // Validate data before operations
-            if (time_rn !== null && time !== null) {
-                document.getElementById('diff').innerText = time_rn - time;
-            } else {
-                console.error('Invalid time values');
-            }
 
-            if (hours !== null) {
-                document.getElementById('hour').innerHTML = hours;
-            } else {
-                console.error('Invalid hours value');
-            }
-        }
-        a();
-        // Call the function every second
-        setInterval(a, 1000);
-    </script>
 
 </body>
 </html>
