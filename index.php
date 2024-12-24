@@ -196,16 +196,18 @@ session_start();
 ?>
         
     </table>
+    <h1 id="diff"></h1>
+    <h1 id="hour"></h1>
     <?php
     $sql = "SELECT time FROM last_updated WHERE id=1";
     $conn = mysqli_connect('sql209.infinityfree.com', 'if0_37883576', 'Sigurno0612', 'if0_37883576_tomicevipezosi');
     mysqli_set_charset($conn, "utf8");
     $time_rn = time();
-    $time_interval = 60;
+    $time_interval = 600;
     $time = mysqli_query($conn, $sql)->fetch_assoc()['time'];
     $hours = floor(($time_rn-$time)/$time_interval);
-    echo "<h1>" . $time_rn - $time . "</h1>";
-    echo "<h1>" . $hours . "</h1>";
+    //echo "<h1>" . $time_rn - $time . "</h1>";
+    //echo "<h1>" . $hours . "</h1>";
     if($hours>0){
         $time_lost = ($time_rn-$time)%$time_interval;
         $final_time = $time_rn - $time_lost;
@@ -239,6 +241,17 @@ session_start();
         
     }
 ?>
+<script>
+        function a(){
+            var time_rn = <?php echo json_encode($time_rn); ?>;
+            var time = <?php echo json_encode($time); ?>;
+            var hours = <?php echo json_encode($hours); ?>;
+
+            document.getElementById('diff').innerText = time_rn-time;
+            document.getElementById('hour').innerHTML = hours;
+        }
+        setInterval(a, 1000);
+    </script>
 
 </body>
 </html>
