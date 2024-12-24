@@ -6,7 +6,7 @@ session_start();
 
 <head>
     <meta charset="utf-8">
-    <title>Tomicevi Pezosi</title>
+    <title>Tomićevi Pezosi</title>
     <link rel="stylesheet" href="nav.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="og:title" content="Tomicevi Pezosi" />
@@ -97,7 +97,7 @@ session_start();
 <body>
     <script>
         function a(s) {
-            document.getElementById('diff').innerText = "Azurirano pre: " + s + "s"; 
+            document.getElementById('diff').innerText = "Ažurirano pre: " + s + "s"; 
         }
     </script>
     <script>
