@@ -195,6 +195,29 @@ session_start();
 ?>
         
     </table>
+    <?php
+    $sql = "SELECT time FROM last_updated WHERE id=1";
+    $conn = mysqli_connect('sql209.infinityfree.com', 'if0_37883576', 'Sigurno0612', 'if0_37883576_tomicevipezosi');
+    mysqli_set_charset($conn, "utf8");
+    echo UNIX_TIMESTAMP();
+    $time = mysqli_query($conn, $sql)->fetch_assoc()['time'];
+    $hours = floor((UNIX_TIMESTAMP()-$time)/3600);
+    if($hours>0){
+        $sql = "UPDATE 'last_updated' SET 'time'=UNIX_TIMESTAMP() WHERE 1";
+        $menjanje = 3;
+        $brojAkcija = 2000;
+        $cenaKompanije = 2000;
+        $cenaAkcije = $cenaKompanije / $brojAkcija;
+
+        for ($i = 0; $i < $hours; $i++) {
+            $rnd = mt_rand(-10000 * $menjanje, 10000 * $menjanje) / 10000;
+            if ($cenaAkcije <= 0) {
+                break;
+            }
+            $cenaAkcije += ($rnd * $menjanje) / 100;
+        }
+    }
+?>
 
 </body>
 </html>
