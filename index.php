@@ -100,7 +100,7 @@ session_start();
             visibility: hidden;
         }
         .showup{
-            visibility: show;
+            visibility: visible;
         }
 
 </style>
