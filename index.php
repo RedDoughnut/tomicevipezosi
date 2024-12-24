@@ -177,10 +177,11 @@ session_start();
                 die('Connection Failed : '.$conn->connect_error);
             }else{
                 $email = $_SESSION['user'];
-                $sql = "SELECT firstName FROM user WHERE email = '$email'";
+                $sql = "SELECT firstName, balance FROM user WHERE email = '$email'";
                 $res = $conn->query($sql);
                 $res = $res -> fetch_assoc();
                 echo "<li class = 'mobile'><a href='user.php'><button class='navbut2'>" . $res['firstName'] . "</button></a></li>";
+                echo "<li class = 'mobile'><a href='user.php'><button class='navbut2'>" . $res['balance'] . "T₱</button></a></li>";
                 $conn->close();
             }
         }
