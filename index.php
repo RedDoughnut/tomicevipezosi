@@ -210,7 +210,7 @@ session_start();
             $time_lost-=3600;
         }
         $final_time = $time_rn - $time_lost;
-        $sql = "UPDATE `last_updated` SET `time`='$final_time' WHERE `id`=1";
+        $sql = "UPDATE `last_updated` SET `time`='$final_time' WHERE `id`=1 DESC";
         mysqli_query($conn, $sql);
         $sql = "SELECT * FROM kompanija";
         $res = mysqli_query($conn, $sql);
