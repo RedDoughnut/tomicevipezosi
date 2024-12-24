@@ -201,8 +201,9 @@ session_start();
     mysqli_set_charset($conn, "utf8");
     $time_rn = time();
     $time = mysqli_query($conn, $sql)->fetch_assoc()['time'];
-    $hours = floor(($time_rn-$time)/3600);
+    $hours = floor(($time_rn-$time)/60);
     echo "<h1>" . $time_rn - $time . "</h1>";
+    echo "<h1>" . $hours . "</h1>";
     if($hours>0){
         $time_lost = $time_rn-$time;
         while($time_lost>=3600){
