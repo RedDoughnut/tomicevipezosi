@@ -63,8 +63,8 @@ session_start();
             margin: 20px;
         }
         a:hover{
-            color: rgb(181, 181, 181);
-            transition: 0.5s ease-in-out;
+            color:rgb(0, 87, 55);
+            transition: 0.3s ease-in-out;
         }
         p{
             font-size: 1.3rem;
