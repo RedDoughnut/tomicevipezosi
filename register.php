@@ -82,12 +82,14 @@
           list-style-type: none;
           margin: 0;
           padding: 0;
-         }
+        }
 
         li {
             display: inline;
         }
-        
+        ul{
+            margin: 20px;
+        }
         
         
         .checkbox-wrapper-4 * {
