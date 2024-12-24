@@ -90,6 +90,13 @@
         ul{
             margin: 20px;
         }
+        a {
+           display: inline;
+           font-size: 2rem;
+           text-decoration: none;
+           color: white;
+           margin: 10px;
+        }
         
         
         .checkbox-wrapper-4 * {
