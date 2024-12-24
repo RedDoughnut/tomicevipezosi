@@ -208,7 +208,7 @@ session_start();
             $time_lost-=3600;
         }
         $final_time = $time_rn - $time_lost;
-        $sql = "UPDATE 'last_updated' SET 'time'=$final_time WHERE id=1";
+        $sql = "UPDATE `last_updated` SET `time`='$final_time' WHERE `id`=1";
         mysqli_query($conn, $sql);
         $sql = "SELECT * FROM kompanija";
         $res = mysqli_query($conn, $sql);
@@ -224,7 +224,7 @@ session_start();
                     }
                     $cenaAkcije += ($rnd * $menjanje) / 100;
                 }
-                $sql = "UPDATE `kompanija` SET `value`='$cenaAkcije' WHERE id='$row['id']'";
+                $sql = "UPDATE `kompanija` SET `value`='$cenaAkcije' WHERE `id`=" . $row['id'];
                 mysqli_query($conn, $sql);
 
             }
