@@ -370,8 +370,6 @@
                     else{
                         die($conn->connect_error);
                     }
-                    sleep(3);
-                    echo "<script>window.location.reload()</script>";
                     $conn->close();
                 }
             }
