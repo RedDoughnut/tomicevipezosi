@@ -199,7 +199,7 @@ session_start();
     $sql = "SELECT time FROM last_updated WHERE id=1";
     $conn = mysqli_connect('sql209.infinityfree.com', 'if0_37883576', 'Sigurno0612', 'if0_37883576_tomicevipezosi');
     mysqli_set_charset($conn, "utf8");
-    echo "<h1>Hi! Hi! Hi!</h1>"
+    echo "<h1>Hi! Hi! Hi!</h1>";
     echo "<h1>" . UNIX_TIMESTAMP() . "</h1>";
     $time = mysqli_query($conn, $sql)->fetch_assoc()['time'];
     $hours = floor((UNIX_TIMESTAMP()-$time)/3600);
