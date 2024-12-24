@@ -171,7 +171,7 @@ session_start();
     if($conn->connect_error){
         die('Connection Failed : '.$conn->connect_error);
     }else{
-        $sql = "SELECT ticker, name, id, value FROM kompanija ORDER BY id";//LIMIT 5
+        $sql = "SELECT ticker, name, id, value FROM kompanija ORDER BY value";//LIMIT 5
 
         $result = $conn->query($sql);
         $p = "";
