@@ -302,7 +302,7 @@
             die('Connection Failed : '.$conn->connect_error);
         }else{
             if(!isset($_SESSION['user'])){
-                echo "<a href='login.php'>Log-In first</a>";
+                echo "<p><a href='login.php'>Nisi ulogovan!</a></p>";
                 $conn->close();
             }
             else{
@@ -313,9 +313,9 @@
                 $id = $res['id'];
 
                 $sql = "SELECT name, ticker, investicije, value, description, stocks_available, stocks_sold FROM kompanija WHERE user_id = '$id'";
-                $res = $conn->query($sql);
+                $res = $conn->query($sql);  
                 if($res->num_rows === 0){
-                    die("Nemas kompaniju! <a href='napravi_kompaniju.php'>Napravi kompaniju</a>");
+                    die("<p>Nemas kompaniju! <a href='napravi_kompaniju.php'>Napravi kompaniju</a></p>");
                 }
                 $kompanija = $res->fetch_assoc();
                 echo "<h1>" . $kompanija["name"] . " (" . $kompanija["ticker"] . ")</h1>";
