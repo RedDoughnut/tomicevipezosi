@@ -223,7 +223,9 @@ session_start();
                     if ($cenaAkcije <= 0) {
                         $diwhihwdh = 0;
                         $sql = "UPDATE `kompanija` SET `value`=$diwhihwdh WHERE `id`=" . $row['id'];
-                        mysqli_query($conn, $sql);
+                        if (!mysqli_query($conn, $sql)) {
+                            echo "Error: " . mysqli_error($conn);
+                        }
                         break;
                     }
                     $cenaAkcije += ($rnd * $menjanje) / 100;
