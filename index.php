@@ -140,6 +140,7 @@ session_start();
     <ul class = "nav">
             <li class = "nav"><a href="index.php"><button class = "navbut">Home</button></a></li>
             <li class = "nav"><a href="company.php"><button class = "navbut2">My Company</button></a></li>
+            <li class = "nav"><a href=""><button class = "navbut2">Balance</button></a></li>
             <?php
         if(isset($_SESSION["user"])){
             $conn = mysqli_connect('sql209.infinityfree.com', 'if0_37883576', 'Sigurno0612', 'if0_37883576_tomicevipezosi');
