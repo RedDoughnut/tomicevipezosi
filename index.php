@@ -189,7 +189,7 @@ session_start();
                 
             </ul>
         </div>
-        <div class="up showup" id="up"><span>Pogledajte naše <a href="tos.php">uslove korišćenja</a>!</span><a style="text-align: right;font-size:1.2rem;" onclick="XClick();">✕</a></div>
+        <div class="up showup" id="up"><span>Pogledajte naše <a href="tos.php">uslove korišćenja</a>!</span><a style="text-align: right;font-size:1.2rem;cursor:pointer;" onclick="XClick();">✕</a></div>
         <div id="snackbar"></div>
     <h1>Lista kompanija</h1>
     <h2 id="diff"></h2>
