@@ -52,15 +52,15 @@ $c = 14;
         }
         p{
             font-size: 1.3rem;
-            margin: 20px 20px 20px 30px;
+            margin: 20px 20px 20px 20px;
         }
         h1, h2{
-            margin: 20px 20px 20px 30px;
+            margin: 20px 20px 20px 20px;
         }
         table {
             border-collapse: collapse;
             width: 60%;
-            margin: 20px 20px 20px 30px;
+            margin: 20px 20px 20px 20px;
         }
 
         th, td {
