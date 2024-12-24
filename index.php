@@ -200,15 +200,13 @@ session_start();
     $conn = mysqli_connect('sql209.infinityfree.com', 'if0_37883576', 'Sigurno0612', 'if0_37883576_tomicevipezosi');
     mysqli_set_charset($conn, "utf8");
     $time_rn = time();
+    $time_interval = 60;
     $time = mysqli_query($conn, $sql)->fetch_assoc()['time'];
-    $hours = floor(($time_rn-$time)/3600);
+    $hours = floor(($time_rn-$time)/$time_interval);
     echo "<h1>" . $time_rn - $time . "</h1>";
     echo "<h1>" . $hours . "</h1>";
     if($hours>0){
-        $time_lost = $time_rn-$time;
-        while($time_lost>=3600){
-            $time_lost-=3600;
-        }
+        $time_lost = ($time_rn-$time)%$time_interval;
         $final_time = $time_rn - $time_lost;
         $sql = "UPDATE `last_updated` SET `time`='$time_rn' WHERE `id`=1";
         mysqli_query($conn, $sql);
@@ -232,7 +230,7 @@ session_start();
 
             }
         }
-        $hours = 0;
+        
         
     }
 ?>
