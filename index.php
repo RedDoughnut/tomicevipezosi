@@ -242,14 +242,26 @@ session_start();
     }
 ?>
 <script>
-        function a(){
+        function a() {
             var time_rn = <?php echo json_encode($time_rn); ?>;
             var time = <?php echo json_encode($time); ?>;
             var hours = <?php echo json_encode($hours); ?>;
 
-            document.getElementById('diff').innerText = time_rn-time;
-            document.getElementById('hour').innerHTML = hours;
+            // Validate data before operations
+            if (time_rn !== null && time !== null) {
+                document.getElementById('diff').innerText = time_rn - time;
+            } else {
+                console.error('Invalid time values');
+            }
+
+            if (hours !== null) {
+                document.getElementById('hour').innerHTML = hours;
+            } else {
+                console.error('Invalid hours value');
+            }
         }
+
+        // Call the function every second
         setInterval(a, 1000);
     </script>
 
