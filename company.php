@@ -327,7 +327,7 @@
                 echo "<h2>Broj dostupnih akcija: " . $kompanija["stocks_available"] - $kompanija["stocks_sold"] . "</h2>";
                 echo "<p>Deskripcija (max 400 karaktera): </p>";
                 echo "<form method = 'POST' action = ''>
-                      <textarea placeholder='Lorem ipsum dolor sit amet ...' name='description' maxlenght=400>" . $kompanija["description"] . "</textarea><br>
+                      <textarea placeholder='Lorem ipsum dolor sit amet ...' name='description' maxlength=400>" . $kompanija["description"] . "</textarea><br>
                       <button class='button' name='action' value='clicked'>
                       Save
                       <div class='hoverEffect'>
@@ -335,7 +335,7 @@
                       </div>
                       </button>
                       </form>";
-                if(count($arr) == null){
+                if(empty($arr)){
                     echo "<p>Nema investicija!</p>";
                 }
                 else{
@@ -362,6 +362,7 @@
                     $res = $res->fetch_assoc();
                     $id = $res['id'];
                     $desc = $_POST['description'];
+                    echo "<h1>" . $desc . "</h1>";
                     $sql = "UPDATE kompanija SET description = '$desc' WHERE user_id = '$id'";
                     if($conn->query($sql)){
                         echo "<script>showToast('Successfully saved!')</script>";
@@ -373,7 +374,7 @@
                 }
             }
             else{
-                echo "<script>showToast('Svrsio!!!')</script>";
+                echo "<script>showToast('Successfully saved!')</script>";
             }
         ?>
     </body>
