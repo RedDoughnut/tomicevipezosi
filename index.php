@@ -209,7 +209,7 @@ session_start();
     if($hours>0){
         $time_lost = ($time_rn-$time)%$time_interval;
         $final_time = $time_rn - $time_lost;
-        $sql = "UPDATE `last_updated` SET `time`=$time_rn WHERE `id`=1";
+        $sql = "UPDATE `last_updated` SET `time`=$final_time WHERE `id`=1";
         mysqli_query($conn, $sql);
         $sql = "SELECT * FROM kompanija";
         $res = mysqli_query($conn, $sql);
