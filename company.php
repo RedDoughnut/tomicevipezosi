@@ -370,12 +370,12 @@
                     else{
                         die($conn->connect_error);
                     }
+                    sleep(3);
+                    echo "<script>window.location.reload()</script>";
                     $conn->close();
                 }
             }
-            else{
-                echo "<script>showToast('Successfully saved!')</script>";
-            }
+            
         ?>
     </body>
 
