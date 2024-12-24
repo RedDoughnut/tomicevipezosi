@@ -99,10 +99,11 @@ session_start();
             /*border-bottom: 1px solid white;*/
             color: white;
             padding: 10px;
-            
+            height: 0;
             visibility: hidden;
         }
         .showup{
+            height: 3rem;
             visibility: visible;
         }
         
@@ -126,12 +127,7 @@ session_start();
     }
     function XClick(){
         const obj = document.getElementById("up");
-        if(obj.classList.contains("showup")){
-            obj.classList.remove("showup");
-        }
-        else{
-            obj.classList.add("showup");
-        }
+        obj.classList.remove("showup");
     }
     </script>
     <script src="toast.js"></script>
