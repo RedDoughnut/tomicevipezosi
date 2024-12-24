@@ -201,7 +201,7 @@ session_start();
     mysqli_set_charset($conn, "utf8");
     $time_rn = time();
     $time = mysqli_query($conn, $sql)->fetch_assoc()['time'];
-    $hours = floor(($time_rn-$time)/60);
+    $hours = floor(($time_rn-$time)/3600);
     echo "<h1>" . $time_rn - $time . "</h1>";
     echo "<h1>" . $hours . "</h1>";
     if($hours>0){
@@ -222,6 +222,7 @@ session_start();
                 for ($i = 0; $i < $hours; $i++) {
                     $rnd = mt_rand(-10000 * $menjanje, 10000 * $menjanje) / 10000;
                     if ($cenaAkcije <= 0) {
+                        $sql = "UPDATE `kompanija` SET `value`=0 WHERE `id`=" . $row['id'];
                         break;
                     }
                     $cenaAkcije += ($rnd * $menjanje) / 100;
