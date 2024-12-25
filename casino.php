@@ -121,7 +121,7 @@ session_start();
  border: 2px solid #c3c6ce;
  transition: 0.5s ease-out;
  overflow: visible;
- margin-left: 30px;
+ margin-left: 20px;
 }
 
 .card-details {
@@ -147,8 +147,12 @@ session_start();
  bottom: 0;
  opacity: 0;
  transition: 0.3s ease-out;
+ cursor: pointer;
 }
-
+.card-button:hover{
+    background-color: rgb(2, 145, 92);
+    transition: 0.3 ease-in-out;
+}
 .text-body {
  color: rgb(134, 134, 134);
 }
