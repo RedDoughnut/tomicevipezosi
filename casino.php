@@ -118,7 +118,6 @@ session_start();
  border: 2px solid #c3c6ce;
  transition: 0.5s ease-out;
  overflow: visible;
- margin: 20px 20px 20px 20px;
 }
 
 .card-details {
@@ -253,10 +252,10 @@ session_start();
     <h1>Casino</h1>
     <div class="card">
   <div class="card-details">
-    <h2 class="text-title">Poker</p>
+    <h3 class="text-title">Poker</h3>
     <p class="text-body">Igrajte poker i zaradite hiljade T₱! (ONI KOJI ZNAJU)</p>
   </div>
-  <button class="card-button">More info</button>
+  <button class="card-button">Igraj</button>
 </div>
         
     </table>
