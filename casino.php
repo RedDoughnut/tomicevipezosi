@@ -127,8 +127,9 @@ session_start();
  color: #fff;
  height: 100%;
  gap: .5em;
- display: grid;
- place-content: center;
+ display: flex;
+ flex-direction: column;
+ justify-content: space-between;
 }
 
 .card-button {
