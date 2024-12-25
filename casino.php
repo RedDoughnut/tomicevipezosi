@@ -108,13 +108,16 @@ session_start();
             font-size: 1rem;
             visibility: visible;
         }
+        h3{
+            font-size: 1rem;
+        }
 .card {
  width: 190px;
  height: 254px;
  border-radius: 20px;
  background: #2e2e2e;
  position: relative;
- padding: 1.8rem;
+ padding: 1rem;
  border: 2px solid #c3c6ce;
  transition: 0.5s ease-out;
  overflow: visible;
