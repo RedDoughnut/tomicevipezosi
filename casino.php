@@ -117,7 +117,7 @@ session_start();
  border-radius: 20px;
  background: #2e2e2e;
  position: relative;
- padding: 1rem;
+ padding: 2rem 1rem 2rem 1rem;
  border: 2px solid #c3c6ce;
  transition: 0.5s ease-out;
  overflow: visible;
