@@ -66,11 +66,7 @@ session_start();
             color:rgb(0, 117, 74);
             transition: 0.3s ease-in-out;
         }
-        p{
-            font-size: 1.3rem;
-            margin: 20px 20px 20px 30px;
-        }
-        h1, h2{
+        h2{
             margin: 20px 20px 20px 30px;
         }
         @media only screen and (max-width:775px){
