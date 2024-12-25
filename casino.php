@@ -121,6 +121,7 @@ session_start();
  border: 2px solid #c3c6ce;
  transition: 0.5s ease-out;
  overflow: visible;
+ margin-left: 30px;
 }
 
 .card-details {
