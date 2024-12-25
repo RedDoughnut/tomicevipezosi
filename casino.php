@@ -66,7 +66,7 @@ session_start();
             color:rgb(0, 117, 74);
             transition: 0.3s ease-in-out;
         }
-        h2{
+        h1{
             margin: 20px 20px 20px 30px;
         }
         @media only screen and (max-width:775px){
@@ -118,6 +118,7 @@ session_start();
  border: 2px solid #c3c6ce;
  transition: 0.5s ease-out;
  overflow: visible;
+ margin: 20px 20px 20px 20px;
 }
 
 .card-details {
@@ -252,7 +253,7 @@ session_start();
     <h1>Casino</h1>
     <div class="card">
   <div class="card-details">
-    <p class="text-title">Poker</p>
+    <h2 class="text-title">Poker</p>
     <p class="text-body">Igrajte poker i zaradite hiljade T₱! (ONI KOJI ZNAJU)</p>
   </div>
   <button class="card-button">More info</button>
