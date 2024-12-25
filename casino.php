@@ -256,7 +256,9 @@ session_start();
     <h1>Casino</h1>
     <div class="card">
   <div class="card-details">
+    <div style="text-align: center;">
     <h3 class="text-title">Poker</h3>
+    </div>
     <p class="text-body">Igrajte poker i zaradite hiljade T₱! (ONI KOJI ZNAJU)</p>
   </div>
   <button class="card-button">Igraj</button>
