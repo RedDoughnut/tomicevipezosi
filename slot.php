@@ -78,9 +78,9 @@ session_start();
             transition: transform 0.5s ease-in-out;
         }
         .digit{
-            font-size: 50px;
-            height:50px;
-            line-height: 50px;
+            font-size: 6rem;
+            height:6rem;
+            line-height: 6rem;
             margin: 0;
             padding: 0;
             text-align: center;
