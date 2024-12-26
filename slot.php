@@ -72,7 +72,7 @@ session_start();
             display: flex;
             flex-direction: column;
             gap: 0;
-            height: 50px;
+            height: 6rem;
             color: white;
             transform: translateY(0);
             transition: transform 0.5s ease-in-out;
