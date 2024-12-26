@@ -85,6 +85,25 @@ session_start();
             padding: 0;
             text-align: center;
         }
+        .button {
+            cursor: pointer;
+            font-size: large;
+            font-family: inherit;
+            font-weight: bold;
+            color: #0011ff;
+            background-color: #f8f8fd;
+            padding: 0.8em 2.2em;
+            border-radius: 50em;
+            border: 6px solid #8b93f8;
+            box-shadow: 0px 8px #1f35ff;
+        }
+        .button:active {
+            position: relative;
+            top: 8px;
+            border: 6px solid #646fff;
+            box-shadow: 0px 0px;
+        }
+
             
 </style>
 <body>
@@ -231,7 +250,7 @@ session_start();
         </div>
         
       </div>
-    <button onclick="spin(0, 20);">Spin!</button>
+    <button class="button" onclick="spin(0, 20);">Spin!</button>
 
 </body>
 </html>
