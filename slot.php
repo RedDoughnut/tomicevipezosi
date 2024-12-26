@@ -103,7 +103,11 @@ session_start();
             border: 6px solid #646fff;
             box-shadow: 0px 0px;
         }
-
+        .large-container{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
             
 </style>
 <body>
@@ -182,75 +186,77 @@ session_start();
                 
             </ul>
         </div>
-        <div class="outer-container">
-        <div class="column-container">
-          <div class="column">
-            <div class="digit">1</div>
-            <div class="digit">2</div>
-            <div class="digit">3</div>
-            <div class="digit">4</div>
-            <div class="digit">5</div>
-            <div class="digit">6</div>
-            <div class="digit">7</div>
-            <div class="digit">8</div>
-            <div class="digit">9</div>
-          </div>
+        <div class="large-container">
+            <div class="outer-container">
+            <div class="column-container">
+            <div class="column">
+                <div class="digit">1</div>
+                <div class="digit">2</div>
+                <div class="digit">3</div>
+                <div class="digit">4</div>
+                <div class="digit">5</div>
+                <div class="digit">6</div>
+                <div class="digit">7</div>
+                <div class="digit">8</div>
+                <div class="digit">9</div>
+            </div>
+            </div>
+            <div class="column-container">
+            <div class="column">
+                <div class="digit">1</div>
+                <div class="digit">2</div>
+                <div class="digit">3</div>
+                <div class="digit">4</div>
+                <div class="digit">5</div>
+                <div class="digit">6</div>
+                <div class="digit">7</div>
+                <div class="digit">8</div>
+                <div class="digit">9</div>
+            </div>
+            </div>
+            <div class="column-container">
+            <div class="column">
+                <div class="digit">1</div>
+                <div class="digit">2</div>
+                <div class="digit">3</div>
+                <div class="digit">4</div>
+                <div class="digit">5</div>
+                <div class="digit">6</div>
+                <div class="digit">7</div>
+                <div class="digit">8</div>
+                <div class="digit">9</div>
+            </div>
+            </div>
+            <div class="column-container">
+            <div class="column">
+                <div class="digit">1</div>
+                <div class="digit">2</div>
+                <div class="digit">3</div>
+                <div class="digit">4</div>
+                <div class="digit">5</div>
+                <div class="digit">6</div>
+                <div class="digit">7</div>
+                <div class="digit">8</div>
+                <div class="digit">9</div>
+            </div>
+            </div>
+            <div class="column-container">
+            <div class="column">
+                <div class="digit">1</div>
+                <div class="digit">2</div>
+                <div class="digit">3</div>
+                <div class="digit">4</div>
+                <div class="digit">5</div>
+                <div class="digit">6</div>
+                <div class="digit">7</div>
+                <div class="digit">8</div>
+                <div class="digit">9</div>
+            </div>
+            </div>
+            
         </div>
-        <div class="column-container">
-          <div class="column">
-            <div class="digit">1</div>
-            <div class="digit">2</div>
-            <div class="digit">3</div>
-            <div class="digit">4</div>
-            <div class="digit">5</div>
-            <div class="digit">6</div>
-            <div class="digit">7</div>
-            <div class="digit">8</div>
-            <div class="digit">9</div>
-          </div>
-        </div>
-        <div class="column-container">
-          <div class="column">
-            <div class="digit">1</div>
-            <div class="digit">2</div>
-            <div class="digit">3</div>
-            <div class="digit">4</div>
-            <div class="digit">5</div>
-            <div class="digit">6</div>
-            <div class="digit">7</div>
-            <div class="digit">8</div>
-            <div class="digit">9</div>
-          </div>
-        </div>
-        <div class="column-container">
-          <div class="column">
-            <div class="digit">1</div>
-            <div class="digit">2</div>
-            <div class="digit">3</div>
-            <div class="digit">4</div>
-            <div class="digit">5</div>
-            <div class="digit">6</div>
-            <div class="digit">7</div>
-            <div class="digit">8</div>
-            <div class="digit">9</div>
-          </div>
-        </div>
-        <div class="column-container">
-          <div class="column">
-            <div class="digit">1</div>
-            <div class="digit">2</div>
-            <div class="digit">3</div>
-            <div class="digit">4</div>
-            <div class="digit">5</div>
-            <div class="digit">6</div>
-            <div class="digit">7</div>
-            <div class="digit">8</div>
-            <div class="digit">9</div>
-          </div>
-        </div>
-        
-      </div>
-    <button class="button" onclick="spin(0, 20);">Spin!</button>
+        <button class="button" onclick="spin(0, 20);">Spin!</button>
+    </div>
 
 </body>
 </html>
