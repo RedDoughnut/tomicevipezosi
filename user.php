@@ -30,14 +30,12 @@ session_start();
            display: inline;
            font-size: 1rem;
            color: #04AA6D;
-           margin: 10px;
         } 
         a.nav {
            display: inline;
            font-size: 2rem;
            text-decoration: none;
            color: black;
-           margin: 10px;
         } 
         ul{
             margin: 20px;
