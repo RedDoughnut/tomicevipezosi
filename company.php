@@ -102,7 +102,6 @@
            font-size: 1rem;
            text-decoration: none;
            color: #04AA6D;
-           margin: 10px;
         } 
         ul{
             margin: 20px;
