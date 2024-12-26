@@ -107,8 +107,6 @@ session_start();
             display: flex;
             flex-direction: column;
             align-items: center;
-            width: 420px;
-            margin-left: 20px;
         }
             
 </style>
