@@ -61,7 +61,7 @@ session_start();
             display: flex;
             background-color: rgb(10,10,10);
             padding: 5rem;
-            width: 10rem;
+            width: 400px;
             border-radius: 1.5rem;
             justify-content: space-between;
         }
@@ -72,15 +72,15 @@ session_start();
             display: flex;
             flex-direction: column;
             gap: 0;
-            height: 6rem;
+            height: 50px;
             color: white;
             transform: translateY(0);
             transition: transform 0.5s ease-in-out;
         }
         .digit{
-            font-size: 6rem;
-            height:6rem;
-            line-height: 6rem;
+            font-size: 50px;
+            height:50px;
+            line-height: 50px;
             margin: 0;
             padding: 0;
             text-align: center;
@@ -231,7 +231,7 @@ session_start();
         </div>
         
       </div>
-
+    <button onclick="spin(0, 20);">Spin!</button>
 
 </body>
 </html>
