@@ -1,55 +1,117 @@
-function scrollToValue(columnIndex, targetValue) {
-  const columns = document.querySelectorAll(".column");
-  const column = columns[columnIndex];
-  const digits = Array.from(column.children);
-  const digitHeight = 50; // Height of each digit in pixels
+function scroll(index, target) {
 
-  // Clone the first digit for smooth looping
-  const firstDigitClone = digits[0].cloneNode(true);
-  column.appendChild(firstDigitClone);
+  const column = document.querySelectorAll(".column")[index];
 
-  // Calculate the number of steps needed to reach the target value
-  const totalDigits = digits.length;
-  let steps = targetValue - currentIndex; 
+  const digitHeight = 50; // Changed to 50px
 
-  // Handle cases where targetValue is less than currentIndex (backward scrolling)
-  if (steps < 0) {
-    steps = totalDigits + steps; 
-  }
+  let leftover = target;
 
-  // Calculate the total animation time
-  const duration = 0.5; // Total time in seconds
-  const stepDuration = duration / steps;
 
-  // Animate the column
-  column.style.transition = `transform ${duration}s ease-in-out`;
-  column.style.transform = `translateY(-${steps * digitHeight}px)`;
 
-  // Reset to avoid seeing the clone after animation
-  setTimeout(() => {
-    if (steps > totalDigits) {
-      column.style.transition = "none"; 
-      column.style.transform = `translateY(-${targetValue * digitHeight}px)`; 
-    }
-  }, duration * 1000);
+  // Function to perform one full rotation
 
-  // Call the startSpinning function (if available) to initiate the animation
-  // startSpinning(); 
-}
-function spinAllColumns(columns, cycles) {
-  const totalDigits = columns[0].children.length - 1; // Exclude the cloned digit
-  const digitHeight = 50; // Height of each digit in `rem`
-  const durationPerCycle = 0.5; // Duration of one full rotation in seconds
-  const totalDuration = cycles * durationPerCycle; // Total duration for all cycles
+  function spinOnce() {
 
-  columns.forEach((column, index) => {
-    column.style.transition = `transform ${totalDuration}s ease-in-out`;
-    column.style.transform = `translateY(-${cycles * totalDigits * digitHeight}px)`;
+    return new Promise(resolve => {
 
-    // Reset after spinning
-    setTimeout(() => {
-      column.style.transition = "none";
-      column.style.transform = "translateY(0)";
-    }, totalDuration * 1000);
-  });
+      requestAnimationFrame(() => {
+
+        // Reset to bottom instantly
+
+        column.style.transition = "none";
+
+        column.style.transform = `translateY(${8 * digitHeight}px)`; // Changed to px
+
+       
+
+        // Force browser reflow
+
+        column.offsetHeight;
+
+       
+
+        requestAnimationFrame(() => {
+
+          // Spin to top with animation
+
+          column.style.transition = "transform 0.5s ease-in-out";
+
+          column.style.transform = `translateY(-${0 * digitHeight}px)`; // Spin to 0
+
+         
+
+          setTimeout(resolve, 500); // Match the transition time
+
+        });
+
+      });
+
+    });
+
+  }
+
+ 
+
+  // Function to perform final partial rotation
+
+  function spinFinal(steps) {
+
+    return new Promise(resolve => {
+
+      requestAnimationFrame(() => {
+
+        column.style.transition = "transform 0.5s ease-in-out";
+
+        column.style.transform = `translateY(-${steps * digitHeight}px)`;
+
+        setTimeout(resolve, 500);
+
+      });
+
+    });
+
+  }
+
+ 
+
+  // Main spinning logic
+
+  async function startSpinning() {
+
+    // First ensure we're at starting position
+
+    column.style.transition = "none";
+
+    column.style.transform = `translateY(0px)`;
+
+    column.offsetHeight;
+
+   
+
+    // Full rotations
+
+    while(leftover > 8) {
+
+      await spinOnce();
+
+      leftover -= 8;
+
+    }
+
+   
+
+    // Final partial rotation
+
+    if(leftover > 0) {
+
+      await spinFinal(leftover);
+
+    }
+
+  }
+
+ 
+
+  startSpinning();
+
 }
