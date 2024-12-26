@@ -61,7 +61,7 @@ session_start();
             display: flex;
             background-color: rgb(10,10,10);
             padding: 5rem;
-            width: 400px;
+            width: 30rem;
             border-radius: 1.5rem;
             justify-content: space-between;
         }
