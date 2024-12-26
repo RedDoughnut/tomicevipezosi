@@ -106,7 +106,7 @@
            margin: 10px;
         } 
         ul{
-            margin: 10px;
+            margin: 20px;
         }
         a:hover{
             color: rgb(181, 181, 181);
