@@ -60,7 +60,7 @@ session_start();
            margin: 10px;
         } 
         ul{
-            margin: 30px;
+            margin: 20px;
         }
         a:hover{
             color:rgb(0, 117, 74);
