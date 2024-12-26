@@ -44,7 +44,7 @@ $c = 14;
            
         } 
         ul{
-            margin: 20px;
+            margin: 10px;
         }
         a:hover{
             color: rgb(181, 181, 181);
