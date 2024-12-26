@@ -61,7 +61,6 @@ session_start();
         } 
         ul{
             margin: 20px;
-            left margin-left: 30;
         }
         a:hover{
             color:rgb(0, 117, 74);
