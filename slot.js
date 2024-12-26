@@ -50,3 +50,8 @@ function scroll(index, target) {
 
   startSpinning();
 }
+$(document).keypress(function(e){
+    if (e.which == 32){
+        $("#spin").click();
+    }
+});

@@ -255,7 +255,7 @@ session_start();
             </div>
             
         </div>
-        <button class="button" onclick="spin(0, 4);">Spin!</button>
+        <button class="button" id="spin" onclick="spin(0, 4);">Spin!</button>
     </div>
 
 </body>
