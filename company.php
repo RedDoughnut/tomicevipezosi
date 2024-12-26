@@ -96,7 +96,6 @@
            font-size: 2rem;
            text-decoration: none;
            color: black;
-           margin: 10px;
         } 
         a {
            display: inline;
