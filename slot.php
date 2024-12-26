@@ -107,6 +107,7 @@ session_start();
             display: flex;
             flex-direction: column;
             align-items: center;
+            gap: 10px;
         }
             
 </style>
@@ -255,7 +256,7 @@ session_start();
             </div>
             
         </div>
-        <button class="button" id="spin" onclick="scrollToValue(0, 4);">Spin!</button>
+        <button class="button" id="spin" onclick="scroll(0, 4);">Spin!</button>
     </div>
 
 </body>
