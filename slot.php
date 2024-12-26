@@ -57,8 +57,34 @@ session_start();
         h1, h2{
             margin: 20px 20px 20px 30px;
         }
-        
-        
+        .outer-container{
+            display: flex;
+            background-color: rgb(10,10,10);
+            padding: 5rem;
+            border-radius: 1.5rem;
+            justify-content: space-between;
+        }
+        .column-container{
+            overflow: hidden;
+        }
+        .column{
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            height: 6rem;
+            color: white;
+            transform: translateY(0);
+            transition: transform 0.5s ease-in-out;
+        }
+        .digit{
+            font-size: 6rem;
+            height:6rem;
+            line-height: 6rem;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+            
 </style>
 <body>
     <script src="slot.js"></script>
