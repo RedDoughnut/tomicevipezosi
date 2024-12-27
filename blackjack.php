@@ -13,6 +13,7 @@ session_start();
     <meta property="og:description" content="Ovo je berza sa valutom Tomicevih pezosa!" />
     <meta property="og:url" content="https://tomicevipezosi.rf.gd" />
     <meta property="og:image" content="https://i.imgur.com/B528KrH.png" />
+    
 </head>
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
@@ -107,7 +108,7 @@ session_start();
             transition: 0.3s ease-in-out;
         }
 </style>
-    <script src="slot.js"></script>
+    <script src="blackjack.js"></script>
     <script>
     function myFunction(x) {
     x.classList.toggle("change");
