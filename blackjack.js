@@ -5,11 +5,13 @@ let deck = [];
 let playerHand = [];
 let dealerHand = [];
 
-function createDeck() {
+function createDeck(amount) {
     deck = [];
-    for (let suit of suits) {
-        for (let value of values) {
-            deck.push({ suit, value });
+    for (let i = 0; i < amount; i++) {
+        for (let suit of suits) {
+            for (let value of values) {
+                deck.push({ suit, value });
+            }
         }
     }
 }
@@ -62,12 +64,12 @@ function updateUI() {
 }
 
 function startNewGame() {
-    createDeck();
+    createDeck(6);
     shuffleDeck();
     playerHand = [dealCard(), dealCard()];
     dealerHand = [dealCard(), dealCard()];
     updateUI();
-    document.getElementById("cont").style.visibility = 'visible';
+    document.getElementById("cont").style.visibility = "visible";
     document.getElementById('message').textContent = '';
     document.getElementById('hit-button').disabled = false;
     document.getElementById('stand-button').disabled = false;
