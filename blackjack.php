@@ -77,7 +77,34 @@ session_start();
             font-weight: bold;
             font-size: 18px;
         }
-            
+        ul {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+         }
+
+        li {
+            display: inline;
+        }
+        a {
+           display: inline;
+           font-size: 1rem;
+           color: #04AA6D;
+        } 
+        a.nav {
+           display: inline;
+           font-size: 2rem;
+           text-decoration: none;
+           color: black;
+           margin: 10px;
+        } 
+        ul{
+            margin: 20px;
+        }
+        a:hover{
+            color:rgb(0, 117, 74);
+            transition: 0.3s ease-in-out;
+        }
 </style>
 <body>
     <script src="slot.js"></script>
