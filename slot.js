@@ -1,117 +1,31 @@
-function scroll(index, target) {
+function scroll(index, targetNumber) {
+  const columns = document.querySelectorAll('.column');
+  const column = columns[index]; 
+  const digits = column.querySelectorAll('.digit');
+  const digitHeight = 50; // Height of one digit in pixels
 
-  const column = document.querySelectorAll(".column")[index];
+  // Calculate the scroll distance to reach the target number
+  let targetIndex = targetNumber - 1; 
 
-  const digitHeight = 50; // Changed to 50px
+  // Handle cases where the target number is smaller than the current number
+  if (targetIndex < 0) {
+    // Calculate the distance to scroll to the bottom of the column
+    const bottomIndex = digits.length - 1; 
+    const bottomDistance = bottomIndex * digitHeight;
 
-  let leftover = target;
+    // Scroll to the bottom
+    column.style.transform = `translateY(-${bottomDistance}px)`;
 
+    // Instantly jump to the top
+    setTimeout(() => {
+      column.style.transform = 'translateY(0px)'; 
+    }, 10); 
 
+    // Calculate the new target index after the wrap-around
+    targetIndex = targetNumber + (digits.length - 1); 
+  }
 
-  // Function to perform one full rotation
-
-  function spinOnce() {
-
-    return new Promise(resolve => {
-
-      requestAnimationFrame(() => {
-
-        // Reset to bottom instantly
-
-        column.style.transition = "none";
-
-        column.style.transform = `translateY(${8 * digitHeight}px)`; // Changed to px
-
-       
-
-        // Force browser reflow
-
-        column.offsetHeight;
-
-       
-
-        requestAnimationFrame(() => {
-
-          // Spin to top with animation
-
-          column.style.transition = "transform 0.5s ease-in-out";
-
-          column.style.transform = `translateY(-${0 * digitHeight}px)`; // Spin to 0
-
-         
-
-          setTimeout(resolve, 500); // Match the transition time
-
-        });
-
-      });
-
-    });
-
-  }
-
- 
-
-  // Function to perform final partial rotation
-
-  function spinFinal(steps) {
-
-    return new Promise(resolve => {
-
-      requestAnimationFrame(() => {
-
-        column.style.transition = "transform 0.5s ease-in-out";
-
-        column.style.transform = `translateY(-${steps * digitHeight}px)`;
-
-        setTimeout(resolve, 500);
-
-      });
-
-    });
-
-  }
-
- 
-
-  // Main spinning logic
-
-  async function startSpinning() {
-
-    // First ensure we're at starting position
-
-    column.style.transition = "none";
-
-    column.style.transform = `translateY(0px)`;
-
-    column.offsetHeight;
-
-   
-
-    // Full rotations
-
-    while(leftover > 8) {
-
-      await spinOnce();
-
-      leftover -= 8;
-
-    }
-
-   
-
-    // Final partial rotation
-
-    if(leftover > 0) {
-
-      await spinFinal(leftover);
-
-    }
-
-  }
-
- 
-
-  startSpinning();
-
+  // Calculate and apply the final scroll distance
+  const scrollDistance = targetIndex * digitHeight; 
+  column.style.transform = `translateY(-${scrollDistance}px)`;
 }
