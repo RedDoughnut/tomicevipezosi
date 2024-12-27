@@ -100,13 +100,13 @@ function scroll(index, target) {
 
    
 
-    // Final partial rotation
+    // Final partial rotation
 
-    if(leftover > 0) {
+    if(leftover > 0) {
 
-      await spinFinal(leftover);
+      await spinFinal(leftover);
 
-    }
+    }
 
   }
 
