@@ -186,11 +186,11 @@ session_start();
         <h1>Blackjack</h1>
         <div id="dealer-hand">
             <h2>Dealer's Hand: <span id="dealer-score"></span></h2>
-            <div id="dealer-cards" class="card"></div>
+            <div id="dealer-cards"></div>
         </div>
         <div id="player-hand">
             <h2>Your Hand: <span id="player-score"></span></h2>
-            <div id="player-cards" class="card"></div>
+            <div id="player-cards"></div>
         </div>
         <div id="actions">
             <button class="button" id="hit-button">Hit</button>
@@ -199,7 +199,7 @@ session_start();
         <div id="message"></div>
         <button class="button" id="new-game-button">New Game</button>
     </div>
-    <script src="script.js"></script>
+    <script src="blackjack.js"></script>
         
 
 </body>
