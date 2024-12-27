@@ -27,6 +27,7 @@ session_start();
             border-radius: 10px;
             padding: 20px;
             color: white;
+            visibility: hidden;
             text-align: center;
         }
 
@@ -106,7 +107,6 @@ session_start();
             transition: 0.3s ease-in-out;
         }
 </style>
-<body>
     <script src="slot.js"></script>
     <script>
     function myFunction(x) {
@@ -182,7 +182,43 @@ session_start();
                 
             </ul>
         </div>
-        <div class="game-container">
+        <?php
+            if($_SERVER['REQUEST_METHOD']=="POST" && isset($_POST["code"])){
+                $code = $_POST["code"];
+                $id = $_SESSION['user'];
+                $conn = mysqli_connect('sql209.infinityfree.com', 'if0_37883576', 'Sigurno0612', 'if0_37883576_tomicevipezosi');
+                if($conn->connect_error)
+                    die('Connection Failed : '.$conn->connect_error);
+                $amount = $_SESSION["BLACKJACK_AMOUNT"];
+                if ($code == -1) {
+                    $sql = "UPDATE user SET balance = balance-$amount WHERE id=$id";
+                    if (!mysqli_query($conn, $sql))
+                        die("Error: " . $conn->connect_error);
+                }
+                else if($code==1){
+                    $sql = "UPDATE user SET balance = balance+$amount WHERE id=$id";
+                    if (!mysqli_query($conn, $sql))
+                        die("Error: " . $conn->connect_error);
+                }
+            }
+            if($_SERVER['REQUEST_METHOD']=="POST" && isset($_POST["money"])){
+                $id = $_SESSION['user'];
+                $conn = mysqli_connect('sql209.infinityfree.com', 'if0_37883576', 'Sigurno0612', 'if0_37883576_tomicevipezosi');
+                if($conn->connect_error)
+                    die('Connection Failed : '.$conn->connect_error);
+                $sql = "SELECT balance FROM user WHERE id = $id";
+                $bal = mysqli_query($conn, $sql)->fetch_assoc()['balance'];
+                if($_POST["money"]>$bal)
+                    die("<p>Nemaš keš!</p>");
+                $_SESSION['BLACKJACK_AMOUNT'] = $_POST["money"];
+                echo "<script>startNewGame()</script>"; 
+            }
+        ?>
+        <form method="POST">
+            <input type="text" name="money" placeholder="Amount (T₱)" pattern="[0-9]+"></input>
+            <button class="button" type="submit" id="new-game-button">New Game</button>
+        </form>
+        <div class="game-container" id="cont">
         <h1>Blackjack</h1>
         <div id="dealer-hand">
             <h2>Dealer's Hand: <span id="dealer-score"></span></h2>
@@ -197,10 +233,9 @@ session_start();
             <button class="button" id="stand-button">Stand</button>
         </div>
         <div id="message"></div>
-        <button class="button" id="new-game-button">New Game</button>
+        
     </div>
     <script src="blackjack.js"></script>
-        
 
 </body>
 </html>

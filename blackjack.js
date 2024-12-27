@@ -67,6 +67,7 @@ function startNewGame() {
     playerHand = [dealCard(), dealCard()];
     dealerHand = [dealCard(), dealCard()];
     updateUI();
+    document.getElementById("cont").style.visibility = 'visible';
     document.getElementById('message').textContent = '';
     document.getElementById('hit-button').disabled = false;
     document.getElementById('stand-button').disabled = false;
@@ -91,23 +92,28 @@ function playerStand() {
     const dealerValue = calculateHandValue(dealerHand);
     
     if (dealerValue > 21) {
-        endGame('Dealer busted! You win!');
+        endGame('Dealer busted! You win!', 1);
     } else if (playerValue > dealerValue) {
-        endGame('You win!');
+        endGame('You win!', 1);
     } else if (playerValue < dealerValue) {
-        endGame('Dealer wins.');
+        endGame('Dealer wins.', -1);
     } else {
-        endGame('It\'s a tie!');
+        endGame('It\'s a tie!', 0);
     }
 }
 
-function endGame(message) {
+function endGame(message, code) {
+    var data = URLSearchParams();
     document.getElementById('message').textContent = message;
     document.getElementById('hit-button').disabled = true;
     document.getElementById('stand-button').disabled = true;
+    data.append("code", code);
+    fetch("blackjack.php", {
+        method: "post",
+        body: data
+    });
 }
 
-document.getElementById('new-game-button').addEventListener('click', startNewGame);
 document.getElementById('hit-button').addEventListener('click', playerHit);
 document.getElementById('stand-button').addEventListener('click', playerStand);
 
