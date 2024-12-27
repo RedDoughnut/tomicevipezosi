@@ -1,4 +1,4 @@
-function scroll(index, targetNumber) {
+function spin(index, targetNumber) {
   const columns = document.querySelectorAll('.column');
   const column = columns[index]; 
   const digits = column.querySelectorAll('.digit');
