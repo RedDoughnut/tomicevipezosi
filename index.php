@@ -248,7 +248,7 @@ session_start();
         $res = mysqli_query($conn, $sql);
         if($res->num_rows>0){
             while($row = $res->fetch_assoc()){
-                $menjanje = 3;
+                $menjanje = 6;
                 $cenaAkcije = $row["value"];
 
                 for ($i = 0; $i < $hours; $i++) {
