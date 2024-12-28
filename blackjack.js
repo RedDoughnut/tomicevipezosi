@@ -72,6 +72,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function startNewGame() {
+        document.getElementById('cont').style.visibility = 'visible';
         document.getElementById('hit-button').addEventListener('click', playerHit);
         document.getElementById('stand-button').addEventListener('click', playerStand);
         createDeck();
