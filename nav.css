@@ -40,9 +40,6 @@ body{
             display: none;
             animation: none; /* Avoid animation if not toggled */
         }
-        form *{
-            color: #000;
-        }
 /* Menu visible when "menu-open" is added */
         .mobile-container.menu-open {
             display: block;
