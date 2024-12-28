@@ -212,7 +212,10 @@ session_start();
                 if($_POST["money"]>$bal)
                     die("<p>Nemaš keš!</p>");
                 $_SESSION['BLACKJACK_AMOUNT'] = $_POST["money"];
-                echo "<script>startNewGame()</script>"; 
+                echo "<script>
+                    document.querySelector('.game-container').style.visibility = 'visible';
+                    startNewGame();
+                </script>"; 
             }
         ?>
         <form method="POST">
