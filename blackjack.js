@@ -56,6 +56,7 @@ function getCardValue(card) {
 }
 
 function updateUI() {
+    document.getElementById("cont").style.visibility = "visible";
     document.getElementById('dealer-cards').innerHTML = dealerHand.map(card => `<div class="card">${card.value}${card.suit}</div>`).join('');
     document.getElementById('player-cards').innerHTML = playerHand.map(card => `<div class="card">${card.value}${card.suit}</div>`).join('');
     
@@ -64,7 +65,7 @@ function updateUI() {
 }
 
 function startNewGame() {
-    document.getElementById("cont").style.visibility = "visible";
+    
     createDeck(6);
     shuffleDeck();
     playerHand = [dealCard(), dealCard()];
