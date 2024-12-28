@@ -264,7 +264,8 @@ session_start();
                     }
                 }
                 $sql = "UPDATE `kompanija` SET `value`=$cenaAkcije WHERE `id`=" . $row['id'];
-                mysqli_query($conn, $sql);
+                if($cenaAkcije!=0)
+                    mysqli_query($conn, $sql);
 
             }
         }
