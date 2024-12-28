@@ -254,14 +254,12 @@ session_start();
                 for ($i = 0; $i < $hours; $i++) {
                     $rnd = mt_rand(-10000 * $menjanje, 10000 * $menjanje) / 10000;
                     $cenaAkcije += ($rnd * $menjanje) / 100;
-                    if ($cenaAkcije <= 0) {
-                        $diwhihwdh = 0;
-                        $sql = "UPDATE `kompanija` SET `value`=$diwhihwdh WHERE `id`=" . $row['id'];
+                }
+                if ($cenaAkcije <= 0) {
+                        $sql = "UPDATE `kompanija` SET `value`=0 WHERE `id`=" . $row['id'];
                         if (!mysqli_query($conn, $sql)) {
                             echo "Error: " . mysqli_error($conn);
                         }
-                        break;
-                    }
                 }
                 $sql = "UPDATE `kompanija` SET `value`=$cenaAkcije WHERE `id`=" . $row['id'];
                 if($cenaAkcije>0)
