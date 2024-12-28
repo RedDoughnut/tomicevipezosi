@@ -208,7 +208,7 @@ session_start();
     $conn = mysqli_connect('sql209.infinityfree.com', 'if0_37883576', 'Sigurno0612', 'if0_37883576_tomicevipezosi');
     mysqli_set_charset($conn, "utf8");
     $time_rn = time();
-    $time_interval = 3600;
+    $time_interval = 600;
     $time = mysqli_query($conn, $sql)->fetch_assoc()['time'];
     $hours = floor(($time_rn-$time)/$time_interval);
     //echo "<h1>" . $time_rn - $time . "</h1>";
