@@ -6,13 +6,11 @@ document.addEventListener('DOMContentLoaded', function () {
     let playerHand = [];
     let dealerHand = [];
 
-    function createDeck(amount) {
+    function createDeck() {
         deck = [];
-        for (let i = 0; i < amount; i++) {
-            for (let suit of suits) {
-                for (let value of values) {
-                    deck.push({ suit, value });
-                }
+        for (let suit of suits) {
+            for (let value of values) {
+                deck.push({ suit, value });
             }
         }
     }
@@ -64,6 +62,15 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('player-score').textContent = calculateHandValue(playerHand);
     }
 
+    function playerHit() {
+        playerHand.push(dealCard());
+        updateUI();
+        
+        if (calculateHandValue(playerHand) > 21) {
+            endGame('You busted! Dealer wins.', -1);
+        }
+    }
+
     function startNewGame() {
         document.querySelector('.game-container').style.visibility = 'visible';
         document.getElementById('hit-button').addEventListener('click', playerHit);
@@ -99,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function endGame(message, code) {
-        var data = URLSearchParams();
+        const data = new URLSearchParams();
         document.getElementById('message').textContent = message;
         document.getElementById('hit-button').disabled = true;
         document.getElementById('stand-button').disabled = true;
@@ -110,4 +117,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-})
+    // Make startNewGame available globally
+    window.startNewGame = startNewGame;
+});
