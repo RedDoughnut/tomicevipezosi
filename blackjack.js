@@ -1,4 +1,5 @@
-const suits = ['♠', '♥', '♦', '♣'];
+document.addEventListener('DOMContentLoaded', function () {
+    const suits = ['♠', '♥', '♦', '♣'];
 const values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
 
 let deck = [];
@@ -108,3 +109,5 @@ function endGame(message, code) {
         body: data
     });
 }
+
+})
