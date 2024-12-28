@@ -64,12 +64,13 @@ function updateUI() {
 }
 
 function startNewGame() {
+    document.getElementById("cont").style.visibility = "visible";
     createDeck(6);
     shuffleDeck();
     playerHand = [dealCard(), dealCard()];
     dealerHand = [dealCard(), dealCard()];
     updateUI();
-    document.getElementById("cont").style.visibility = "visible";
+    
     document.getElementById('message').textContent = '';
     document.getElementById('hit-button').disabled = false;
     document.getElementById('stand-button').disabled = false;
