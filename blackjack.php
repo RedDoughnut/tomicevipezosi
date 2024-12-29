@@ -178,14 +178,86 @@ session_start();
         </div>
         <?php
             if($_SERVER['REQUEST_METHOD']=="POST"){
-                    // Get JSON data
-                    $data = json_decode(file_get_contents('php://input'), true);
-                    
-                    // Validate data
-                    if (isset($data['balance']) && isset($data['result']) && isset($data['bet']) && isset($data['winnings'])) {      
-                        $_SESSION['balance'] = $data['balance'];
-                        
-                    }
+                    header('Content-Type: application/json');
+
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    http_response_code(405);
+    echo json_encode(['error' => 'Method not allowed']);
+    exit;
+}
+
+try {
+    $data = json_decode(file_get_contents('php://input'), true);
+    $userId = $_SESSION['user'];
+    
+    // Get current balance
+    $stmt = $pdo->prepare("SELECT balance FROM user WHERE id = ? FOR UPDATE");
+    $pdo->beginTransaction();
+    $stmt->execute([$userId]);
+    $currentBalance = $stmt->fetchColumn();
+    
+    if ($currentBalance === false) {
+        throw new Exception('Could not fetch user balance');
+    }
+
+    switch ($data['action']) {
+        case 'place_bet':
+            $betAmount = $data['amount'];
+            
+            // Verify bet amount is valid
+            if ($betAmount <= 0 || $betAmount > $currentBalance) {
+                throw new Exception('Invalid bet amount');
+            }
+            
+            // Subtract bet from balance
+            $newBalance = $currentBalance - $betAmount;
+            $stmt = $pdo->prepare("UPDATE user SET balance = ? WHERE id = ?");
+            $stmt->execute([$newBalance, $userId]);
+            
+            $response = [
+                'success' => true,
+                'new_balance' => $newBalance,
+                'message' => 'Bet placed successfully'
+            ];
+            break;
+
+        case 'end_game':
+            $winnings = $data['winnings'];
+            
+            // Add winnings to balance (if any)
+            $newBalance = $currentBalance + $winnings;
+            $stmt = $pdo->prepare("UPDATE user SET balance = ? WHERE id = ?");
+            $stmt->execute([$newBalance, $userId]);
+            
+            // Log the game result
+            $stmt = $pdo->prepare("INSERT INTO game_history (user_id, game_type, bet_amount, winnings, result) VALUES (?, 'blackjack', ?, ?, ?)");
+            $stmt->execute([$userId, $data['bet'], $winnings, $data['result']]);
+            
+            $response = [
+                'success' => true,
+                'new_balance' => $newBalance,
+                'message' => 'Game completed successfully'
+            ];
+            break;
+
+                    default:
+                        throw new Exception('Invalid action');
+                }
+
+                $pdo->commit();
+                echo json_encode($response);
+
+            } catch (Exception $e) {
+                if (isset($pdo) && $pdo->inTransaction()) {
+                    $pdo->rollBack();
+                }
+                
+                http_response_code(400);
+                echo json_encode([
+                    'success' => false,
+                    'message' => $e->getMessage()
+                ]);
+            }
             }
             if($_SERVER['REQUEST_METHOD']=="POST" && isset($_POST["money"])){
                 $id = $_SESSION['user'];
