@@ -196,6 +196,8 @@ session_start();
         </div>
         <div class="up showup" id="up"><span>Pogledajte naše <a href="tos.php">uslove korišćenja</a>!</span><form method="POST"><button name=""><a style="text-align: right;font-size:1.2rem;cursor:pointer;" onclick="XClick();">✕</a></button></form></div>
         <div id="snackbar"></div>
+        <center>
+        <div>
     <h1>Lista kompanija</h1>
     <h2 id="diff"></h2>
     <table>
@@ -225,10 +227,10 @@ session_start();
         $conn->close();
     }
 
-
 ?>
-        
-    </table>
+    </table>    
+    </div>
+    </center>
     <?php
     $sql = "SELECT time FROM last_updated WHERE id=1";
     $conn = mysqli_connect('sql209.infinityfree.com', 'if0_37883576', 'Sigurno0612', 'if0_37883576_tomicevipezosi');
