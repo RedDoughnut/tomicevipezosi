@@ -202,10 +202,10 @@ session_start();
                 </script>"; 
             }
         ?>
-        <form method="POST">
+        <!-- <form method="POST">
             <input type="text" name="money" placeholder="Amount (T₱)" pattern="[0-9]+"></input>
             <button class="button" type="submit" id="new-game-button">New Game</button>
-        </form>
+        </form> -->
         <div class="game-container">
         <div id="balance-display">Balance: $<span id="balance">1000</span></div>
         
