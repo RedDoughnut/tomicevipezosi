@@ -36,27 +36,20 @@ session_start();
             margin-top: 0;
         }
 
-        #dealer-hand, #player-hand {
-            margin-bottom: 20px;
+        .hidden {
+            display: none;
         }
-
-        #dealer-cards, #player-cards {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
         .card {
-            width: 50px;
-            height: 75px;
-            background-color: white;
-            color: black;
+            display: inline-block;
+            padding: 10px;
             margin: 5px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 20px;
+            border: 1px solid black;
             border-radius: 5px;
+        }
+        .game-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
         }
 
         .button {
@@ -184,23 +177,15 @@ session_start();
             </ul>
         </div>
         <?php
-            if($_SERVER['REQUEST_METHOD']=="POST" && isset($_POST["code"])){
-                $code = $_POST["code"];
-                $id = $_SESSION['user'];
-                $conn = mysqli_connect('sql209.infinityfree.com', 'if0_37883576', 'Sigurno0612', 'if0_37883576_tomicevipezosi');
-                if($conn->connect_error)
-                    die('Connection Failed : '.$conn->connect_error);
-                $amount = $_SESSION["BLACKJACK_AMOUNT"];
-                if ($code == -1) {
-                    $sql = "UPDATE user SET balance = balance-$amount WHERE id=$id";
-                    if (!mysqli_query($conn, $sql))
-                        die("Error: " . $conn->connect_error);
-                }
-                else if($code==1){
-                    $sql = "UPDATE user SET balance = balance+$amount WHERE id=$id";
-                    if (!mysqli_query($conn, $sql))
-                        die("Error: " . $conn->connect_error);
-                }
+            if($_SERVER['REQUEST_METHOD']=="POST"){
+                    // Get JSON data
+                    $data = json_decode(file_get_contents('php://input'), true);
+                    
+                    // Validate data
+                    if (isset($data['balance']) && isset($data['result']) && isset($data['bet']) && isset($data['winnings'])) {      
+                        $_SESSION['balance'] = $data['balance'];
+                        
+                    }
             }
             if($_SERVER['REQUEST_METHOD']=="POST" && isset($_POST["money"])){
                 $id = $_SESSION['user'];
@@ -221,21 +206,35 @@ session_start();
             <input type="text" name="money" placeholder="Amount (T₱)" pattern="[0-9]+"></input>
             <button class="button" type="submit" id="new-game-button">New Game</button>
         </form>
-        <div class="game-container" id="cont">
-        <h1>Blackjack</h1>
-        <div id="dealer-hand">
-            <h2>Dealer's Hand: <span id="dealer-score"></span></h2>
-            <div id="dealer-cards"></div>
+        <div class="game-container">
+        <div id="balance-display">Balance: $<span id="balance">1000</span></div>
+        
+        <div id="bet-section">
+            <input type="number" id="bet-amount" placeholder="Enter bet amount">
+            <button onclick="startGame()">Place Bet</button>
         </div>
-        <div id="player-hand">
-            <h2>Your Hand: <span id="player-score"></span></h2>
-            <div id="player-cards"></div>
+
+        <div id="game-section" class="hidden">
+            <div id="dealer-hand">
+                <h2>Dealer's Hand</h2>
+                <div id="dealer-cards"></div>
+                <div>Score: <span id="dealer-score">0</span></div>
+            </div>
+
+            <div id="player-hand">
+                <h2>Your Hand</h2>
+                <div id="player-cards"></div>
+                <div>Score: <span id="player-score">0</span></div>
+            </div>
+
+            <div id="game-buttons" class="hidden">
+                <button onclick="hit()">Hit</button>
+                <button onclick="stand()">Stand</button>
+            </div>
+
+            <div id="game-message"></div>
         </div>
-        <div id="actions">
-            <button class="button" id="hit-button">Hit</button>
-            <button class="button" id="stand-button">Stand</button>
-        </div>
-        <div id="message"></div>
+    </div>
         
     </div>
     <script src="blackjack.js"></script>

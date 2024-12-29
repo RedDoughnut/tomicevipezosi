@@ -1,122 +1,172 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const suits = ['♠', '♥', '♦', '♣'];
-    const values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
+let deck = [];
+        let playerHand = [];
+        let dealerHand = [];
+        let currentBet = 0;
+        let playerBalance = 1000;
 
-    let deck = [];
-    let playerHand = [];
-    let dealerHand = [];
+        const suits = ['♠', '♣', '♥', '♦'];
+        const values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
 
-    function createDeck() {
-        deck = [];
-        for (let suit of suits) {
-            for (let value of values) {
-                deck.push({ suit, value });
+        function createDeck() {
+            deck = [];
+            for (let suit of suits) {
+                for (let value of values) {
+                    deck.push({ suit, value });
+                }
+            }
+            // Shuffle deck
+            for (let i = deck.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [deck[i], deck[j]] = [deck[j], deck[i]];
             }
         }
-    }
 
-    function shuffleDeck() {
-        for (let i = deck.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [deck[i], deck[j]] = [deck[j], deck[i]];
-        }
-    }
-
-    function dealCard() {
-        return deck.pop();
-    }
-
-    function calculateHandValue(hand) {
-        let value = 0;
-        let hasAce = false;
-
-        for (let card of hand) {
-            if (card.value === 'A') {
-                hasAce = true;
-            }
-            value += getCardValue(card);
-        }
-
-        if (hasAce && value + 10 <= 21) {
-            value += 10;
-        }
-
-        return value;
-    }
-
-    function getCardValue(card) {
-        if (['J', 'Q', 'K'].includes(card.value)) {
-            return 10;
-        } else if (card.value === 'A') {
-            return 1;
-        } else {
+        function getCardValue(card) {
+            if (['J', 'Q', 'K'].includes(card.value)) return 10;
+            if (card.value === 'A') return 11;
             return parseInt(card.value);
         }
-    }
 
-    function updateUI() {
-        document.getElementById('dealer-cards').innerHTML = dealerHand.map(card => `<div class="card">${card.value}${card.suit}</div>`).join('');
-        document.getElementById('player-cards').innerHTML = playerHand.map(card => `<div class="card">${card.value}${card.suit}</div>`).join('');
-        
-        document.getElementById('dealer-score').textContent = calculateHandValue(dealerHand);
-        document.getElementById('player-score').textContent = calculateHandValue(playerHand);
-    }
+        function calculateHandValue(hand) {
+            let value = 0;
+            let aces = 0;
 
-    function playerHit() {
-        playerHand.push(dealCard());
-        updateUI();
-        
-        if (calculateHandValue(playerHand) > 21) {
-            endGame('You busted! Dealer wins.', -1);
+            for (let card of hand) {
+                if (card.value === 'A') {
+                    aces++;
+                    value += 11;
+                } else {
+                    value += getCardValue(card);
+                }
+            }
+
+            while (value > 21 && aces > 0) {
+                value -= 10;
+                aces--;
+            }
+
+            return value;
         }
-    }
 
-    function startNewGame() {
-        document.getElementById('cont').style.visibility = 'visible';
-        document.getElementById('hit-button').addEventListener('click', playerHit);
-        document.getElementById('stand-button').addEventListener('click', playerStand);
-        createDeck();
-        shuffleDeck();
-        playerHand = [dealCard(), dealCard()];
-        dealerHand = [dealCard(), dealCard()];
-        updateUI();
-        document.getElementById('message').textContent = '';
-        document.getElementById('hit-button').disabled = false;
-        document.getElementById('stand-button').disabled = false;
-    }
-
-    function playerStand() {
-        while (calculateHandValue(dealerHand) < 17) {
-            dealerHand.push(dealCard());
+        function displayCard(card) {
+            return `<div class="card">${card.value}${card.suit}</div>`;
         }
-        updateUI();
-        
-        const playerValue = calculateHandValue(playerHand);
-        const dealerValue = calculateHandValue(dealerHand);
-        
-        if (dealerValue > 21) {
-            endGame('Dealer busted! You win!', 1);
-        } else if (playerValue > dealerValue) {
-            endGame('You win!', 1);
-        } else if (playerValue < dealerValue) {
-            endGame('Dealer wins.', -1);
-        } else {
-            endGame('It\'s a tie!', 0);
+
+        function updateDisplay() {
+            document.getElementById('dealer-cards').innerHTML = dealerHand.map(displayCard).join('');
+            document.getElementById('player-cards').innerHTML = playerHand.map(displayCard).join('');
+            document.getElementById('dealer-score').textContent = calculateHandValue(dealerHand);
+            document.getElementById('player-score').textContent = calculateHandValue(playerHand);
         }
-    }
 
-    function endGame(message, code) {
-        const data = new URLSearchParams();
-        document.getElementById('message').textContent = message;
-        document.getElementById('hit-button').disabled = true;
-        document.getElementById('stand-button').disabled = true;
-        data.append("code", code);
-         fetch("blackjack.php", {
-             method: "post",
-             body: data
-        });
-    }
+        function startGame() {
+            const betAmount = parseInt(document.getElementById('bet-amount').value);
+            if (betAmount <= 0 || betAmount > playerBalance) {
+                alert('Invalid bet amount!');
+                return;
+            }
 
-    // Make startNewGame available globally
-    window.startNewGame = startNewGame;
-});
+            currentBet = betAmount;
+            playerBalance -= betAmount;
+            document.getElementById('balance').textContent = playerBalance;
+
+            // Show game section
+            document.getElementById('game-section').classList.remove('hidden');
+            document.getElementById('game-buttons').classList.remove('hidden');
+            document.getElementById('bet-section').classList.add('hidden');
+
+            // Start new game
+            createDeck();
+            playerHand = [deck.pop(), deck.pop()];
+            dealerHand = [deck.pop(), deck.pop()];
+            updateDisplay();
+
+            if (calculateHandValue(playerHand) === 21) {
+                endGame('blackjack');
+            }
+        }
+
+        function hit() {
+            playerHand.push(deck.pop());
+            updateDisplay();
+
+            if (calculateHandValue(playerHand) > 21) {
+                endGame('bust');
+            }
+        }
+
+        function stand() {
+            while (calculateHandValue(dealerHand) < 17) {
+                dealerHand.push(deck.pop());
+            }
+            updateDisplay();
+            
+            const playerValue = calculateHandValue(playerHand);
+            const dealerValue = calculateHandValue(dealerHand);
+
+            if (dealerValue > 21) {
+                endGame('dealer-bust');
+            } else if (playerValue > dealerValue) {
+                endGame('win');
+            } else if (dealerValue > playerValue) {
+                endGame('lose');
+            } else {
+                endGame('push');
+            }
+        }
+
+        function endGame(result) {
+            document.getElementById('game-buttons').classList.add('hidden');
+            let message = '';
+            let winnings = 0;
+
+            switch(result) {
+                case 'blackjack':
+                    message = 'Blackjack! You win 1.5x your bet!';
+                    winnings = currentBet * 2.5;
+                    break;
+                case 'win':
+                    message = 'You win!';
+                    winnings = currentBet * 2;
+                    break;
+                case 'dealer-bust':
+                    message = 'Dealer busts! You win!';
+                    winnings = currentBet * 2;
+                    break;
+                case 'lose':
+                    message = 'Dealer wins!';
+                    break;
+                case 'bust':
+                    message = 'Bust! You lose!';
+                    break;
+                case 'push':
+                    message = 'Push! Bet returned.';
+                    winnings = currentBet;
+                    break;
+            }
+
+            playerBalance += winnings;
+            document.getElementById('balance').textContent = playerBalance;
+            document.getElementById('game-message').textContent = message;
+
+            // Send result to PHP
+            fetch('update_balance.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    balance: playerBalance,
+                    result: result,
+                    bet: currentBet,
+                    winnings: winnings
+                })
+            });
+
+            // Show bet section again after short delay
+            setTimeout(() => {
+                document.getElementById('game-section').classList.add('hidden');
+                document.getElementById('bet-section').classList.remove('hidden');
+                document.getElementById('game-message').textContent = '';
+            }, 3000);
+        }
