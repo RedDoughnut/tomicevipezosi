@@ -4,7 +4,7 @@ PHP Website sa SQL databazom.
 https://tomicevipezosi.rf.gd/
 
 To-Do:
-- [X] CSS da sredim.
+- [ ] CSS da sredim.
 - [ ] Da dodam funkcionalnost ulaganja u kompanije
 - [ ] Da dodam oglase za kompanije
 - [ ] Kazino (Blackjack, Poker, Slotovi, ...)
@@ -22,5 +22,6 @@ To-Do:
 - [ ] Fix CSS and make it prettier overall
 - [ ] Add the functionality of investing in companies
 - [ ] Add ads for companies and
+- [ ] Casino (Blackjack, Poker, Slots, ...)
 
 If you have any suggestions contact me via discord (user: reddoughnut) or via the Issues tab😘 
