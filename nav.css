@@ -13,7 +13,7 @@ body{
         }
         .navbut{
             background-color: #04AA6D;
-            padding: 5px 100px 5px 10px;
+            padding: 5px 10px 5px 10px;
             cursor: pointer;
             background: linear-gradient(150deg, rgba(4,170,109,1) 33%, rgba(0,212,255,1) 100%);
             color: #000;
