@@ -106,15 +106,15 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function endGame(message, code) {
-        // const data = new URLSearchParams();
+        const data = new URLSearchParams();
         document.getElementById('message').textContent = message;
         document.getElementById('hit-button').disabled = true;
         document.getElementById('stand-button').disabled = true;
         data.append("code", code);
-        // fetch("blackjack.php", {
-        //     method: "post",
-        //     body: data
-        // });
+         fetch("blackjack.php", {
+             method: "post",
+             body: data
+        });
     }
 
     // Make startNewGame available globally

@@ -50,7 +50,7 @@ session_start();
         a {
            display: inline;
            font-size: 1rem;
-           color: #04AA6D;
+           color: rgb(3, 119, 76);
         } 
         a.nav {
            display: inline;
@@ -92,7 +92,7 @@ session_start();
 
 
         th {
-            background-color: #04AA6D;
+            background-color:rgb(3, 119, 76);
             color: white;
         }
         .up{
@@ -194,7 +194,7 @@ session_start();
                 
             </ul>
         </div>
-        <div class="up showup" id="up"><span>Pogledajte naše <a href="tos.php">uslove korišćenja</a>!</span><a style="text-align: right;font-size:1.2rem;cursor:pointer;" onclick="XClick();">✕</a></div>
+        <div class="up showup" id="up"><span>Pogledajte naše <a href="tos.php">uslove korišćenja</a>!</span><form method="POST"><button name=""><a style="text-align: right;font-size:1.2rem;cursor:pointer;" onclick="XClick();">✕</a></button></form></div>
         <div id="snackbar"></div>
     <h1>Lista kompanija</h1>
     <h2 id="diff"></h2>
