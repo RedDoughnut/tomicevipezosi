@@ -23,7 +23,7 @@ session_start();
             box-sizing: border-box;
         }
         
-        .game-container {
+        #cont {
             background-color: #34495e;
             border-radius: 10px;
             padding: 20px;
