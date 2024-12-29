@@ -252,8 +252,8 @@ session_start();
                 $cenaAkcije = $row["value"];
 
                 for ($i = 0; $i < $hours; $i++) {
-                    $rnd = mt_rand(-10000 * $menjanje, 10000 * $menjanje) / 10000;
-                    $cenaAkcije += ($rnd * $menjanje) / 100;
+                    $rnd = mt_rand(90, 110) / 100;
+                    $cenaAkcije = round($rnd*$cenaAkcije, 2);
                 }
                 if ($cenaAkcije <= 0) {
                         $sql = "UPDATE `kompanija` SET `value`=0 WHERE `id`=" . $row['id'];
