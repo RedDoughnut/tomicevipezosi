@@ -229,7 +229,7 @@ session_start();
         <div id="message"></div>
         <button id="new-game-button">New Game</button>
     </div>
-    <script>
+    <script defer>
         function fuck(){
             console.log('fuck');
         }
