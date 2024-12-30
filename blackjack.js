@@ -57,6 +57,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function updateUI() {
+        console.log('Dealer hand:', dealerHand);
+        console.log('Player hand:', playerHand);
         document.getElementById('dealer-cards').innerHTML = dealerHand.map(card => `<div class="card">${card.value}${card.suit}</div>`).join('');
         document.getElementById('player-cards').innerHTML = playerHand.map(card => `<div class="card">${card.value}${card.suit}</div>`).join('');
     
