@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", function () {
         updateUI();
         let val = calculateHandValue(playerHand);
         if (val>21) {
-            endGame('You busted! Dealer wins.');
+            endGame('You busted! Dealer wins. Hand value ' + val);
         }
     }
 
