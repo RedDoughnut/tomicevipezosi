@@ -39,7 +39,7 @@ function calculateHandValue(hand) {
     if (hasAce && value + 10 <= 21) {
         value += 10;
     }
-
+    console.log(value);
     return value;
 }
 
