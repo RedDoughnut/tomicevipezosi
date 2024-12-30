@@ -36,6 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (card.value === 'A') {
                 hasAce = true;
             }
+            console.log(card.value + card.suit + " : " + getCardValue(card));
             value += getCardValue(card);
         }
 
@@ -82,9 +83,8 @@ document.addEventListener("DOMContentLoaded", function () {
     function playerHit() {
         playerHand.push(dealCard());
         updateUI();
-        var val = calculateHandValue(playerHand);
-        if (val>21) {
-            endGame('You busted! Dealer wins. Hand value ' + calculateHandValue(playerHand));
+        if (calculateHandValue(playerHand)) {
+            endGame('You busted! Dealer wins');
         }
     }
 
