@@ -6,11 +6,13 @@ document.addEventListener("DOMContentLoaded", function () {
     let playerHand = [];
     let dealerHand = [];
 
-    function createDeck() {
+    function createDeck(num) {
         deck = [];
-        for (let suit of suits) {
-            for (let value of values) {
-                deck.push({ suit, value });
+        for (var i = 0; i < num; i++){
+            for (let suit of suits) {
+                for (let value of values) {
+                    deck.push({ suit, value });
+                }
             }
         }
     }
@@ -78,7 +80,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function playerHit() {
         playerHand.push(dealCard());
         updateUI();
-        let val = calculateHandValue(playerHand);
+        var val = calculateHandValue(playerHand);
         if (val>21) {
             endGame('You busted! Dealer wins. Hand value ' + val);
         }
