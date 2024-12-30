@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let deck = [];
     let playerHand = [];
     let dealerHand = [];
-    let playerVAL = 0;
+
     function createDeck(num) {
         deck = [];
         for (var i = 0; i < num; i++){
@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return deck.pop();
     }
 
-    function calculateHandValue(hand, p) {
+    function calculateHandValue(hand) {
         let value = 0;
         let hasAce = false;
 
@@ -43,8 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (hasAce && value + 10 <= 21) {
             value += 10;
         }
-        if (p == 1)
-            playerVAL = value;
+        console.log(value);
         return value;
     }
 
@@ -64,8 +63,8 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById('dealer-cards').innerHTML = dealerHand.map(card => `<div class="card">${card.value}${card.suit}</div>`).join('');
         document.getElementById('player-cards').innerHTML = playerHand.map(card => `<div class="card">${card.value}${card.suit}</div>`).join('');
     
-        document.getElementById('dealer-score').textContent = calculateHandValue(dealerHand, -1);
-        document.getElementById('player-score').textContent = calculateHandValue(playerHand, 1);
+        document.getElementById('dealer-score').textContent = calculateHandValue(dealerHand);
+        document.getElementById('player-score').textContent = calculateHandValue(playerHand);
     }
 
     function startNewGame() {
@@ -73,21 +72,21 @@ document.addEventListener("DOMContentLoaded", function () {
         shuffleDeck();
         playerHand = [dealCard(), dealCard()];
         dealerHand = [dealCard(), dealCard()];
-        calculateHandValue(playerHand, 1);
         updateUI();
         document.getElementById('message').textContent = '';
         document.getElementById('hit-button').disabled = false;
         document.getElementById('stand-button').disabled = false;
-        if (playerVAL == 21)
+        if (calculateHandValue(playerHand) == 21)
             endGame("You've won!");
     }
 
     function playerHit() {
         playerHand.push(dealCard());
         console.log('Player hand after hit:', playerHand);
-        console.log('Hand value:', calculateHandValue(playerHand, 1));
+        console.log('Hand value:', calculateHandValue(playerHand));
+        var val = calculateHandValue(playerHand);
         updateUI();
-        if (playerVAL > 21) {
+        if (val > 21) {
             endGame('You busted! Dealer wins');
         }
     }
