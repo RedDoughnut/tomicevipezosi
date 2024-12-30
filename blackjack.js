@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function startNewGame() {
-        createDeck();
+        createDeck(6);
         shuffleDeck();
         playerHand = [dealCard(), dealCard()];
         dealerHand = [dealCard(), dealCard()];
