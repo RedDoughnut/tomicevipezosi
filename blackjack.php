@@ -23,12 +23,16 @@ session_start();
             box-sizing: border-box;
         }
         
-        #cont {
+
+        h1 {
+            margin-top: 0;
+        }
+
+        .game-container {
             background-color: #34495e;
             border-radius: 10px;
             padding: 20px;
             color: white;
-            visibility: hidden;
             text-align: center;
         }
 
@@ -36,23 +40,30 @@ session_start();
             margin-top: 0;
         }
 
-        .hidden {
-            display: none;
-        }
-        .card {
-            display: inline-block;
-            padding: 10px;
-            margin: 5px;
-            border: 1px solid black;
-            border-radius: 5px;
-        }
-        .game-container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
+        #dealer-hand, #player-hand {
+            margin-bottom: 20px;
         }
 
-        .button {
+        #dealer-cards, #player-cards {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            width: 50px;
+            height: 75px;
+            background-color: white;
+            color: black;
+            margin: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            border-radius: 5px;
+        }
+
+        button {
             margin: 5px;
             padding: 10px 20px;
             font-size: 16px;
@@ -63,7 +74,7 @@ session_start();
             border-radius: 5px;
         }
 
-        .button:hover {
+        button:hover {
             background-color: #2980b9;
         }
 
@@ -177,101 +188,24 @@ session_start();
             </ul>
         </div>
         <?php
-            if($_SERVER['REQUEST_METHOD']=="POST"){
-                    header('Content-Type: application/json');
-
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    http_response_code(405);
-    echo json_encode(['error' => 'Method not allowed']);
-    exit;
-}
-
-try {
-    $data = json_decode(file_get_contents('php://input'), true);
-    $userId = $_SESSION['user'];
-    
-    // Get current balance
-    $stmt = $pdo->prepare("SELECT balance FROM user WHERE id = ? FOR UPDATE");
-    $pdo->beginTransaction();
-    $stmt->execute([$userId]);
-    $currentBalance = $stmt->fetchColumn();
-    
-    if ($currentBalance === false) {
-        throw new Exception('Could not fetch user balance');
-    }
-
-    switch ($data['action']) {
-        case 'place_bet':
-            $betAmount = $data['amount'];
-            
-            // Verify bet amount is valid
-            if ($betAmount <= 0 || $betAmount > $currentBalance) {
-                throw new Exception('Invalid bet amount');
-            }
-            
-            // Subtract bet from balance
-            $newBalance = $currentBalance - $betAmount;
-            $stmt = $pdo->prepare("UPDATE user SET balance = ? WHERE id = ?");
-            $stmt->execute([$newBalance, $userId]);
-            
-            $response = [
-                'success' => true,
-                'new_balance' => $newBalance,
-                'message' => 'Bet placed successfully'
-            ];
-            break;
-
-        case 'end_game':
-            $winnings = $data['winnings'];
-            
-            // Add winnings to balance (if any)
-            $newBalance = $currentBalance + $winnings;
-            $stmt = $pdo->prepare("UPDATE user SET balance = ? WHERE id = ?");
-            $stmt->execute([$newBalance, $userId]);
-            
-            // Log the game result
-            $stmt = $pdo->prepare("INSERT INTO game_history (user_id, game_type, bet_amount, winnings, result) VALUES (?, 'blackjack', ?, ?, ?)");
-            $stmt->execute([$userId, $data['bet'], $winnings, $data['result']]);
-            
-            $response = [
-                'success' => true,
-                'new_balance' => $newBalance,
-                'message' => 'Game completed successfully'
-            ];
-            break;
-
-                    default:
-                        throw new Exception('Invalid action');
-                }
-
-                $pdo->commit();
-                echo json_encode($response);
-
-            } catch (Exception $e) {
-                if (isset($pdo) && $pdo->inTransaction()) {
-                    $pdo->rollBack();
-                }
-                
-                http_response_code(400);
-                echo json_encode([
-                    'success' => false,
-                    'message' => $e->getMessage()
-                ]);
-            }
-            }
-            if($_SERVER['REQUEST_METHOD']=="POST" && isset($_POST["money"])){
-                $id = $_SESSION['user'];
+            if($_SERVER['REQUEST_METHOD']=="POST" && isset($_POST["code"]) && isset($_POST["wager"])){
                 $conn = mysqli_connect('sql209.infinityfree.com', 'if0_37883576', 'Sigurno0612', 'if0_37883576_tomicevipezosi');
                 if($conn->connect_error)
-                    die('Connection Failed : '.$conn->connect_error);
-                $sql = "SELECT balance FROM user WHERE id = $id";
-                $bal = mysqli_query($conn, $sql)->fetch_assoc()['balance'];
-                if($_POST["money"]>$bal)
-                    die("<p>Nemaš keš!</p>");
-                $_SESSION['BLACKJACK_AMOUNT'] = $_POST["money"];
-                echo "<script>
-                    startNewGame();
-                </script>"; 
+                    die("Error: " . $conn->connect_error);
+                $code = $_POST["code"];
+                $wager = $_POST["wager"];
+                $email = $_SESSION["user"];
+                if($code==-1){
+                    $sql = "UPDATE user SET balance=balance-$wager WHERE email=$email";
+                    if(!mysqli_query($conn, $sql))
+                        die("Error: " . $conn->connect_error);
+
+                }
+                if($code==1){
+                    $sql = "UPDATE user SET balance=balance+$wager WHERE email=$email";
+                    if(!mysqli_query($conn, $sql))
+                        die("Error: " . $conn->connect_error);
+                }
             }
         ?>
         <!-- <form method="POST">
@@ -279,34 +213,21 @@ try {
             <button class="button" type="submit" id="new-game-button">New Game</button>
         </form> -->
         <div class="game-container">
-        
-        <div id="bet-section">
-            <input type="number" id="bet-amount" placeholder="Enter bet amount">
-            <button onclick="startGame()">Place Bet</button>
+        <h1>Blackjack</h1>
+        <div id="dealer-hand">
+            <h2>Dealer's Hand: <span id="dealer-score"></span></h2>
+            <div id="dealer-cards"></div>
         </div>
-
-        <div id="game-section" class="hidden">
-            <div id="dealer-hand">
-                <h2>Dealer's Hand</h2>
-                <div id="dealer-cards"></div>
-                <div>Score: <span id="dealer-score">0</span></div>
-            </div>
-
-            <div id="player-hand">
-                <h2>Your Hand</h2>
-                <div id="player-cards"></div>
-                <div>Score: <span id="player-score">0</span></div>
-            </div>
-
-            <div id="game-buttons" class="hidden">
-                <button onclick="hit()">Hit</button>
-                <button onclick="stand()">Stand</button>
-            </div>
-
-            <div id="game-message"></div>
+        <div id="player-hand">
+            <h2>Your Hand: <span id="player-score"></span></h2>
+            <div id="player-cards"></div>
         </div>
-    </div>
-        
+        <div id="actions">
+            <button id="hit-button">Hit</button>
+            <button id="stand-button">Stand</button>
+        </div>
+        <div id="message"></div>
+        <button id="new-game-button">New Game</button>
     </div>
     <script src="blackjack.js"></script>
 
