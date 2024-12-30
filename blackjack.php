@@ -227,20 +227,10 @@ session_start();
             <button id="stand-button">Stand</button>
         </div>
         <div id="message"></div>
-        <button id="new-game-button">New Game</button>
+        <button id="new-game-button" onclick="console.log('KLIK');">New Game</button>
     </div>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-    console.log('DOM loaded');
-    const hitButton = document.getElementById('hit-button');
-    console.log('Hit button:', hitButton);
-    if (hitButton) {
-        hitButton.addEventListener('click', function() {
-            console.log('Hit button clicked');
-        });
-    }
-    // ... rest of your code
-});
+        
         const suits = ['♠', '♥', '♦', '♣'];
     const values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
 
