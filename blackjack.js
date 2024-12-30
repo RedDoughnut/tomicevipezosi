@@ -82,7 +82,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function playerHit() {
         playerHand.push(dealCard());
+        console.log('Player hand after hit:', playerHand);
+        console.log('Hand value:', calculateHandValue(playerHand));
         updateUI();
+        
         if (calculateHandValue(playerHand)) {
             endGame('You busted! Dealer wins');
         }
