@@ -112,7 +112,14 @@ session_start();
             font-size: 1rem;
             visibility: visible;
         }
-        
+        #closebut{
+            border: 0;
+            padding: 0;
+            background-color: rgba(255,255,255,0);
+        }
+        #cl{
+
+        }
 </style>
 <body>
     <script>
@@ -194,7 +201,7 @@ session_start();
                 
             </ul>
         </div>
-        <div class="up showup" id="up"><span>Pogledajte naše <a href="tos.php">uslove korišćenja</a>!</span><form method="POST"><button name=""><a style="text-align: right;font-size:1.2rem;cursor:pointer;" onclick="XClick();">✕</a></button></form></div>
+        <div class="up showup" id="up"><span>Pogledajte naše <a href="tos.php">uslove korišćenja</a>!</span><a style="text-align: right;font-size:1.2rem;cursor:pointer;" onclick="XClick();">✕</a></div>
         <div id="snackbar"></div>
         <center>
         <div>
