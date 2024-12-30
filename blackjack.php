@@ -279,7 +279,6 @@ try {
             <button class="button" type="submit" id="new-game-button">New Game</button>
         </form> -->
         <div class="game-container">
-        <div id="balance-display">Balance: $<span id="balance">1000</span></div>
         
         <div id="bet-section">
             <input type="number" id="bet-amount" placeholder="Enter bet amount">
