@@ -229,7 +229,7 @@ session_start();
         <div id="message"></div>
         <button id="new-game-button">New Game</button>
     </div>
-    <script defer src="blackjack.js"></script>
+    <script defer src="blackjack.js" type="text/javascript"></script>
 
 </body>
 </html>
