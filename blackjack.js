@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function playerHit() {
         playerHand.push(dealCard());
         updateUI();
-        let val = calculateHandValue(playerHand) > 21
+        let val = calculateHandValue(playerHand);
         if (val>21) {
             endGame('You busted! Dealer wins.');
         }
