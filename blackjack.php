@@ -227,12 +227,14 @@ session_start();
             <button id="stand-button">Stand</button>
         </div>
         <div id="message"></div>
-        <button id="new-game-button" onclick="fuck('aaaa');">New Game</button>
+        <button id="new-game-button">New Game</button>
     </div>
     <script>
-        function fuck(mess){
-            console.log(mess);
+        function fuck(){
+            console.log('fuck');
         }
+        document.getElementById("new-game-button").addEventListener("click", fuck);
+        
         const suits = ['♠', '♥', '♦', '♣'];
     const values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
 
