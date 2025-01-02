@@ -112,7 +112,6 @@ session_start();
             transition: 0.3s ease-in-out;
         }
 </style>
-    <script src="blackjack.js"></script>
     <script>
     function myFunction(x) {
     x.classList.toggle("change");
