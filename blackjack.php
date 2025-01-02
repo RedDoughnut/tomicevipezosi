@@ -187,7 +187,20 @@ session_start();
             </ul>
         </div>
         <?php
-            if($_SERVER['REQUEST_METHOD']=="POST" && isset($_POST["code"]) && isset($_POST["wager"])){
+            if($_SERVER['REQUEST_METHOD']=="POST" && isset($_POST["wager"]) && isset($_SESSION['user'])){
+                $conn = mysqli_connect('sql209.infinityfree.com', 'if0_37883576', 'Sigurno0612', 'if0_37883576_tomicevipezosi');
+                if($conn->connect_error)
+                    die("Error: " . $conn->connect_error);
+                $wager = $_POST["wager"];
+                $email = $_SESSION["user"];
+                $sql = "SELECT balance FROM user WHERE email=$email";
+                $bal = mysqli_query($conn, $sql)->fetch_assoc()['balance'];
+                if($bal < $wager){
+                    die("Nemaš keš!");
+                }
+                echo "<script>startNewGame($wager);</script>";     
+            }
+            if($_SERVER['REQUEST_METHOD']=="POST" && isset($_POST["code"]) && isset($_SESSION["user"])){
                 $conn = mysqli_connect('sql209.infinityfree.com', 'if0_37883576', 'Sigurno0612', 'if0_37883576_tomicevipezosi');
                 if($conn->connect_error)
                     die("Error: " . $conn->connect_error);
@@ -226,7 +239,10 @@ session_start();
             <button id="stand-button">Stand</button>
         </div>
         <div id="message"></div>
-        <button id="new-game-button">New Game</button>
+        <form method="POST">
+            <input type="text" name="wager" pattern="[0-9]+"></input>
+            <button id="new-game-button" type="submit">New Game</button>
+        </form>
     </div>
     <script defer src="blackjack.js" type="text/javascript"></script>
 

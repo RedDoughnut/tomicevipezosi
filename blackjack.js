@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let deck = [];
     let playerHand = [];
     let dealerHand = [];
-
+    let wager = 0;
     function createDeck(num) {
         deck = [];
         for (var i = 0; i < num; i++){
@@ -67,7 +67,8 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById('player-score').textContent = calculateHandValue(playerHand);
     }
 
-    function startNewGame() {
+    function startNewGame(WAGER_INPUT) {
+        wager = WAGER_INPUT;
         createDeck(6);
         shuffleDeck();
         playerHand = [dealCard(), dealCard()];
@@ -77,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById('hit-button').disabled = false;
         document.getElementById('stand-button').disabled = false;
         if (calculateHandValue(playerHand) == 21)
-            endGame("You've won!");
+            endGame("You've won!", 1);
     }
 
     function playerHit() {
@@ -87,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function () {
         var val = calculateHandValue(playerHand);
         updateUI();
         if (val > 21) {
-            endGame('You busted! Dealer wins');
+            endGame('You busted! Dealer wins', -1);
         }
     }
 
@@ -101,13 +102,13 @@ document.addEventListener("DOMContentLoaded", function () {
         const dealerValue = calculateHandValue(dealerHand);
     
         if (dealerValue > 21) {
-            endGame('Dealer busted! You win!');
+            endGame('Dealer busted! You win!', 1);
         } else if (playerValue > dealerValue) {
-            endGame('You win!');
+            endGame('You win!', 1);
         } else if (playerValue < dealerValue) {
-            endGame('Dealer wins.');
+            endGame('Dealer wins.', -1);
         } else {
-            endGame('It\'s a tie!');
+            endGame('It\'s a tie!', 0);
         }
     }
 
@@ -117,13 +118,14 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById('hit-button').disabled = true;
         document.getElementById('stand-button').disabled = true;
         data.append("code", code);
+        data.append("wager", wager);
         fetch("blackjack.php", {
             method: "post",
             body: data
         })
     }
 
-    document.getElementById('new-game-button').addEventListener('click', startNewGame);
+    //document.getElementById('new-game-button').addEventListener('click', startNewGame);
     document.getElementById('hit-button').addEventListener('click', playerHit);
     document.getElementById('stand-button').addEventListener('click', playerStand);
 });
