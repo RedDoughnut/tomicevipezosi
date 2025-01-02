@@ -193,7 +193,7 @@ session_start();
                     die("Error: " . $conn->connect_error);
                 $wager = $_POST["wager"];
                 $email = $_SESSION['user'];
-                $sql = "SELECT balance FROM user WHERE email=$email";
+                $sql = "SELECT balance FROM user WHERE email='$email'";
                 $res = mysqli_query($conn, $sql);
                 if (!$res)
                     die("Error: " . $conn->connect_error);
