@@ -199,9 +199,9 @@ session_start();
                     die("Error: " . $conn->connect_error);
                 $bal = mysqli_fetch_assoc($res)["balance"];
                 if($bal < $wager){
-                    die("Nemaš keš!");
+                    die("<h3>Nemaš keš!</h3>");
                 }
-                echo "<script>startNewGame($wager);</script>";     
+                $startGame = true;
             }
             if($_SERVER['REQUEST_METHOD']=="POST" && isset($_POST["code"]) && isset($_SESSION["user"])){
                 $conn = mysqli_connect('sql209.infinityfree.com', 'if0_37883576', 'Sigurno0612', 'if0_37883576_tomicevipezosi');
@@ -211,13 +211,13 @@ session_start();
                 $wager = $_POST["wager"];
                 $email = $_SESSION["user"];
                 if($code==-1){
-                    $sql = "UPDATE user SET balance=balance-$wager WHERE email=$email";
+                    $sql = "UPDATE user SET balance=balance-$wager WHERE email='$email'";
                     if(!mysqli_query($conn, $sql))
                         die("Error: " . $conn->connect_error);
 
                 }
                 if($code==1){
-                    $sql = "UPDATE user SET balance=balance+$wager WHERE email=$email";
+                    $sql = "UPDATE user SET balance=balance+$wager WHERE email='$email'";
                     if(!mysqli_query($conn, $sql))
                         die("Error: " . $conn->connect_error);
                 }
@@ -248,6 +248,12 @@ session_start();
         </form>
     </div>
     <script defer src="blackjack.js" type="text/javascript"></script>
-
+    <?php if(isset($startGame) && $startGame): ?>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            startNewGame(<?php echo $wager; ?>);
+        });
+    </script>
+<?php endif; ?>
 </body>
 </html>
