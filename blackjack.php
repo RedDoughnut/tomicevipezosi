@@ -247,7 +247,7 @@ session_start();
             <button id="new-game-button" type="submit">New Game</button>
         </form>
     </div>
-    <script defer src="blackjack.js" type="text/javascript"></script>
+    <script src="blackjack.js" type="text/javascript"></script>
     <?php if(isset($startGame) && $startGame): ?>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
