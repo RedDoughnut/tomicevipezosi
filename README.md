@@ -1,6 +1,6 @@
 # Tomicevi Pezosi
 Pravljenje tvorki, i ulaganje u njih sa T₱ (Tomicevim Pezosima).
-PHP Website sa SQL databazom.
+PHP Website sa MySQL databazom.
 https://tomicevipezosi.rf.gd/
 
 To-Do:
@@ -15,7 +15,7 @@ Ako imate neke sugestije kontaktirajte me preko discorda (user: reddoughnut) ili
 
 # Tomicevi Pezosi
 Creating companies, and investing in them with T₱ (Tomic's peso).
-PHP Website with SQL database.
+PHP Website with MySQL database.
 https://tomicevipezosi.rf.gd/
 
 To-Do:
