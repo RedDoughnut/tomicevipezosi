@@ -4,7 +4,7 @@ PHP Website sa MySQL databazom.
 https://tomicevipezosi.rf.gd/
 
 To-Do:
-- [ ] CSS da sredim.
+- [X] CSS da sredim.
 - [ ] Da dodam funkcionalnost ulaganja u kompanije
 - [ ] Da dodam oglase za kompanije
 - [ ] Kazino (Blackjack, Poker, Slotovi, ...)
@@ -19,7 +19,7 @@ PHP Website with MySQL database.
 https://tomicevipezosi.rf.gd/
 
 To-Do:
-- [ ] Fix CSS and make it prettier overall
+- [X] Fix CSS and make it prettier overall
 - [ ] Add the functionality of investing in companies
 - [ ] Add ads for companies and
 - [ ] Casino (Blackjack, Poker, Slots, ...)
