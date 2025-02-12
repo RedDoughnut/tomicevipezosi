@@ -4,6 +4,7 @@ session_start();
 $a = 12;
 $b = 13;
 $c = 14;
+include "SECRETS.php";
 ?>
 <html>
 
@@ -202,7 +203,7 @@ $c = 14;
             <li class = "nav"><a href="company.php"><button class = "navbut2">My Company</button></a></li>
             <?php
         if(isset($_SESSION["user"])){
-            $conn = mysqli_connect('sql209.infinityfree.com', 'if0_37883576', 'Sigurno0612', 'if0_37883576_tomicevipezosi');
+            $conn = mysqli_connect('sql209.infinityfree.com', $DB_User, $DB_Pass, 'if0_37883576_tomicevipezosi');
             if($conn->connect_error){
                 die('Connection Failed : '.$conn->connect_error);
             }else{
@@ -235,7 +236,7 @@ $c = 14;
         </div>
 
         <?php
-            $conn = mysqli_connect('sql209.infinityfree.com', 'if0_37883576', 'Sigurno0612', 'if0_37883576_tomicevipezosi');
+            $conn = mysqli_connect('sql209.infinityfree.com', $DB_User, $DB_Pass, 'if0_37883576_tomicevipezosi');
             mysqli_set_charset($conn, "utf8");
             if($conn->connect_error){
                 die('Connection Failed : '.$conn->connect_error);
@@ -274,7 +275,7 @@ $c = 14;
             if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['form_id']) && $_POST['form_id'] == "invest"){
                 if(!isset($_SESSION['user']))
                     die("<a href='login.php' style='margin: 0 0 0 30px;'>Log in</a> to invest!");
-                $conn = mysqli_connect('sql209.infinityfree.com', 'if0_37883576', 'Sigurno0612', 'if0_37883576_tomicevipezosi');
+                $conn = mysqli_connect('sql209.infinityfree.com', $DB_User, $DB_Pass, 'if0_37883576_tomicevipezosi');
                 mysqli_set_charset($conn, "utf8");
                 if($conn->connect_error){
                     die('Connection Failed : '.$conn->connect_error);

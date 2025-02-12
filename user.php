@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php
 session_start();
+include "SECRETS.php";
 ?>
 <html>
 
@@ -140,7 +141,7 @@ session_start();
             <li class = "nav"><a href="company.php"><button class = "navbut2">My Company</button></a></li>
             <?php
         if(isset($_SESSION["user"])){
-            $conn = mysqli_connect('sql209.infinityfree.com', 'if0_37883576', 'Sigurno0612', 'if0_37883576_tomicevipezosi');
+            $conn = mysqli_connect('sql209.infinityfree.com', $DB_User, $DB_Pass, 'if0_37883576_tomicevipezosi');
             if($conn->connect_error){
                 die('Connection Failed : '.$conn->connect_error);
             }else{
@@ -169,7 +170,7 @@ session_start();
                 <li class="mobile"> <a href="company.php"> <button class = "navbut2">My Company</button> </a></li>
                 <?php
         if(isset($_SESSION["user"])){
-            $conn = mysqli_connect('sql209.infinityfree.com', 'if0_37883576', 'Sigurno0612', 'if0_37883576_tomicevipezosi');
+            $conn = mysqli_connect('sql209.infinityfree.com', $DB_User, $DB_Pass, 'if0_37883576_tomicevipezosi');
             if($conn->connect_error){
                 die('Connection Failed : '.$conn->connect_error);
             }else{
@@ -191,7 +192,7 @@ session_start();
         </div>
         <div id="snackbar"></div>
         <?php
-        $conn = mysqli_connect('sql209.infinityfree.com', 'if0_37883576', 'Sigurno0612', 'if0_37883576_tomicevipezosi');
+        $conn = mysqli_connect('sql209.infinityfree.com', $DB_User, $DB_Pass, 'if0_37883576_tomicevipezosi');
         if($conn->connect_error)
             die('Connection Failed : '.$conn->connect_error);
         if(isset($_SESSION["user"])){
@@ -216,7 +217,7 @@ session_start();
                 $email = $_POST['email'];
                 $firstName = $_POST['firstName'];
                 $lastName = $_POST['lastName'];
-                $conn = mysqli_connect('sql209.infinityfree.com', 'if0_37883576', 'Sigurno0612', 'if0_37883576_tomicevipezosi');
+                $conn = mysqli_connect('sql209.infinityfree.com', $DB_User, $DB_Pass, 'if0_37883576_tomicevipezosi');
                 if($conn->connect_error){
                     die('Connection Failed : '.$conn->connect_error);
                 }else{
