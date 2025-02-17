@@ -113,7 +113,6 @@ include "SECRETS.php";
             
 </style>
 <body>
-    <script src="slot.js"></script>
     <script>
     function myFunction(x) {
     x.classList.toggle("change");
@@ -257,6 +256,7 @@ include "SECRETS.php";
             </div>
             
         </div>
+        <script src="slot.js"></script>
         <button class="button" id="spin" onclick="spin(0, 4);">Spin!</button>
     </div>
 
