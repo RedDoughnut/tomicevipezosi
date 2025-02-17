@@ -187,7 +187,7 @@ include "SECRETS.php";
                 
             </ul>
         </div>
-        <div class="large-container">
+        < class="large-container">
             <div class="outer-container">
             <div class="column-container">
             <div class="column">
@@ -257,8 +257,32 @@ include "SECRETS.php";
             
         </div>
         <script src="slot.js"></script>
-        <button class="button" id="spin" onclick="spin(0, 4);">Spin!</button>
+        <form method="POST">
+            <button class="button" id="spin" type="submit" name="spin">Spin!</button>
+        </form>
+        <?php
+        if($_SERVER["REQUEST_METHOD"]=="POST" && isset($_POST['spin'])){
+            $conn = mysqli_connect('sql209.infinityfree.com', $DB_User, $DB_Pass, 'if0_37883576_tomicevipezosi');
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }
+            $rand1 = mt_rand(1, 9);
+            $rand2 = mt_rand(1, 9);
+            $rand3 = mt_rand(1, 9);
+            $rand4 = mt_rand(1, 9);
+            $rand5 = mt_rand(1, 9);
+            ?>
+            <script>
+                resetPosition();
+                spin(0, <?php echo $rand1;?>);
+                spin(1, <?php echo $rand2;?>);
+                spin(2, <?php echo $rand3;?>);
+                spin(3, <?php echo $rand4;?>);
+                spin(4, <?php echo $rand5;?>);
+            </script>
+            <?php
+        }
+        ?>
     </div>
-
 </body>
 </html>

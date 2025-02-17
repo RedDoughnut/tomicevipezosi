@@ -1,3 +1,8 @@
+function resetPosition() {
+  document.querySelectorAll('.column').forEach((column, index) => {
+    column.style.transform = `translateY(-${index * 6}rem)`;
+  })
+}
 function spin(index, targetNumber) {
   const columns = document.querySelectorAll('.column');
   const column = columns[index];
