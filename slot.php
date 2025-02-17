@@ -265,8 +265,21 @@ include "SECRETS.php";
                     toast("Napišite validan broj!");
                 }
                 else{
-                    
+                    createCookie("wager", wager, 1);
+                    <?php a($_COOKIE["wager"]); ?>
                 }
+            }
+            function createCookie(name, value, days) {
+                var expires;
+                if (days) {
+                    var date = new Date();
+                    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                    expires = "; expires=" + date.toGMTString();
+                }
+                else {
+                    expires = "";
+                }
+                document.cookie = escape(name) + "=" + escape(value) + expires + "; path=/";
             }
         </script>
         <button class="button" id="spin" onclick="buttonClick();">Spin!</button>
