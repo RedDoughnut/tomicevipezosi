@@ -265,7 +265,7 @@ include "SECRETS.php";
                     toast("Napišite validan broj!");
                 }
                 else{
-                    <?php a(wager); ?>
+                    
                 }
             }
         </script>
