@@ -269,7 +269,7 @@ include "SECRETS.php";
                 }
             }
         </script>
-        <button class="button" id="spin" type="button" onclick>Spin!</button>
+        <button class="button" id="spin" type="button" onclick="buttonClick();">Spin!</button>
         <?php
         function a($wager){
             $DB_User = $GLOBALS['DB_User'];
