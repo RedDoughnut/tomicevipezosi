@@ -256,7 +256,7 @@ include "SECRETS.php";
             </div>
             </div>
             
-        </div>
+        
         <script src="slot.js"></script>
         <script>
             function buttonClick(){
@@ -270,6 +270,7 @@ include "SECRETS.php";
             }
         </script>
         <button class="button" id="spin" onclick="buttonClick();">Spin!</button>
+        </div>
         <?php
         function a($wager){
             $DB_User = $GLOBALS['DB_User'];
