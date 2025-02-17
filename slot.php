@@ -187,7 +187,8 @@ include "SECRETS.php";
                 
             </ul>
         </div>
-        < class="large-container">
+        <div class="large-container">
+            <input type="text" id="wager" placeholder="Wager">
             <div class="outer-container">
             <div class="column-container">
             <div class="column">
@@ -257,11 +258,22 @@ include "SECRETS.php";
             
         </div>
         <script src="slot.js"></script>
-        <form method="POST">
-            <button class="button" id="spin" type="submit" name="spin">Spin!</button>
-        </form>
+        <script>
+            function buttonClick(){
+                const wager = parseInt(document.getElementById("wager").value);
+                if(isNaN(wager)){
+                    toast("Napišite validan broj!");
+                }
+                else{
+                    <?php a(wager); ?>
+                }
+            }
+        </script>
+        <button class="button" id="spin" type="button" onclick>Spin!</button>
         <?php
-        if($_SERVER["REQUEST_METHOD"]=="POST" && isset($_POST['spin'])){
+        function a($wager){
+            $DB_User = $GLOBALS['DB_User'];
+            $DB_Pass = $GLOBALS['DB_Pass'];
             $conn = mysqli_connect('sql209.infinityfree.com', $DB_User, $DB_Pass, 'if0_37883576_tomicevipezosi');
             if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);
