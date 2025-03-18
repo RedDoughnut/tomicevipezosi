@@ -328,9 +328,9 @@ include "SECRETS.php";
                         $inv_KOMPANIJA[$email] += $amount;
                     }
                     $inv_KOMPANIJA = json_encode($inv_KOMPANIJA);
-                    $sql = "UPDATE kompanija SET investicije = $inv_KOMPANIJA WHERE user_id='$VLASNIK_id'";
+                    $sql = "UPDATE kompanija SET investicije = '$inv_KOMPANIJA' WHERE user_id='$VLASNIK_id'";
                     mysqli_query($conn, $sql);
-                    $sql = "UPDATE user SET investicije = $inv_KORISNIK WHERE user_id='$KORISNIK_id'";
+                    $sql = "UPDATE user SET investicije = '$inv_KORISNIK' WHERE user_id='$KORISNIK_id'";
                     mysqli_query($conn, $sql);
                 }
             }
