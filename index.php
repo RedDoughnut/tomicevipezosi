@@ -262,8 +262,9 @@ include "SECRETS.php";
                 $cenaAkcije = $row["value"];
 
                 for ($i = 0; $i < $hours; $i++) {
-                    $rnd = mt_rand(90, 110) / 100;
-                    $cenaAkcije = round($rnd*$cenaAkcije, 2);
+                    $rnd = mt_rand(-$cenaAkcije * 0.1, $cenaAkcije * 0.1);
+
+                    $cenaAkcije = max(round($cenaAkcije + $rnd, 2), 0.0);
                 }
                 if ($cenaAkcije <= 0) {
                         $sql = "UPDATE `kompanija` SET `value`=0 WHERE `id`=" . $row['id'];

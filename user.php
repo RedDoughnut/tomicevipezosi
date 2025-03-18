@@ -210,8 +210,25 @@ include "SECRETS.php";
             }
             
         }
-
+        $conn->close();
+        ?><br>
+        <h2>Investicije</h2>
+        <table>
+        <tr><th>Ticker</th><th>Broj akcija</th></tr>
+        <?php
+            $conn = mysqli_connect('sql209.infinityfree.com', $DB_User, $DB_Pass, 'if0_37883576_tomicevipezosi');
+            if($conn->connect_error)
+                die("Connection failed: " . $conn->connect_error);
+            $email = $_SESSION['user'];
+            $sql = "SELECT investicije FROM user WHERE email = '$email'";
+            $res = $conn->query($sql)->fetch_assoc()["investicije"];
+            $investicije = json_decode($res, true);
+            foreach ($investicije as $x => $y) {
+                echo "<tr><td>$x</td><td>$y</td></tr>";
+            }
         ?>
+        
+        </table>
         <?php
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['user'])) {
                 $email = $_POST['email'];
