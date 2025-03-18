@@ -309,7 +309,9 @@ include "SECRETS.php";
                         die("Nema dovoljno novca!");
                     }
                     $sql = "UPDATE user SET balance = balance - $price WHERE id = '$KORISNIK_id'";
-                    mysqli_query($conn, $sql);
+                    if(!mysqli_query($conn, $sql)){
+                        die("<h1>Error</h1>: " . $sql . "<br>" . $conn->error);
+                    }
                     // $sql = "UPDATE user SET balance = balance + $price WHERE id = '$VLASNIK_id'";
                     // mysqli_query($conn, $sql);
                     $sql = "UPDATE kompanija SET stocks_sold = stocks_sold + $amount WHERE user_id = '$VLASNIK_id'";
@@ -332,7 +334,7 @@ include "SECRETS.php";
                     mysqli_query($conn, $sql);
                     $sql = "UPDATE user SET investicije = '$inv_KORISNIK' WHERE user_id='$KORISNIK_id'";
                     if(!mysqli_query($conn, $sql)){
-                        echo "Error: " . $sql . "<br>" . $conn->error;
+                        echo "<h1>Error:</h1> " . $sql . "<br>" . $conn->error;
                     }
                 }
             }
