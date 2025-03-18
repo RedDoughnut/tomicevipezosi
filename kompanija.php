@@ -249,7 +249,7 @@ include "SECRETS.php";
                     $kompanija = $result->fetch_assoc();
                     $sql = "SELECT firstName, lastName FROM user WHERE id = '$kompanija[user_id]'";
                     $result = $conn->query($sql)->fetch_assoc();
-                    
+                    $stocks_to_sell = $kompanija["stocks_available"] - $kompanija["stocks_sold"];
                     echo "<h1>" . htmlspecialchars($kompanija["name"], ENT_QUOTES, 'UTF-8') . " (" . htmlspecialchars($kompanija["ticker"], ENT_QUOTES, 'UTF-8') . ")</h1>";
                     echo "<h2>Cena Akcije: " . $kompanija["value"] .  "T₱ (0.05%)</h2>";
                     if($result)
