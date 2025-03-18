@@ -212,7 +212,7 @@ include "SECRETS.php";
         }
         $conn->close();
         ?><br>
-        <h2>Investicije</h2>
+        <h1>Investicije</h1>
         <table>
         <tr><th>Ticker</th><th>Broj akcija</th></tr>
         <?php

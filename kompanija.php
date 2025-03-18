@@ -268,8 +268,8 @@ include "SECRETS.php";
         <form method="POST">
             <h1 class="label1">Invest</h1>
             <input type="hidden" name="form_id" value="invest">
-            <!--<input type="number" name="amount" placeholder="Amount(Stocks)" step="1"><br>
-            <button type="submit">Send request</button><br>-->
+            <input type="number" name="amount" placeholder="Amount(Stocks)" step="1"><br>
+            <button type="submit">Send request</button><br>
         </form>
         <?php
             if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['form_id']) && $_POST['form_id'] == "invest"){
@@ -281,7 +281,7 @@ include "SECRETS.php";
                     die('Connection Failed : '.$conn->connect_error);
                 }else{
                     $email = $_SESSION['user'];
-                    $sql = "SELECT balance FROM user WHERE email = '$email'";
+                    $sql = "SELECT balance, investicije FROM user WHERE email = '$email'";
                     $res = $conn->query($sql);
                     $res = $res -> fetch_assoc();
                     $bal = $res['balance'];
@@ -304,41 +304,34 @@ include "SECRETS.php";
                     if($amount > $stocks_available - $stocks_sold){
                         die("Nema dovoljno akcija!");
                     }
-                    if($bal < $amount * $value * 2000){
-                        
+                    $price = round($amount * $value);
+                    if($bal < $price){
+                        die("Nema dovoljno novca!");
                     }
-                    $sql = "UPDATE user SET balance = balance - $amount*$value WHERE id = '$KORISNIK_id'";
+                    $sql = "UPDATE user SET balance = balance - $price WHERE id = '$KORISNIK_id'";
                     mysqli_query($conn, $sql);
-                    $sql = "UPDATE user SET balance = balance + $amount*$value WHERE id = '$VLASNIK_id'";
-                    mysqli_query($conn, $sql);
+                    // $sql = "UPDATE user SET balance = balance + $price WHERE id = '$VLASNIK_id'";
+                    // mysqli_query($conn, $sql);
                     $sql = "UPDATE kompanija SET stocks_sold = stocks_sold + $amount WHERE user_id = '$VLASNIK_id'";
                     mysqli_query($conn, $sql);
-                    if($inv_KORISNIK['ticker']!=NULL){
-                        $inv_KORISNIK['ticker'] = $amount;
+                    if($inv_KORISNIK[$ticker]!=NULL){
+                        $inv_KORISNIK[$ticker] = $amount;
                     }
                     else{
-                        $inv_KORISNIK['ticker'] += $amount;
+                        $inv_KORISNIK[$ticker] += $amount;
                     }
                     $inv_KORISNIK = json_encode($inv_KORISNIK);
-                    if($inv_KOMPANIJA['ticker']!=NULL){
-                        $inv_KOMPANIJA['ticker'] = $amount;
+                    if($inv_KOMPANIJA[$email]!=NULL){
+                        $inv_KOMPANIJA[$email] = $amount;
                     }
                     else{
-                        $inv_KOMPANIJA['ticker'] += $amount;
+                        $inv_KOMPANIJA[$email] += $amount;
                     }
                     $inv_KOMPANIJA = json_encode($inv_KOMPANIJA);
                     $sql = "UPDATE kompanija SET investicije = $inv_KOMPANIJA WHERE user_id='$VLASNIK_id'";
                     mysqli_query($conn, $sql);
                     $sql = "UPDATE user SET investicije = $inv_KORISNIK WHERE user_id='$KORISNIK_id'";
                     mysqli_query($conn, $sql);
-
-
-
-
-
-
-
-
                 }
             }
 

@@ -267,7 +267,7 @@ include "SECRETS.php";
                     $cenaAkcije = max(round($cenaAkcije + $rnd, 2), 0.0);
                 }
                 if ($cenaAkcije <= 0) {
-                        $sql = "UPDATE `kompanija` SET `value`=0 WHERE `id`=" . $row['id'];
+                        $sql = "UPDATE `kompanija` SET `value`=0.01 WHERE `id`=" . $row['id'];
                         if (!mysqli_query($conn, $sql)) {
                             echo "Error: " . mysqli_error($conn);
                         }
