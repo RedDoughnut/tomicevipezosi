@@ -315,23 +315,25 @@ include "SECRETS.php";
                     $sql = "UPDATE kompanija SET stocks_sold = stocks_sold + $amount WHERE user_id = '$VLASNIK_id'";
                     mysqli_query($conn, $sql);
                     if($inv_KORISNIK[$ticker]!=NULL){
-                        $inv_KORISNIK[$ticker] = $amount;
+                        $inv_KORISNIK[$ticker] += $amount;
                     }
                     else{
-                        $inv_KORISNIK[$ticker] += $amount;
+                        $inv_KORISNIK[$ticker] = $amount;
                     }
                     $inv_KORISNIK = json_encode($inv_KORISNIK);
                     if($inv_KOMPANIJA[$email]!=NULL){
-                        $inv_KOMPANIJA[$email] = $amount;
+                        $inv_KOMPANIJA[$email] += $amount;
                     }
                     else{
-                        $inv_KOMPANIJA[$email] += $amount;
+                        $inv_KOMPANIJA[$email] = $amount;
                     }
                     $inv_KOMPANIJA = json_encode($inv_KOMPANIJA);
                     $sql = "UPDATE kompanija SET investicije = '$inv_KOMPANIJA' WHERE user_id='$VLASNIK_id'";
                     mysqli_query($conn, $sql);
                     $sql = "UPDATE user SET investicije = '$inv_KORISNIK' WHERE user_id='$KORISNIK_id'";
-                    mysqli_query($conn, $sql);
+                    if(!mysqli_query($conn, $sql)){
+                        echo "Error: " . $sql . "<br>" . $conn->error;
+                    }
                 }
             }
 
