@@ -256,7 +256,7 @@ include "SECRETS.php";
                         echo "<h2>Osnivac Kompanije: " . htmlspecialchars($result["firstName"], ENT_QUOTES, 'UTF-8') . " " . htmlspecialchars($result["lastName"], ENT_QUOTES, 'UTF-8') . "</h2>";
                     else
                         echo "<h2>Osnivac Kompanije: Neuspelo preuzimanja podataka</h2>";
-                    echo "<h2>Broj dostupnih akcija: " . $kompanija["stocks_available"] - $kompanija["stocks_sold"] . "</h2>";
+                    echo "<h2>Broj dostupnih akcija: " . $stocks_to_sell . "</h2>";
                     echo "<p class='des'>" . $kompanija["description"] . "</p>";
                 }
                 else{
