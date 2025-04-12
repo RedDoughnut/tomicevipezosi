@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php
 session_start();
+include "SECRETS.php";
 ?>
 <html>
 
@@ -30,14 +31,12 @@ session_start();
            display: inline;
            font-size: 1rem;
            color: #04AA6D;
-           margin: 10px;
         } 
         a.nav {
            display: inline;
            font-size: 2rem;
            text-decoration: none;
            color: black;
-           margin: 10px;
         } 
         ul{
             margin: 20px;
@@ -142,7 +141,7 @@ session_start();
             <li class = "nav"><a href="company.php"><button class = "navbut2">My Company</button></a></li>
             <?php
         if(isset($_SESSION["user"])){
-            $conn = mysqli_connect('sql209.infinityfree.com', 'if0_37883576', 'Sigurno0612', 'if0_37883576_tomicevipezosi');
+            $conn = mysqli_connect('sql209.infinityfree.com', $DB_User, $DB_Pass, 'if0_37883576_tomicevipezosi');
             if($conn->connect_error){
                 die('Connection Failed : '.$conn->connect_error);
             }else{
@@ -171,7 +170,7 @@ session_start();
                 <li class="mobile"> <a href="company.php"> <button class = "navbut2">My Company</button> </a></li>
                 <?php
         if(isset($_SESSION["user"])){
-            $conn = mysqli_connect('sql209.infinityfree.com', 'if0_37883576', 'Sigurno0612', 'if0_37883576_tomicevipezosi');
+            $conn = mysqli_connect('sql209.infinityfree.com', $DB_User, $DB_Pass, 'if0_37883576_tomicevipezosi');
             if($conn->connect_error){
                 die('Connection Failed : '.$conn->connect_error);
             }else{
@@ -193,7 +192,7 @@ session_start();
         </div>
         <div id="snackbar"></div>
         <?php
-        $conn = mysqli_connect('sql209.infinityfree.com', 'if0_37883576', 'Sigurno0612', 'if0_37883576_tomicevipezosi');
+        $conn = mysqli_connect('sql209.infinityfree.com', $DB_User, $DB_Pass, 'if0_37883576_tomicevipezosi');
         if($conn->connect_error)
             die('Connection Failed : '.$conn->connect_error);
         if(isset($_SESSION["user"])){
@@ -211,14 +210,31 @@ session_start();
             }
             
         }
-
+        $conn->close();
+        ?><br>
+        <h1>Investicije</h1>
+        <table>
+        <tr><th>Ticker</th><th>Broj akcija</th></tr>
+        <?php
+            $conn = mysqli_connect('sql209.infinityfree.com', $DB_User, $DB_Pass, 'if0_37883576_tomicevipezosi');
+            if($conn->connect_error)
+                die("Connection failed: " . $conn->connect_error);
+            $email = $_SESSION['user'];
+            $sql = "SELECT investicije FROM user WHERE email = '$email'";
+            $res = $conn->query($sql)->fetch_assoc()["investicije"];
+            $investicije = json_decode($res, true);
+            foreach ($investicije as $x => $y) {
+                echo "<tr><td>$x</td><td>$y</td></tr>";
+            }
         ?>
+        
+        </table>
         <?php
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['user'])) {
                 $email = $_POST['email'];
                 $firstName = $_POST['firstName'];
                 $lastName = $_POST['lastName'];
-                $conn = mysqli_connect('sql209.infinityfree.com', 'if0_37883576', 'Sigurno0612', 'if0_37883576_tomicevipezosi');
+                $conn = mysqli_connect('sql209.infinityfree.com', $DB_User, $DB_Pass, 'if0_37883576_tomicevipezosi');
                 if($conn->connect_error){
                     die('Connection Failed : '.$conn->connect_error);
                 }else{

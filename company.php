@@ -1,4 +1,4 @@
-<?php session_start(); ?>
+<?php session_start(); include "SECRETS.php";?>
 <!DOCTYPE html>
 <html>
      <head>
@@ -96,14 +96,12 @@
            font-size: 2rem;
            text-decoration: none;
            color: black;
-           margin: 10px;
         } 
         a {
            display: inline;
            font-size: 1rem;
            text-decoration: none;
            color: #04AA6D;
-           margin: 10px;
         } 
         ul{
             margin: 20px;
@@ -247,7 +245,7 @@
             <li class = "nav"><a href="company.php"><button class = "navbut">My Company</button></a></li>
             <?php
         if(isset($_SESSION["user"])){
-            $conn = mysqli_connect('sql209.infinityfree.com', 'if0_37883576', 'Sigurno0612', 'if0_37883576_tomicevipezosi');
+            $conn = mysqli_connect('sql209.infinityfree.com', $DB_User, $DB_Pass, 'if0_37883576_tomicevipezosi');
             if($conn->connect_error){
                 die('Connection Failed : '.$conn->connect_error);
             }else{
@@ -276,7 +274,7 @@
                 <li class="mobile"> <a href="company.php"> <button class = "navbut">My Company</button> </a></li>
                 <?php
         if(isset($_SESSION["user"])){
-            $conn = mysqli_connect('sql209.infinityfree.com', 'if0_37883576', 'Sigurno0612', 'if0_37883576_tomicevipezosi');
+            $conn = mysqli_connect('sql209.infinityfree.com', $DB_User, $DB_Pass, 'if0_37883576_tomicevipezosi');
             if($conn->connect_error){
                 die('Connection Failed : '.$conn->connect_error);
             }else{
@@ -299,7 +297,7 @@
         <div id="snackbar"></div>
 
         <?php
-        $conn = mysqli_connect('sql209.infinityfree.com', 'if0_37883576', 'Sigurno0612', 'if0_37883576_tomicevipezosi');
+        $conn = mysqli_connect('sql209.infinityfree.com', $DB_User, $DB_Pass, 'if0_37883576_tomicevipezosi');
         mysqli_set_charset($conn, "utf8");
         if($conn->connect_error){
             die('Connection Failed : '.$conn->connect_error);
@@ -327,7 +325,7 @@
                 echo "<h2>Broj dostupnih akcija: " . $kompanija["stocks_available"] - $kompanija["stocks_sold"] . "</h2>";
                 echo "<p>Deskripcija (max 400 karaktera): </p>";
                 echo "<form method = 'POST' action = ''>
-                      <textarea placeholder='Lorem ipsum dolor sit amet ...' name='description' maxlenght=400>" . $kompanija["description"] . "</textarea><br>
+                      <textarea placeholder='Lorem ipsum dolor sit amet ...' name='description' maxlength=400>" . $kompanija["description"] . "</textarea><br>
                       <button class='button' name='action' value='clicked'>
                       Save
                       <div class='hoverEffect'>
@@ -335,7 +333,7 @@
                       </div>
                       </button>
                       </form>";
-                if(count($arr) == null){
+                if(empty($arr)){
                     echo "<p>Nema investicija!</p>";
                 }
                 else{
@@ -349,8 +347,8 @@
         }
         ?>
         <?php
-            if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && $_POST['action'] === 'clicked'){
-                $conn = mysqli_connect('sql209.infinityfree.com', 'if0_37883576', 'Sigurno0612', 'if0_37883576_tomicevipezosi');
+            if($_SERVER["REQUEST_METHOD"] == "POST"){
+                $conn = mysqli_connect('sql209.infinityfree.com', $DB_User, $DB_Pass, 'if0_37883576_tomicevipezosi');
                 mysqli_set_charset($conn, "utf8");
                 if($conn->connect_error){
                     die('Connection Failed : '.$conn->connect_error);
@@ -361,14 +359,19 @@
                     $res = $conn->query($sql);
                     $res = $res->fetch_assoc();
                     $id = $res['id'];
-                    $sql = "UPDATE kompanija SET description = '" . $_POST['description'] . "' WHERE user_id = '$id'";
+                    $desc = $_POST['description'];
+                    echo "<h1>" . $desc . "</h1>";
+                    $sql = "UPDATE kompanija SET description = '$desc' WHERE user_id = '$id'";
                     if($conn->query($sql)){
                         echo "<script>showToast('Successfully saved!')</script>";
                     }
-
+                    else{
+                        die($conn->connect_error);
+                    }
                     $conn->close();
                 }
             }
+            
         ?>
     </body>
 

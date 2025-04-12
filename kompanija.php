@@ -4,6 +4,7 @@ session_start();
 $a = 12;
 $b = 13;
 $c = 14;
+include "SECRETS.php";
 ?>
 <html>
 
@@ -44,7 +45,7 @@ $c = 14;
            
         } 
         ul{
-            margin: 20px;
+            margin: 10px;
         }
         a:hover{
             color: rgb(181, 181, 181);
@@ -202,7 +203,7 @@ $c = 14;
             <li class = "nav"><a href="company.php"><button class = "navbut2">My Company</button></a></li>
             <?php
         if(isset($_SESSION["user"])){
-            $conn = mysqli_connect('sql209.infinityfree.com', 'if0_37883576', 'Sigurno0612', 'if0_37883576_tomicevipezosi');
+            $conn = mysqli_connect('sql209.infinityfree.com', $DB_User, $DB_Pass, 'if0_37883576_tomicevipezosi');
             if($conn->connect_error){
                 die('Connection Failed : '.$conn->connect_error);
             }else{
@@ -235,7 +236,7 @@ $c = 14;
         </div>
 
         <?php
-            $conn = mysqli_connect('sql209.infinityfree.com', 'if0_37883576', 'Sigurno0612', 'if0_37883576_tomicevipezosi');
+            $conn = mysqli_connect('sql209.infinityfree.com', $DB_User, $DB_Pass, 'if0_37883576_tomicevipezosi');
             mysqli_set_charset($conn, "utf8");
             if($conn->connect_error){
                 die('Connection Failed : '.$conn->connect_error);
@@ -248,14 +249,14 @@ $c = 14;
                     $kompanija = $result->fetch_assoc();
                     $sql = "SELECT firstName, lastName FROM user WHERE id = '$kompanija[user_id]'";
                     $result = $conn->query($sql)->fetch_assoc();
-                    
+                    $stocks_to_sell = $kompanija["stocks_available"] - $kompanija["stocks_sold"];
                     echo "<h1>" . htmlspecialchars($kompanija["name"], ENT_QUOTES, 'UTF-8') . " (" . htmlspecialchars($kompanija["ticker"], ENT_QUOTES, 'UTF-8') . ")</h1>";
                     echo "<h2>Cena Akcije: " . $kompanija["value"] .  "T₱ (0.05%)</h2>";
                     if($result)
                         echo "<h2>Osnivac Kompanije: " . htmlspecialchars($result["firstName"], ENT_QUOTES, 'UTF-8') . " " . htmlspecialchars($result["lastName"], ENT_QUOTES, 'UTF-8') . "</h2>";
                     else
                         echo "<h2>Osnivac Kompanije: Neuspelo preuzimanja podataka</h2>";
-                    echo "<h2>Broj dostupnih akcija: " . $kompanija["stocks_available"] - $kompanija["stocks_sold"] . "</h2>";
+                    echo "<h2>Broj dostupnih akcija: " . $stocks_to_sell . "</h2>";
                     echo "<p class='des'>" . $kompanija["description"] . "</p>";
                 }
                 else{
@@ -274,29 +275,66 @@ $c = 14;
             if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['form_id']) && $_POST['form_id'] == "invest"){
                 if(!isset($_SESSION['user']))
                     die("<a href='login.php' style='margin: 0 0 0 30px;'>Log in</a> to invest!");
-                $conn = mysqli_connect('sql209.infinityfree.com', 'if0_37883576', 'Sigurno0612', 'if0_37883576_tomicevipezosi');
+                $conn = mysqli_connect('sql209.infinityfree.com', $DB_User, $DB_Pass, 'if0_37883576_tomicevipezosi');
                 mysqli_set_charset($conn, "utf8");
                 if($conn->connect_error){
                     die('Connection Failed : '.$conn->connect_error);
                 }else{
                     $email = $_SESSION['user'];
-                    $sql = "SELECT balance FROM user WHERE email = '$email'";
+                    $sql = "SELECT balance, investicije FROM user WHERE email = '$email'";
                     $res = $conn->query($sql);
                     $res = $res -> fetch_assoc();
                     $bal = $res['balance'];
+                    $inv_KORISNIK = json_decode($res['investicije'], true);
+                    $KORISNIK_id = $res["id"];
                     $id = $_GET["id"];
-                    $sql = "SELECT stocks_available, stocks_sold, value FROM kompanija WHERE id = '$id'";
+                    $sql = "SELECT stocks_available, stocks_sold, value, user_id, ticker, investicije FROM kompanija WHERE id = '$id'";
                     $res = $conn->query($sql);
                     $res = $res -> fetch_assoc();
                     $stocks_available = $res['stocks_available'];
                     $stocks_sold = $res['stocks_sold'];
+                    $VLASNIK_id = $res['user_id'];
                     $value = $res['value'];
                     $amount = $_POST['amount'];
+                    $ticker = $res['ticker'];
+                    $inv_KOMPANIJA = json_decode($res['investicije'], true);
+                    if($VLASNIK_id===$KORISNIK_id){
+                        die("Ne možeš da kupiš svoje akcije!");
+                    }
                     if($amount > $stocks_available - $stocks_sold){
                         die("Nema dovoljno akcija!");
                     }
-                    if($bal < $amount * $value * 2000){
-                        
+                    $price = round($amount * $value);
+                    if($bal < $price){
+                        die("Nema dovoljno novca!");
+                    }
+                    $sql = "UPDATE user SET balance = balance - $price WHERE id = '$KORISNIK_id'";
+                    if(!mysqli_query($conn, $sql)){
+                        die("<h1>Error</h1>: " . $sql . "<br>" . $conn->error);
+                    }
+                    // $sql = "UPDATE user SET balance = balance + $price WHERE id = '$VLASNIK_id'";
+                    // mysqli_query($conn, $sql);
+                    $sql = "UPDATE kompanija SET stocks_sold = stocks_sold + $amount WHERE user_id = '$VLASNIK_id'";
+                    mysqli_query($conn, $sql);
+                    if($inv_KORISNIK[$ticker]!=NULL){
+                        $inv_KORISNIK[$ticker] += $amount;
+                    }
+                    else{
+                        $inv_KORISNIK[$ticker] = $amount;
+                    }
+                    $inv_KORISNIK = json_encode($inv_KORISNIK);
+                    if($inv_KOMPANIJA[$email]!=NULL){
+                        $inv_KOMPANIJA[$email] += $amount;
+                    }
+                    else{
+                        $inv_KOMPANIJA[$email] = $amount;
+                    }
+                    $inv_KOMPANIJA = json_encode($inv_KOMPANIJA);
+                    $sql = "UPDATE kompanija SET investicije = '$inv_KOMPANIJA' WHERE user_id='$VLASNIK_id'";
+                    mysqli_query($conn, $sql);
+                    $sql = "UPDATE user SET investicije = '$inv_KORISNIK' WHERE user_id='$KORISNIK_id'";
+                    if(!mysqli_query($conn, $sql)){
+                        echo "<h1>Error:</h1> " . $sql . "<br>" . $conn->error;
                     }
                 }
             }

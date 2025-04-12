@@ -40,9 +40,6 @@ body{
             display: none;
             animation: none; /* Avoid animation if not toggled */
         }
-        form *{
-            color: #000;
-        }
 /* Menu visible when "menu-open" is added */
         .mobile-container.menu-open {
             display: block;
@@ -152,4 +149,21 @@ body{
 @keyframes fadeout {
   from {bottom: 30px; opacity: 1;}
   to {bottom: 0; opacity: 0;}
+}
+.up{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    background-color: #4a4a4a;
+    /*border-bottom: 1px solid white;*/
+    color: white;
+    padding: 10px;
+    height: 0;
+    font-size: 0;
+    visibility: hidden;
+}
+.showup{
+    height: 3rem;
+    font-size: 1rem;
+    visibility: visible;
 }
