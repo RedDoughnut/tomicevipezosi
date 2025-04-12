@@ -9,13 +9,14 @@ To-Do:
 - [ ] Da dodam oglase za kompanije
 - [ ] Kazino (Blackjack, Poker, Slotovi, ...)
 
-Ako imate neke sugestije kontaktirajte me preko discorda (user: reddoughnut) ili preko Issues taba😘
+Ako imate neke sugestije kontaktirajte me preko discorda (user: reddoughnut) ili preko Issues taba
 
 --------------------------------------------------------------------------------------------------
 
 # Tomicevi Pezosi
 Creating companies, and investing in them with T₱ (Tomic's peso).
-PHP Website with MySQL database.
+PHP Website with a MySQL database.
+
 https://tomicevipezosi.rf.gd/
 
 To-Do:
@@ -24,4 +25,4 @@ To-Do:
 - [ ] Add ads for companies and
 - [ ] Casino (Blackjack, Poker, Slots, ...)
 
-If you have any suggestions contact me via discord (user: reddoughnut) or via the Issues tab😘 
+If you have any suggestions contact me via discord (user: reddoughnut) or via the Issues tab
