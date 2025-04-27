@@ -1,5 +1,5 @@
 # Tomicevi Pezosi
-Pravljenje tvorki, i ulaganje u njih sa T₱ (Tomicevim Pezosima).
+Pravljenje kompanija, i ulaganje u njih sa T₱ (Tomicevim Pezosima).
 PHP Website sa MySQL databazom.
 https://tomicevipezosi.rf.gd/
 
