@@ -347,7 +347,7 @@ $ulogovan = isset($_SESSION["user"]) ? "true" : "false";
                 return balance;
             }
             async function buttonClick(){
-                if(ulogovan===false){
+                if(ulogovan==false || ulogovan=="false"){
                     showToast("Morate da se ulogujete!");
                     return;
                 }
