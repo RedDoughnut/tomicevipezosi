@@ -146,11 +146,12 @@ $ulogovan = isset($_SESSION["user"]) ? "true" : "false";
     <div id="snackbar"></div>
     <script src="toast.js"></script>
     <ul class = "nav">
-            <li class = "nav"><a href="index.php"><button class = "navbut">Home</button></a></li>
-            <li class = "nav"><a href="company.php"><button class = "navbut2">My Company</button></a></li>
+            <li class = "nav"><a href="index.php" class="nav"><button class = "navbut2">Home</button></a></li>
+            <li class = "nav"><a href="company.php" class="nav"><button class = "navbut">My Company</button></a></li>
+            <li class = "nav"><a href="casino.php" class="nav"><button class = "navbut2">Casino</button></a></li>
             <?php
         if(isset($_SESSION["user"])){
-            $conn = mysqli_connect('sql209.infinityfree.com', $DB_User, $DB_Pass, 'if0_37883576_tomicevipezosi');
+            $conn = mysqli_connect('sql209.infinityfree.com', 'if0_37883576', 'Sigurno0612', 'if0_37883576_tomicevipezosi');
             if($conn->connect_error){
                 die('Connection Failed : '.$conn->connect_error);
             }else{
@@ -159,13 +160,13 @@ $ulogovan = isset($_SESSION["user"]) ? "true" : "false";
                 $res = $conn->query($sql);
                 $res = $res -> fetch_assoc();
                 echo "<li class = 'nav'><a href='user.php' class='nav'><button class='navbut2'>" . $res['firstName'] . "</button></a></li>";
-                echo "<li class = 'nav' style='font-size: 2rem;' id='balLabel'>" . $res['balance'] . "T₱</li>";
+                echo "<li class = 'nav' style='font-size: 2rem;'>" . $res['balance'] . "T₱</li>";
               
                 $conn->close();
             }
         }
         else{
-            echo "<li class = 'nav'><a href='login.php'><button class = 'navbut2'>Log-In</button></a></li><li class = 'nav'><a href='register.php'><button class = 'navbut2'>Register</button></a></li>";
+            echo "<li class = 'nav'><a href='login.php' class='nav'><button class = 'navbut2'>Log-In</button></a></li><li class = 'nav'><a href='register.php' class='nav'><button class = 'navbut2'>Register</button></a></li>";
         }
         ?>
         </ul>
@@ -177,11 +178,12 @@ $ulogovan = isset($_SESSION["user"]) ? "true" : "false";
         <div class = "mobile-container" id = "mob-cont">
             <ul class="mobile">
                 <!--<a href="" class="close"></a> -->
-                <li class="mobile"> <a href="index.php"> <button class = "navbut">Home</button> </a> </li>
-                <li class="mobile"> <a href="company.php"> <button class = "navbut2">My Company</button> </a></li>
+                <li class="mobile"> <a href="index.php" class="nav"> <button class = "navbut2">Home</button> </a> </li>
+                <li class="mobile"> <a href="company.php" class="nav"> <button class = "navbut2">My Company</button> </a></li>
+                <li class = "nav"><a href="company.php" class="nav"><button class = "navbut">Casino</button></a></li>
                 <?php
         if(isset($_SESSION["user"])){
-            $conn = mysqli_connect('sql209.infinityfree.com', $DB_User, $DB_Pass, 'if0_37883576_tomicevipezosi');
+            $conn = mysqli_connect('sql209.infinityfree.com', 'if0_37883576', 'Sigurno0612', 'if0_37883576_tomicevipezosi');
             if($conn->connect_error){
                 die('Connection Failed : '.$conn->connect_error);
             }else{
@@ -189,15 +191,15 @@ $ulogovan = isset($_SESSION["user"]) ? "true" : "false";
                 $sql = "SELECT firstName, balance FROM user WHERE email = '$email'";
                 $res = $conn->query($sql);
                 $res = $res -> fetch_assoc();
-                echo "<li class = 'mobile'><a href='user.php'><button class='navbut2'>" . $res['firstName'] . "</button></a></li>";
+                echo "<li class = 'mobile'><a href='user.php' class='nav'><button class='navbut2'>" . $res['firstName'] . "</button></a></li>";
                 echo "<li class = 'mobile' style='font-size: 2rem;'>" . $res['balance'] . "T₱</li>";
                 $BAL = $res['balance'];
                 $conn->close();
             }
         }
         else{
-            echo "<li class='mobile'> <a href='login.php'> <button class = 'navbut2'>Log-In</button> </a></li>
-                <li class='mobile'> <a href='register.php'> <button class = 'navbut2'>Register</button> </a></li>";
+            echo "<li class='mobile'> <a href='login.php' class='nav'> <button class = 'navbut2'>Log-In</button> </a></li>
+                <li class='mobile'> <a href='register.php' class='nav'> <button class = 'navbut2'>Register</button> </a></li>";
         }
         ?>
                 
