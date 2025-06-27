@@ -368,7 +368,7 @@ $ulogovan = isset($_SESSION["user"]) ? "true" : "false";
         <span style="display: inline">
             <p style="font-size: 1.8rem">Autospin</p>
             <label class="container">
-                <input type="checkbox">
+                <input type="checkbox" id="autospin">
                 <div class="checkmark"></div>
             </label>
         </span>
