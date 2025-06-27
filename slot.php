@@ -286,6 +286,27 @@ include "SECRETS.php";
             function sleep(ms) {
                 return new Promise(resolve => setTimeout(resolve, ms));
             }
+            function spinWrapper(index, target) {
+                return new Promise((resolve) => {
+                    spin(index, target); // poziv tvoje originalne spin funkcije
+
+                    // simuliramo da animacija traje 2 sekunde
+                    setTimeout(() => {
+                    resolve(); // kaži da je spin završen
+                    }, 2000);
+                });
+            }
+            async function spinAll(num1, num2, num3, num4, num5) {
+                await Promise.all([
+                    spinWrapper(0, num1),
+                    spinWrapper(1, num2),
+                    spinWrapper(2, num3),
+                    spinWrapper(3, num4),
+                    spinWrapper(4, num5),
+                ]);
+
+                await sleep(2000);
+            }
             async function buttonClick(){
                 const wager = parseInt(document.getElementById("wager").value);
                 if(isNaN(wager)){
@@ -301,11 +322,6 @@ include "SECRETS.php";
                     var randarray = [rand1, rand2, rand3, rand4, rand5];
                     var counts = {};
                     randarray.forEach(function (x) { counts[x] = (counts[x] || 0) + 1; });
-                    spin(0, rand1 + 1);
-                    spin(1, rand2 + 1);
-                    spin(2, rand3 + 1);
-                    spin(3, rand4 + 1);
-                    spin(4, rand5 + 1);
                     var maks1 = 0;
                     var maks2 = 0;
                     Object.values(counts).forEach(function(x) {
@@ -316,7 +332,7 @@ include "SECRETS.php";
                             maks2 = x;
                         }
                     });
-                    await sleep(2000);
+                    await spinAll(rand1+1, rand2+1, rand3+1, rand4+1, rand5+1);
                     if(maks1===5){
                         document.getElementById("nagrada").innerText = "5 Istih! 10,000X !!!";
                         document.getElementById("pop-up").style.visibility = "visible";
