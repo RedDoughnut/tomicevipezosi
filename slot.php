@@ -53,6 +53,7 @@ $ulogovan = isset($_SESSION["user"]) ? "true" : "false";
             transition: 0.3s ease-in-out;
         }
         p{
+            display: inline;
             font-size: 1.3rem;
         }
         h1, h2{
