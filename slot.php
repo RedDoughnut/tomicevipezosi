@@ -357,39 +357,39 @@ $ulogovan = isset($_SESSION["user"]) ? "true" : "false";
                     var plusMinus = -wager;
                     await spinAll(rand1+1, rand2+1, rand3+1, rand4+1, rand5+1);
                     if(maks1===5){
-                        document.getElementById("nagrada").innerText = "5 Istih! 10,000X !!!";
+                        document.getElementById("nagrada").innerText = "5 Istih! 8,500X !!!";
                         document.getElementById("pop-up").style.visibility = "visible";
-                        plusMinus = 10000*wager - wager;
+                        plusMinus = 8500*wager - wager;
                     }
                     else if((rand5===rand4+1 && rand4===rand3+1 && rand3===rand2+1 && rand2===rand1+1) || (rand5===rand4-1 && rand4===rand3-1 && rand3===rand2-1 && rand2===rand1-1)){
-                        document.getElementById("nagrada").innerText = "Straight! 8,300X !!!";
+                        document.getElementById("nagrada").innerText = "Straight! 7,000X !!!";
                         document.getElementById("pop-up").style.visibility = "visible";
-                        plusMinus = 8300*wager - wager;
+                        plusMinus = 7000*wager - wager;
                     }
                     else if(maks1===4){
-                        document.getElementById("nagrada").innerText = "4 Istih! 220X !!!";
+                        document.getElementById("nagrada").innerText = "4 Istih! 180X !!!";
                         document.getElementById("pop-up").style.visibility = "visible";
-                        plusMinus = 220*wager - wager;
+                        plusMinus = 180*wager - wager;
                     }
                     else if(maks1===3 && maks2===2){
-                        document.getElementById("nagrada").innerText = "Full house! 110X !!!";
+                        document.getElementById("nagrada").innerText = "Full house! 90X !!!";
                         document.getElementById("pop-up").style.visibility = "visible";
-                        plusMinus = 110*wager - wager;
+                        plusMinus = 90*wager - wager;
                     }
                     else if(maks1===3){
-                        document.getElementById("nagrada").innerText = "Triling! 14X !!!";
-                        document.getElementById("pop-up").style.visibility = "visible";
-                        plusMinus = 14*wager - wager;
-                    }
-                    else if(maks1===2 && maks2===2){
-                        document.getElementById("nagrada").innerText = "Dva para! 10X !!!";
+                        document.getElementById("nagrada").innerText = "Triling! 10X !!!";
                         document.getElementById("pop-up").style.visibility = "visible";
                         plusMinus = 10*wager - wager;
                     }
-                    else if(maks1===2){
-                        document.getElementById("nagrada").innerText = "Jedan par! 2X !!!";
+                    else if(maks1===2 && maks2===2){
+                        document.getElementById("nagrada").innerText = "Dva para! 5X !!!";
                         document.getElementById("pop-up").style.visibility = "visible";
-                        plusMinus = 2*wager - wager;
+                        plusMinus = 5*wager - wager;
+                    }
+                    else if(maks1===2){
+                        document.getElementById("nagrada").innerText = "Jedan par! 1.3X !!!";
+                        document.getElementById("pop-up").style.visibility = "visible";
+                        plusMinus = 1.3*wager - wager;
                     }
                     var finalBal = parseInt(bal) + plusMinus;
                     fetch("update_balance.php", {
