@@ -202,7 +202,7 @@ include "SECRETS.php";
             </ul>
         </div>
         <div class="large-container">
-            <input type="text" id="wager" placeholder="Wager">
+            <input type="text" id="wager" placeholder="Wager" style="font-size: 1.6rem;">
             <div class="outer-container">
             <div class="column-container">
             <div class="column">
