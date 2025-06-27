@@ -390,6 +390,7 @@ $ulogovan = isset($_SESSION["user"]) ? "true" : "false";
                         document.getElementById("pop-up").style.visibility = "visible";
                         plusMinus = 2*wager - wager;
                     }
+                    var finalBal = bal + plusMinus;
                     fetch("update_balance.php", {
                     method: "POST",
                     headers: {
@@ -401,7 +402,7 @@ $ulogovan = isset($_SESSION["user"]) ? "true" : "false";
                     .then(response => {
                     console.log("Odgovor servera:", response);
                     });
-                    var finalBal = bal + plusMinus;
+                    
                     document.getElementById("balLabel").innerText = finalBal + "T₱";
                     document.getElementById("balLABEL2").innerText = finalBal + "T₱";
                     await sleep(2000);
