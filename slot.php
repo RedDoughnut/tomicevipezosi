@@ -324,6 +324,7 @@ $ulogovan = isset($_SESSION["user"]) ? "true" : "false";
                 const wager = parseInt(document.getElementById("wager").value);
                 var ulogovan = <?= $ulogovan ?>;
                 console.log(ulogovan);
+                let bal = 0;
                 if(ulogovan!=false){
                     let bal = await getBalance();
                     console.log(bal);
