@@ -263,11 +263,11 @@ session_start();
     <div class="card">
   <div class="card-details">
     <div style="text-align: center;">
-    <h3 class="text-title">Poker</h3>
+    <h3 class="text-title">Slot</h3>
     </div>
-    <p class="text-body">Igrajte poker i zaradite hiljade T₱! (ONI KOJI ZNAJU)</p>
+    <p class="text-body">Vrtite slotove i ostvarujte neverovatne bonuse! Vrtite 5 brojeva i sakupljajte kombinacije za X!</p>
   </div>
-  <button class="card-button">Igraj</button>
+  <button class="card-button" onclick="location.href = 'slot.php'">Igraj</button>
 </div>
         
     </table>
