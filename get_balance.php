@@ -34,7 +34,7 @@ try{
 
     echo $balance;
 }
-catch(Exception $e){
+catch(mysqli_sql_exception $e){
     echo $e->getMessage();
 }
 ?>
