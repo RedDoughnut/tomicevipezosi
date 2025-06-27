@@ -63,7 +63,7 @@ $ulogovan = isset($_SESSION["user"]) ? "true" : "false";
             display: flex;
             background-color: rgb(10,10,10);
             padding: 5rem;
-            width: 30rem;
+            width: min(30rem, 90vw);
             border-radius: 1.5rem;
             justify-content: space-between;
         }
