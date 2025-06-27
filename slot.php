@@ -188,7 +188,7 @@ $ulogovan = isset($_SESSION["user"]) ? "true" : "false";
                 <!--<a href="" class="close"></a> -->
                 <li class="mobile"> <a href="index.php" class="nav"> <button class = "navbut2">Home</button> </a> </li>
                 <li class="mobile"> <a href="company.php" class="nav"> <button class = "navbut2">My Company</button> </a></li>
-                <li class = "nav"><a href="company.php" class="nav"><button class = "navbut">Casino</button></a></li>
+                <li class = "nav"><a href="casino.php" class="nav"><button class = "navbut">Casino</button></a></li>
                 <?php
         if(isset($_SESSION["user"])){
             $conn = mysqli_connect('sql209.infinityfree.com', 'if0_37883576', 'Sigurno0612', 'if0_37883576_tomicevipezosi');
