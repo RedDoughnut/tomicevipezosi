@@ -19,7 +19,7 @@ if (!isset($_SESSION["user"])) {
 
 $user_id = $_SESSION["user"];
 
-$stmt = $conn->prepare("SELECT balance FROM users WHERE id = ?");
+$stmt = $conn->prepare("SELECT balance FROM user WHERE email = ?");
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
 $stmt->bind_result($balance);
