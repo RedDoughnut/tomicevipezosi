@@ -143,7 +143,7 @@ $ulogovan = isset($_SESSION["user"]) ? "true" : "false";
 }
 
 .container {
- display: block;
+ display: inline;
  position: relative;
  cursor: pointer;
  font-size: 20px;
