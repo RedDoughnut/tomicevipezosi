@@ -311,12 +311,13 @@ $ulogovan = isset($_SESSION["user"]) ? "true" : "false";
                 var ulogovan = <?= $ulogovan ?>;
                 console.log(ulogovan);
                 if(ulogovan!=false){
-                var bal = 0;
+                    var bal = 0;
                     fetch("get_balance.php")
                     .then(res => res.text())
                     .then(balance => {
                         bal = balance;
                     });
+                    console.log(bal);
                 }
                 if(ulogovan===false){
                     showToast("Morate da se ulogujete!");
