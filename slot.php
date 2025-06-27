@@ -71,6 +71,9 @@ $ulogovan = isset($_SESSION["user"]) ? "true" : "false";
             .outer-container{
                 padding: 3rem;
             }
+            .digit{
+                font-size: 4rem;
+            }
         }
         .column-container{
             overflow: hidden;
