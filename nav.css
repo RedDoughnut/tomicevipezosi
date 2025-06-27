@@ -54,7 +54,7 @@ body{
             display: none;
             margin: 10px;
         }
-        @media only screen and (max-width: 775px) {
+        @media only screen and (max-width: 851px) {
             ul.nav{
                 display: none;
             }
