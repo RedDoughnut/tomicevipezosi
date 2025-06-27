@@ -321,17 +321,16 @@ $ulogovan = isset($_SESSION["user"]) ? "true" : "false";
                 return balance;
             }
             async function buttonClick(){
+                if(ulogovan===false){
+                    showToast("Morate da se ulogujete!");
+                    return;
+                }
                 const wager = parseInt(document.getElementById("wager").value);
                 var ulogovan = <?= $ulogovan ?>;
                 console.log(ulogovan);
-                let bal = 0;
-                if(ulogovan!=false){
-                    let bal = await getBalance();
-                    console.log(bal);
-                }
-                if(ulogovan===false){
-                    showToast("Morate da se ulogujete!");
-                }
+                let bal = await getBalance();
+                console.log(bal);
+                
                 else if(isNaN(wager) || wager<=0 || wager>bal){
                     showToast("Napišite validan broj!");
                 }
