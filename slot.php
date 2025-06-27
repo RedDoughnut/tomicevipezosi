@@ -286,15 +286,28 @@ $ulogovan = isset($_SESSION["user"]) ? "true" : "false";
             </div>
         </div>
         <br>
-        <h1>Kombinacije</h1>
-        <h2>Straight - 8,500X</h2>
-        <p>5 uzastopnih brojeva: 12345, 65432, ...</p>
             
         <div class="pop-up" id="pop-up">
             <h1 id="nagrada"></h1>
         </div>
         <script src="slot.js"></script>
         <button class="button" id="spin" onclick="buttonClick();">Spin!</button>
+        <br>
+        <h1>Kombinacije</h1>
+        <h2>1. Five of a kind - 8,500X</h2>
+        <p>5 istih brojeva: 11111, 99999, ...</p>
+        <h2>2. Straight - 7,000X</h2>
+        <p>5 uzastopnih brojeva: 12345, 65432, ...</p>
+        <h2>3. Four of a kind - 180X</h2>
+        <p>4 istih brojeva: 11116, 67666, ...</p>
+        <h2>4. Full House - 90X</h2>
+        <p>3 istih i 2 istih brojeva: 67677, 77799, ...</p>
+        <h2>5. Triling - 10X</h2>
+        <p>3 istih brojeva: 67696, 66612, ...</p>
+        <h2>6. Dva para - 2.5X</h2>
+        <p>2 para istih brojeva: 66991, 17671, ...</p>
+        <h2>7. Jedan par - 1.3X</h2>
+        <p>2 istih brojeva: 88709, 19481, ...</p>
         <script>
             function getRandomInt(max) {
                 return Math.floor(Math.random() * max);
