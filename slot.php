@@ -309,7 +309,7 @@ $ulogovan = isset($_SESSION["user"]) ? "true" : "false";
             async function buttonClick(){
                 const wager = parseInt(document.getElementById("wager").value);
                 var ulogovan = <?= $ulogovan ?>;
-                if(ulogovan!="false"){
+                if(ulogovan!=false){
                 var bal = 0;
                     fetch("get_balance.php")
                     .then(res => res.text())
@@ -317,7 +317,7 @@ $ulogovan = isset($_SESSION["user"]) ? "true" : "false";
                         bal = balance;
                     });
                 }
-                if(ulogovan==="false"){
+                if(ulogovan===false){
                     showToast("Morate da se ulogujete!");
                 }
                 else if(isNaN(wager) || wager<=0 || wager>bal){
