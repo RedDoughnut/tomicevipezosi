@@ -334,7 +334,7 @@ $ulogovan = isset($_SESSION["user"]) ? "true" : "false";
                 ]);
             }
             async function getBalance() {
-                const res = await fetch("get_balance.php");
+                const res = await fetch("get_balance");
                 const balance = await res.text();
                 return balance;
             }
@@ -413,7 +413,7 @@ $ulogovan = isset($_SESSION["user"]) ? "true" : "false";
                     }
                     var finalBal = parseInt(bal) + plusMinus;
                     console.log(plusMinus);
-                    fetch("update_balance.php", {
+                    fetch("update_balance", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/x-www-form-urlencoded"
