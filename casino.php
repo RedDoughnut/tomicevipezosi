@@ -257,6 +257,7 @@ session_start();
         ?>
                 
             </ul>
+    </div>
         <div id="snackbar"></div>
     <h1>Casino</h1>
     <div class="card">

@@ -298,6 +298,7 @@
         ?>
                 
             </ul>
+            </div>
         <div id="snackbar"></div>
 
         <?php
