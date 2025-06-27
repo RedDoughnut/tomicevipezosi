@@ -412,6 +412,7 @@ $ulogovan = isset($_SESSION["user"]) ? "true" : "false";
                         plusMinus = 1.3*wager - wager;
                     }
                     var finalBal = parseInt(bal) + plusMinus;
+                    console.log(plusMinus);
                     fetch("update_balance.php", {
                     method: "POST",
                     headers: {
