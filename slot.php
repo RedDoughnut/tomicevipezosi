@@ -160,7 +160,7 @@ $ulogovan = isset($_SESSION["user"]) ? "true" : "false";
                 $res = $conn->query($sql);
                 $res = $res -> fetch_assoc();
                 echo "<li class = 'nav'><a href='user.php' class='nav'><button class='navbut2'>" . $res['firstName'] . "</button></a></li>";
-                echo "<li class = 'nav' style='font-size: 2rem;'>" . $res['balance'] . "T₱</li>";
+                echo "<li class = 'nav' style='font-size: 2rem;' id='balLabel'>" . $res['balance'] . "T₱</li>";
               
                 $conn->close();
             }
