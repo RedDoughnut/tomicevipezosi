@@ -368,7 +368,7 @@ $ulogovan = isset($_SESSION["user"]) ? "true" : "false";
         </div>
         <script src="slot.js"></script>
         <button class="button" id="spin" onclick="buttonClick();">Spin!</button>
-        Autospin
+        <p style="font-size: 1.8rem">Autospin</p>
         <label class="container">
             <input type="checkbox">
             <div class="checkmark"></div>
