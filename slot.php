@@ -110,6 +110,16 @@ include "SECRETS.php";
             align-items: center;
             gap: 10px;
         }
+        .pop-up{
+            visibility: hidden; /*visible*/
+            position: absolute;
+            width: 80vw;
+            margin-left: auto;
+            margin-right: auto;
+            left: 0;
+            right: 0;
+            text-align: center;
+        }
             
 </style>
 <body>
@@ -261,17 +271,88 @@ include "SECRETS.php";
             </div>
             </div>
         </div>
-        
+        <div class="pop-up" id="pop-up">
+            <h1 id="nagrada"></h1>
+        </div>
         <script src="slot.js"></script>
         <script>
-            function buttonClick(){
+            function getRandomInt(max) {
+                return Math.floor(Math.random() * max);
+            }
+            function sleep(ms) {
+                return new Promise(resolve => setTimeout(resolve, ms));
+            }
+            async function buttonClick(){
                 const wager = parseInt(document.getElementById("wager").value);
                 if(isNaN(wager)){
                     toast("Napišite validan broj!");
                 }
                 else{
                     //createCookie("wager", wager, 1);
-                    spin(0, 5);
+                    var rand1 = getRandomInt(10);
+                    var rand2 = getRandomInt(10);
+                    var rand3 = getRandomInt(10);
+                    var rand4 = getRandomInt(10);
+                    var rand5 = getRandomInt(10);
+                    var randarray = [rand1, rand2, rand3, rand4, rand5];
+                    var counts = {};
+                    randarray.forEach(function (x) { counts[x] = (counts[x] || 0) + 1; });
+                    spin(0, rand1 + 1);
+                    spin(1, rand2 + 1);
+                    spin(2, rand3 + 1);
+                    spin(3, rand4 + 1);
+                    spin(4, rand5 + 1);
+                    var maks1 = 0;
+                    var maks2 = 0;
+                    Object.values(counts).forEach(function(x) {
+                        if (x > maks1) {
+                            maks2 = maks1;
+                            maks1 = x;
+                        } else if (x > maks2) {
+                            maks2 = x;
+                        }
+                    });
+
+                    if(maks1===5){
+                        document.getElementById("nagrada").innerText = "5 Istih! 10,000X !!!";
+                        await sleep(2000);
+                        document.getElementById("pop-up").style.visibility = "visible";
+                    }
+                    else if((rand5===rand4+1 && rand4===rand3+1 && rand3===rand2+1 && rand2=rand1+1) || (rand5===rand4-1 && rand4===rand3-1 && rand3===rand2-1 && rand2=rand1-1)){
+                        document.getElementById("nagrada").innerText = "Straight! 8,300X !!!";
+                        await sleep(2000);
+                        document.getElementById("pop-up").style.visibility = "visible";
+                    }
+                    else if(maks1===4){
+                        document.getElementById("nagrada").innerText = "4 Istih! 220X !!!";
+                        await sleep(2000);
+                        document.getElementById("pop-up").style.visibility = "visible";
+                    }
+                    else if(maks1===3 && maks2=2){
+                        document.getElementById("nagrada").innerText = "Full house! 110X !!!";
+                        await sleep(2000);
+                        document.getElementById("pop-up").style.visibility = "visible";
+                    }
+                    else if(maks1===3){
+                        document.getElementById("nagrada").innerText = "Triling! 14X !!!";
+                        await sleep(2000);
+                        document.getElementById("pop-up").style.visibility = "visible";
+                    }
+                    else if(maks1===2 && maks2===2){
+                        document.getElementById("nagrada").innerText = "Dva para! 10X !!!";
+                        await sleep(2000);
+                        document.getElementById("pop-up").style.visibility = "visible";
+                    }
+                    else if(maks1===2){
+                        document.getElementById("nagrada").innerText = "Jedan par! 2X !!!";
+                        await sleep(2000);
+                        document.getElementById("pop-up").style.visibility = "visible";
+                    }
+                    spin(0, 1);
+                    spin(1, 1);
+                    spin(2, 1);
+                    spin(3, 1);
+                    spin(4, 1);
                 }
             }
             // function createCookie(name, value, days) {
@@ -310,6 +391,7 @@ include "SECRETS.php";
                 spin(2, <?php echo $rand3;?>);
                 spin(3, <?php echo $rand4;?>);
                 spin(4, <?php echo $rand5;?>);
+                
             </script>
             <?php
         }
