@@ -35,6 +35,6 @@ try{
     echo $balance;
 }
 catch(Exception $e){
-    echo $e;
+    echo $e->getMessage();
 }
 ?>
