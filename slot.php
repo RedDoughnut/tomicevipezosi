@@ -206,7 +206,7 @@ $ulogovan = isset($_SESSION["user"]) ? "true" : "false";
         <div class="large-container">
             <?php
                 if(isset($_SESSION["user"])){
-                    echo "<h2 id='balLABEL2'>$BAL</h2>"
+                    echo "<h2 id='balLABEL2'>$BAL</h2>";
                 }
             ?>
             <input type="text" id="wager" placeholder="Wager" style="font-size: 1.6rem;">
