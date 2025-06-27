@@ -319,7 +319,7 @@ include "SECRETS.php";
                         await sleep(2000);
                         document.getElementById("pop-up").style.visibility = "visible";
                     }
-                    else if((rand5===rand4+1 && rand4===rand3+1 && rand3===rand2+1 && rand2=rand1+1) || (rand5===rand4-1 && rand4===rand3-1 && rand3===rand2-1 && rand2=rand1-1)){
+                    else if((rand5===rand4+1 && rand4===rand3+1 && rand3===rand2+1 && rand2===rand1+1) || (rand5===rand4-1 && rand4===rand3-1 && rand3===rand2-1 && rand2===rand1-1)){
                         document.getElementById("nagrada").innerText = "Straight! 8,300X !!!";
                         await sleep(2000);
                         document.getElementById("pop-up").style.visibility = "visible";
@@ -329,7 +329,7 @@ include "SECRETS.php";
                         await sleep(2000);
                         document.getElementById("pop-up").style.visibility = "visible";
                     }
-                    else if(maks1===3 && maks2=2){
+                    else if(maks1===3 && maks2===2){
                         document.getElementById("nagrada").innerText = "Full house! 110X !!!";
                         await sleep(2000);
                         document.getElementById("pop-up").style.visibility = "visible";
