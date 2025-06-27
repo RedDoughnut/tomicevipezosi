@@ -290,9 +290,11 @@ include "SECRETS.php";
         ?>
         <form method="POST">
             <h1 class="label1">Invest</h1>
+            <p>Trenutno nedostupno!</p>
+            <!--
             <input type="hidden" name="form_id" value="invest">
             <input type="number" name="amount" placeholder="Amount(Stocks)" step="1"><br>
-            <!--<button type="submit">Send request</button><br>-->
+            <button type="submit">Send request</button><br>-->
         </form>
         <?php
             if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['form_id']) && $_POST['form_id'] == "invest"){
