@@ -86,7 +86,7 @@ body{
                 transform: translate(0, -11px) rotate(45deg);
             }
         }
-        @media only screen and (min-width: 776px) {
+        @media only screen and (min-width: 851px) {
     #mob-cont {
         display: none; /* Always hidden (if needed, control with other classes) */
     }
