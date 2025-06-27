@@ -365,11 +365,17 @@ $ulogovan = isset($_SESSION["user"]) ? "true" : "false";
                     
                     document.getElementById("spin").disabled = true;
                     //createCookie("wager", wager, 1);
-                    var rand1 = getRandomInt(10);
-                    var rand2 = getRandomInt(10);
-                    var rand3 = getRandomInt(10);
-                    var rand4 = getRandomInt(10);
-                    var rand5 = getRandomInt(10);
+                    // var rand1 = getRandomInt(10);
+                    // var rand2 = getRandomInt(10);
+                    // var rand3 = getRandomInt(10);
+                    // var rand4 = getRandomInt(10);
+                    // var rand5 = getRandomInt(10);
+                    var rand1=5;
+                    var rand2=5;
+                    var rand3=5;
+                    var rand4=5;
+                    var rand5=5;
+                    
                     var randarray = [rand1, rand2, rand3, rand4, rand5];
                     var counts = {};
                     randarray.forEach(function (x) { counts[x] = (counts[x] || 0) + 1; });
