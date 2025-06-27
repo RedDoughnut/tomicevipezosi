@@ -159,7 +159,7 @@ $ulogovan = isset($_SESSION["user"]) ? "true" : "false";
                 $res = $conn->query($sql);
                 $res = $res -> fetch_assoc();
                 echo "<li class = 'nav'><a href='user.php' class='nav'><button class='navbut2'>" . $res['firstName'] . "</button></a></li>";
-                echo "<li class = 'nav' style='font-size: 2rem;'>" . $res['balance'] . "T₱</li>";
+                echo "<li class = 'nav' style='font-size: 2rem;' id='balLabel'>" . $res['balance'] . "T₱</li>";
               
                 $conn->close();
             }
@@ -191,6 +191,7 @@ $ulogovan = isset($_SESSION["user"]) ? "true" : "false";
                 $res = $res -> fetch_assoc();
                 echo "<li class = 'mobile'><a href='user.php'><button class='navbut2'>" . $res['firstName'] . "</button></a></li>";
                 echo "<li class = 'mobile' style='font-size: 2rem;'>" . $res['balance'] . "T₱</li>";
+                $BAL = $res['balance'];
                 $conn->close();
             }
         }
@@ -203,7 +204,13 @@ $ulogovan = isset($_SESSION["user"]) ? "true" : "false";
             </ul>
         </div>
         <div class="large-container">
+            <?php
+                if(isset($_SESSION["user"])){
+                    echo "<h2 id='balLABEL2'>$BAL</h2>"
+                }
+            ?>
             <input type="text" id="wager" placeholder="Wager" style="font-size: 1.6rem;">
+            
             <div class="outer-container">
             <div class="column-container">
             <div class="column">
@@ -394,6 +401,8 @@ $ulogovan = isset($_SESSION["user"]) ? "true" : "false";
                     .then(response => {
                     console.log("Odgovor servera:", response);
                     });
+                    document.getElementById("balLabel").innerText = bal + plusMinus;
+                    document.getElementById("balLABEL2").innerText = bal + plusMinus;
                     await sleep(2000);
                     document.getElementById("pop-up").style.visibility = "hidden";
                     spin(0, 1);
@@ -404,46 +413,7 @@ $ulogovan = isset($_SESSION["user"]) ? "true" : "false";
                     document.getElementById("spin").disabled = false;
                 }
             }
-            // function createCookie(name, value, days) {
-            //     var expires;
-            //     if (days) {
-            //         var date = new Date();
-            //         date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-            //         expires = "; expires=" + date.toGMTString();
-            //     }
-            //     else {
-            //         expires = "";
-            //     }
-            //     document.cookie = escape(name) + "=" + escape(value) + expires + "; path=/";
-            // }
         </script>
-        
-        <?php
-        function a($wager){
-            $DB_User = $GLOBALS['DB_User'];
-            $DB_Pass = $GLOBALS['DB_Pass'];
-            $conn = mysqli_connect('sql209.infinityfree.com', $DB_User, $DB_Pass, 'if0_37883576_tomicevipezosi');
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
-            $rand1 = mt_rand(1, 9);
-            $rand2 = mt_rand(1, 9);
-            $rand3 = mt_rand(1, 9);
-            $rand4 = mt_rand(1, 9);
-            $rand5 = mt_rand(1, 9);
-            ?>
-            <script>
-                resetPosition();
-                spin(0, <?php echo $rand1;?>);
-                spin(1, <?php echo $rand2;?>);
-                spin(2, <?php echo $rand3;?>);
-                spin(3, <?php echo $rand4;?>);
-                spin(4, <?php echo $rand5;?>);
-                
-            </script>
-            <?php
-        }
-        ?>
     </div>
 </body>
 </html>
