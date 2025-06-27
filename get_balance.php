@@ -19,7 +19,7 @@ include "SECRETS.php";
 
     $user_id = $_SESSION["user"];
 
-    $res = $conn->query("SELECT balance FROM user WHERE email = `$user_id`");
+    $res = $conn->query("SELECT balance FROM user WHERE email = '$user_id'");
     $res = $res->fetch_assoc();
     
     echo $res["balance"];
