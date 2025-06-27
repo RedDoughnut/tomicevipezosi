@@ -6,30 +6,35 @@ session_start();
 include "SECRETS.php";
 echo $DB_User;
 echo $DB_Pass;
-$conn = new mysqli('sql209.infinityfree.com', $DB_User, $DB_Pass, 'if0_37883576_tomicevipezosi')
+try{
+    $conn = new mysqli('sql209.infinityfree.com', $DB_User, $DB_Pass, 'if0_37883576_tomicevipezosi')
 
-// Provera konekcije
-if ($conn->connect_error) {
-    http_response_code(500);
-    echo "DB connection error.";
-    exit;
+    // Provera konekcije
+    if ($conn->connect_error) {
+        http_response_code(500);
+        echo "DB connection error.";
+        exit;
+    }
+
+    if (!isset($_SESSION["user"])) {
+        http_response_code(401);
+        echo "Not logged in.";
+        exit;
+    }
+
+    $user_id = $_SESSION["user"];
+
+    $stmt = $conn->prepare("SELECT balance FROM user WHERE email = ?");
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $stmt->bind_result($balance);
+    $stmt->fetch();
+    $stmt->close();
+    $conn->close();
+
+    echo $balance;
 }
-
-if (!isset($_SESSION["user"])) {
-    http_response_code(401);
-    echo "Not logged in.";
-    exit;
+catch(Exception $e){
+    echo $e;
 }
-
-$user_id = $_SESSION["user"];
-
-$stmt = $conn->prepare("SELECT balance FROM user WHERE email = ?");
-$stmt->bind_param("i", $user_id);
-$stmt->execute();
-$stmt->bind_result($balance);
-$stmt->fetch();
-$stmt->close();
-$conn->close();
-
-echo $balance;
 ?>
