@@ -25,5 +25,5 @@ $stmt->execute();
 $stmt->close();
 $conn->close();
 
-echo "OK";
+echo "OK-"+$_SESSION["user"];
 ?>
