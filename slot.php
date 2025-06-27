@@ -361,6 +361,7 @@ include "SECRETS.php";
                         document.getElementById("nagrada").innerText = "Jedan par! 2X !!!";
                         document.getElementById("pop-up").style.visibility = "visible";
                     }
+                    await sleep(2000);
                     document.getElementById("pop-up").style.visibility = "hidden";
                     spin(0, 1);
                     spin(1, 1);
