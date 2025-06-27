@@ -20,7 +20,7 @@ $user_id = $_SESSION["user"];
 $delta = intval($_POST["delta"] ?? 0);  // npr: -100 ako je izgubio
 
 $stmt = $conn->prepare("UPDATE user SET balance = balance + ? WHERE email = ?");
-$stmt->bind_param("ii", $delta, $user_id);
+$stmt->bind_param("is", $delta, $user_id);
 $stmt->execute();
 $stmt->close();
 $conn->close();
