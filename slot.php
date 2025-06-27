@@ -192,6 +192,7 @@ include "SECRETS.php";
             <div class="outer-container">
             <div class="column-container">
             <div class="column">
+                <div class="digit">0</div>
                 <div class="digit">1</div>
                 <div class="digit">2</div>
                 <div class="digit">3</div>
@@ -205,6 +206,7 @@ include "SECRETS.php";
             </div>
             <div class="column-container">
             <div class="column">
+                <div class="digit">0</div>
                 <div class="digit">1</div>
                 <div class="digit">2</div>
                 <div class="digit">3</div>
@@ -218,6 +220,7 @@ include "SECRETS.php";
             </div>
             <div class="column-container">
             <div class="column">
+                <div class="digit">0</div>
                 <div class="digit">1</div>
                 <div class="digit">2</div>
                 <div class="digit">3</div>
@@ -231,6 +234,7 @@ include "SECRETS.php";
             </div>
             <div class="column-container">
             <div class="column">
+                <div class="digit">0</div>
                 <div class="digit">1</div>
                 <div class="digit">2</div>
                 <div class="digit">3</div>
@@ -244,6 +248,7 @@ include "SECRETS.php";
             </div>
             <div class="column-container">
             <div class="column">
+                <div class="digit">0</div>
                 <div class="digit">1</div>
                 <div class="digit">2</div>
                 <div class="digit">3</div>
@@ -265,22 +270,22 @@ include "SECRETS.php";
                     toast("Napišite validan broj!");
                 }
                 else{
-                    createCookie("wager", wager, 1);
-                    <?php a($_COOKIE["wager"]); ?>
+                    //createCookie("wager", wager, 1);
+                    spin(0, 5);
                 }
             }
-            function createCookie(name, value, days) {
-                var expires;
-                if (days) {
-                    var date = new Date();
-                    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-                    expires = "; expires=" + date.toGMTString();
-                }
-                else {
-                    expires = "";
-                }
-                document.cookie = escape(name) + "=" + escape(value) + expires + "; path=/";
-            }
+            // function createCookie(name, value, days) {
+            //     var expires;
+            //     if (days) {
+            //         var date = new Date();
+            //         date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            //         expires = "; expires=" + date.toGMTString();
+            //     }
+            //     else {
+            //         expires = "";
+            //     }
+            //     document.cookie = escape(name) + "=" + escape(value) + expires + "; path=/";
+            // }
         </script>
         <button class="button" id="spin" onclick="buttonClick();">Spin!</button>
         
