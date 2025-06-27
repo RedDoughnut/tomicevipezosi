@@ -69,7 +69,7 @@ $ulogovan = isset($_SESSION["user"]) ? "true" : "false";
         }
         @media only screen and (min-width: 851px){
             .outer-container{
-                padding: 3rem;
+                padding: 1rem;
             }
             .digit{
                 font-size: 4rem;
