@@ -2,6 +2,7 @@
 <?php
 session_start();
 include "SECRETS.php";
+$ulogovan = isset($_SESSION["user"]) ? "true" : "false";
 ?>
 <html>
 
@@ -307,7 +308,18 @@ include "SECRETS.php";
             }
             async function buttonClick(){
                 const wager = parseInt(document.getElementById("wager").value);
-                if(isNaN(wager)){
+                var ulogovan = <?= $ulogovan ?>;
+                var bal = 0;
+                fetch("get_balance.php")
+                .then(res => res.text())
+                .then(balance => {
+                    bal = balance;
+                });
+
+                if(ulogovan==="false"){
+                    showToast("Morate da se ulogujete!");
+                }
+                else if(isNaN(wager) || wager<=0 || wager>bal){
                     showToast("Napišite validan broj!");
                 }
                 else{
@@ -331,35 +343,54 @@ include "SECRETS.php";
                             maks2 = x;
                         }
                     });
+                    var plusMinus = -wager;
                     await spinAll(rand1+1, rand2+1, rand3+1, rand4+1, rand5+1);
                     if(maks1===5){
                         document.getElementById("nagrada").innerText = "5 Istih! 10,000X !!!";
                         document.getElementById("pop-up").style.visibility = "visible";
+                        plusMinus = 10000*wager - wager;
                     }
                     else if((rand5===rand4+1 && rand4===rand3+1 && rand3===rand2+1 && rand2===rand1+1) || (rand5===rand4-1 && rand4===rand3-1 && rand3===rand2-1 && rand2===rand1-1)){
                         document.getElementById("nagrada").innerText = "Straight! 8,300X !!!";
                         document.getElementById("pop-up").style.visibility = "visible";
+                        plusMinus = 8300*wager - wager;
                     }
                     else if(maks1===4){
                         document.getElementById("nagrada").innerText = "4 Istih! 220X !!!";
                         document.getElementById("pop-up").style.visibility = "visible";
+                        plusMinus = 220*wager - wager;
                     }
                     else if(maks1===3 && maks2===2){
                         document.getElementById("nagrada").innerText = "Full house! 110X !!!";
                         document.getElementById("pop-up").style.visibility = "visible";
+                        plusMinus = 110*wager - wager;
                     }
                     else if(maks1===3){
                         document.getElementById("nagrada").innerText = "Triling! 14X !!!";
                         document.getElementById("pop-up").style.visibility = "visible";
+                        plusMinus = 14*wager - wager;
                     }
                     else if(maks1===2 && maks2===2){
                         document.getElementById("nagrada").innerText = "Dva para! 10X !!!";
                         document.getElementById("pop-up").style.visibility = "visible";
+                        plusMinus = 10*wager - wager;
                     }
                     else if(maks1===2){
                         document.getElementById("nagrada").innerText = "Jedan par! 2X !!!";
                         document.getElementById("pop-up").style.visibility = "visible";
+                        plusMinus = 2*wager - wager;
                     }
+                    fetch("update_balance.php", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded"
+                    },
+                    body: `delta=${plusMinus}`  // ili "+200"
+                    })
+                    .then(res => res.text())
+                    .then(response => {
+                    console.log("Odgovor servera:", response);
+                    });
                     await sleep(2000);
                     document.getElementById("pop-up").style.visibility = "hidden";
                     spin(0, 1);
