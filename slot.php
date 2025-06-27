@@ -300,6 +300,7 @@ $ulogovan = isset($_SESSION["user"]) ? "true" : "false";
         </div>
         <script src="slot.js"></script>
         <button class="button" id="spin" onclick="buttonClick();">Spin!</button>
+        <input type="checkbox" id="autospin"> <p>Autospin</p>
         <br>
         <h1>Kombinacije</h1>
         <h2>1. Five of a kind - 7,500X</h2>
@@ -445,6 +446,9 @@ $ulogovan = isset($_SESSION["user"]) ? "true" : "false";
                     spin(3, 1);
                     spin(4, 1);
                     document.getElementById("spin").disabled = false;
+                    if(document.getElementById("autospin").checked){
+                        buttonClick();
+                    }
                 }
             }
         </script>
