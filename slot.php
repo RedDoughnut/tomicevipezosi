@@ -285,6 +285,11 @@ $ulogovan = isset($_SESSION["user"]) ? "true" : "false";
             </div>
             </div>
         </div>
+        <br>
+        <h1>Kombinacije</h1>
+        <h2>Straight - 8,500X</h2>
+        <p>5 uzastopnih brojeva: 12345, 65432, ...</p>
+            
         <div class="pop-up" id="pop-up">
             <h1 id="nagrada"></h1>
         </div>
