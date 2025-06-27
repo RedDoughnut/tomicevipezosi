@@ -67,7 +67,7 @@ $ulogovan = isset($_SESSION["user"]) ? "true" : "false";
             border-radius: 1.5rem;
             justify-content: space-between;
         }
-        @media only screen and (min-width: 851px){
+        @media only screen and (max-width: 851px){
             .outer-container{
                 padding: 1rem;
             }
