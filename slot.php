@@ -374,15 +374,15 @@ $ulogovan = isset($_SESSION["user"]) ? "true" : "false";
             </label>
         </span>
         <h1>Kombinacije</h1>
-        <h2>1. Five of a kind - 7,500X</h2>
+        <h2>1. Five of a kind - 5,000X</h2>
         <p>5 istih brojeva: 11111, 99999, ...</p>
-        <h2>2. Straight - 5,000X</h2>
+        <h2>2. Straight - 250X</h2>
         <p>5 uzastopnih brojeva: 12345, 65432, ...</p>
-        <h2>3. Four of a kind - 100X</h2>
+        <h2>3. Four of a kind - 25X</h2>
         <p>4 istih brojeva: 11116, 67666, ...</p>
-        <h2>4. Full House - 50X</h2>
+        <h2>4. Full House - 10X</h2>
         <p>3 istih i 2 istih brojeva: 67677, 77799, ...</p>
-        <h2>5. Triling - 5X</h2>
+        <h2>5. Triling - 2X</h2>
         <p>3 istih brojeva: 67696, 66612, ...</p>
         <h2>6. Dva para - 1.2X</h2>
         <p>2 para istih brojeva: 66991, 17671, ...</p>
@@ -469,34 +469,34 @@ $ulogovan = isset($_SESSION["user"]) ? "true" : "false";
                     var plusMinus = -wager;
                     await spinAll(rand1+1, rand2+1, rand3+1, rand4+1, rand5+1);
                     if(maks1===5){
-                        document.getElementById("nagrada").innerText = "5 Istih! 7,500X !!!";
+                        document.getElementById("nagrada").innerText = "5 Istih! 5,000X !!!";
                         document.getElementById("pop-up").style.visibility = "visible";
                         document.getElementById("fiveofakind").innerText = parseInt(document.getElementById("fiveofakind").innerText) + 1;
-                        plusMinus = 7500*wager - wager;
-                    }
-                    else if((rand5===rand4+1 && rand4===rand3+1 && rand3===rand2+1 && rand2===rand1+1) || (rand5===rand4-1 && rand4===rand3-1 && rand3===rand2-1 && rand2===rand1-1)){
-                        document.getElementById("nagrada").innerText = "Straight! 5,000X !!!";
-                        document.getElementById("pop-up").style.visibility = "visible";
-                        document.getElementById("straight").innerText = parseInt(document.getElementById("straight").innerText) + 1;
                         plusMinus = 5000*wager - wager;
                     }
+                    else if((rand5===rand4+1 && rand4===rand3+1 && rand3===rand2+1 && rand2===rand1+1) || (rand5===rand4-1 && rand4===rand3-1 && rand3===rand2-1 && rand2===rand1-1)){
+                        document.getElementById("nagrada").innerText = "Straight! 250X !!!";
+                        document.getElementById("pop-up").style.visibility = "visible";
+                        document.getElementById("straight").innerText = parseInt(document.getElementById("straight").innerText) + 1;
+                        plusMinus = 250*wager - wager;
+                    }
                     else if(maks1===4){
-                        document.getElementById("nagrada").innerText = "4 Istih! 100X !!!";
+                        document.getElementById("nagrada").innerText = "4 Istih! 25X !!!";
                         document.getElementById("pop-up").style.visibility = "visible";
                         document.getElementById("fourofakind").innerText = parseInt(document.getElementById("fourofakind").innerText) + 1;
-                        plusMinus = 100*wager - wager;
+                        plusMinus = 25*wager - wager;
                     }
                     else if(maks1===3 && maks2===2){
-                        document.getElementById("nagrada").innerText = "Full house! 50X !!!";
+                        document.getElementById("nagrada").innerText = "Full house! 10X !!!";
                         document.getElementById("pop-up").style.visibility = "visible";
                         document.getElementById("fullhouse").innerText = parseInt(document.getElementById("fullhouse").innerText) + 1;
-                        plusMinus = 50*wager - wager;
+                        plusMinus = 10*wager - wager;
                     }
                     else if(maks1===3){
-                        document.getElementById("nagrada").innerText = "Triling! 5X !!!";
+                        document.getElementById("nagrada").innerText = "Triling! 2X !!!";
                         document.getElementById("pop-up").style.visibility = "visible";
                         document.getElementById("triling").innerText = parseInt(document.getElementById("triling").innerText) + 1;
-                        plusMinus = 5*wager - wager;
+                        plusMinus = 2*wager - wager;
                     }
                     else if(maks1===2 && maks2===2){
                         document.getElementById("nagrada").innerText = "Dva para! 1.2X !!!";
