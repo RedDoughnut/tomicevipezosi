@@ -331,7 +331,7 @@ $ulogovan = isset($_SESSION["user"]) ? "true" : "false";
                 let bal = await getBalance();
                 console.log(bal);
                 
-                else if(isNaN(wager) || wager<=0 || wager>bal){
+                if(isNaN(wager) || wager<=0 || wager>bal){
                     showToast("Napišite validan broj!");
                 }
                 else{
