@@ -368,13 +368,13 @@ $ulogovan = isset($_SESSION["user"]) ? "true" : "false";
         </div>
         <script src="slot.js"></script>
         <button class="button" id="spin" onclick="buttonClick();">Spin!</button>
-        <span>
+        <div>
             <p style="font-size: 1.8rem">Autospin</p>
             <label class="container">
                 <input type="checkbox">
                 <div class="checkmark"></div>
             </label>
-        </span>
+        </div>
         <h1>Kombinacije</h1>
         <h2>1. Five of a kind - 7,500X</h2>
         <p>5 istih brojeva: 11111, 99999, ...</p>
