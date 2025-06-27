@@ -305,7 +305,7 @@ include "SECRETS.php";
                     spinWrapper(4, num5),
                 ]);
 
-                await sleep(2000);
+                await sleep(800);
             }
             async function buttonClick(){
                 const wager = parseInt(document.getElementById("wager").value);
