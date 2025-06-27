@@ -309,6 +309,7 @@ $ulogovan = isset($_SESSION["user"]) ? "true" : "false";
             async function buttonClick(){
                 const wager = parseInt(document.getElementById("wager").value);
                 var ulogovan = <?= $ulogovan ?>;
+                console.log(ulogovan);
                 if(ulogovan!=false){
                 var bal = 0;
                     fetch("get_balance.php")
