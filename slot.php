@@ -139,6 +139,7 @@ include "SECRETS.php";
         obj.classList.remove("showup");
     }
     </script>
+    <div id="snackbar"></div>
     <script src="toast.js"></script>
     <ul class = "nav">
             <li class = "nav"><a href="index.php"><button class = "navbut">Home</button></a></li>
