@@ -119,6 +119,9 @@ include "SECRETS.php";
             left: 0;
             right: 0;
             text-align: center;
+            padding: 5rem;
+            border-radius: 15px;
+            background-color: rgba(0,0,0,1);
         }
             
 </style>
@@ -349,6 +352,7 @@ include "SECRETS.php";
                         document.getElementById("pop-up").style.visibility = "visible";
                         await sleep(2000);
                     }
+                    document.getElementById("pop-up").style.visibility = "hidden";
                     spin(0, 1);
                     spin(1, 1);
                     spin(2, 1);
