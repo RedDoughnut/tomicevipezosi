@@ -302,19 +302,19 @@ $ulogovan = isset($_SESSION["user"]) ? "true" : "false";
         <button class="button" id="spin" onclick="buttonClick();">Spin!</button>
         <br>
         <h1>Kombinacije</h1>
-        <h2>1. Five of a kind - 8,500X</h2>
+        <h2>1. Five of a kind - 7,500X</h2>
         <p>5 istih brojeva: 11111, 99999, ...</p>
-        <h2>2. Straight - 7,000X</h2>
+        <h2>2. Straight - 5,000X</h2>
         <p>5 uzastopnih brojeva: 12345, 65432, ...</p>
-        <h2>3. Four of a kind - 180X</h2>
+        <h2>3. Four of a kind - 100X</h2>
         <p>4 istih brojeva: 11116, 67666, ...</p>
-        <h2>4. Full House - 90X</h2>
+        <h2>4. Full House - 50X</h2>
         <p>3 istih i 2 istih brojeva: 67677, 77799, ...</p>
-        <h2>5. Triling - 10X</h2>
+        <h2>5. Triling - 5X</h2>
         <p>3 istih brojeva: 67696, 66612, ...</p>
-        <h2>6. Dva para - 2.5X</h2>
+        <h2>6. Dva para - 1.2X</h2>
         <p>2 para istih brojeva: 66991, 17671, ...</p>
-        <h2>7. Jedan par - 1.3X</h2>
+        <h2>7. Jedan par - 0.5X</h2>
         <p>2 istih brojeva: 88709, 19481, ...</p>
         <script>
             function getRandomInt(max) {
@@ -386,39 +386,39 @@ $ulogovan = isset($_SESSION["user"]) ? "true" : "false";
                     var plusMinus = -wager;
                     await spinAll(rand1+1, rand2+1, rand3+1, rand4+1, rand5+1);
                     if(maks1===5){
-                        document.getElementById("nagrada").innerText = "5 Istih! 8,500X !!!";
+                        document.getElementById("nagrada").innerText = "5 Istih! 7,500X !!!";
                         document.getElementById("pop-up").style.visibility = "visible";
-                        plusMinus = 8500*wager - wager;
+                        plusMinus = 7500*wager - wager;
                     }
                     else if((rand5===rand4+1 && rand4===rand3+1 && rand3===rand2+1 && rand2===rand1+1) || (rand5===rand4-1 && rand4===rand3-1 && rand3===rand2-1 && rand2===rand1-1)){
-                        document.getElementById("nagrada").innerText = "Straight! 7,000X !!!";
+                        document.getElementById("nagrada").innerText = "Straight! 5,000X !!!";
                         document.getElementById("pop-up").style.visibility = "visible";
-                        plusMinus = 7000*wager - wager;
+                        plusMinus = 5000*wager - wager;
                     }
                     else if(maks1===4){
-                        document.getElementById("nagrada").innerText = "4 Istih! 180X !!!";
+                        document.getElementById("nagrada").innerText = "4 Istih! 100X !!!";
                         document.getElementById("pop-up").style.visibility = "visible";
-                        plusMinus = 180*wager - wager;
+                        plusMinus = 100*wager - wager;
                     }
                     else if(maks1===3 && maks2===2){
-                        document.getElementById("nagrada").innerText = "Full house! 90X !!!";
+                        document.getElementById("nagrada").innerText = "Full house! 50X !!!";
                         document.getElementById("pop-up").style.visibility = "visible";
-                        plusMinus = 90*wager - wager;
+                        plusMinus = 50*wager - wager;
                     }
                     else if(maks1===3){
-                        document.getElementById("nagrada").innerText = "Triling! 10X !!!";
-                        document.getElementById("pop-up").style.visibility = "visible";
-                        plusMinus = 10*wager - wager;
-                    }
-                    else if(maks1===2 && maks2===2){
-                        document.getElementById("nagrada").innerText = "Dva para! 5X !!!";
+                        document.getElementById("nagrada").innerText = "Triling! 5X !!!";
                         document.getElementById("pop-up").style.visibility = "visible";
                         plusMinus = 5*wager - wager;
                     }
-                    else if(maks1===2){
-                        document.getElementById("nagrada").innerText = "Jedan par! 1.3X !!!";
+                    else if(maks1===2 && maks2===2){
+                        document.getElementById("nagrada").innerText = "Dva para! 1.2X !!!";
                         document.getElementById("pop-up").style.visibility = "visible";
-                        plusMinus = 1.3*wager - wager;
+                        plusMinus = 1.2*wager - wager;
+                    }
+                    else if(maks1===2){
+                        document.getElementById("nagrada").innerText = "Jedan par! 0.5X !!!";
+                        document.getElementById("pop-up").style.visibility = "visible";
+                        plusMinus = 0.5*wager - wager;
                     }
                     var finalBal = parseInt(bal) + plusMinus;
                     console.log(plusMinus);
