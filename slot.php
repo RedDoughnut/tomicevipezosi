@@ -323,7 +323,7 @@ $ulogovan = isset($_SESSION["user"]) ? "true" : "false";
                 var ulogovan = <?= $ulogovan ?>;
                 console.log(ulogovan);
                 if(ulogovan!=false){
-                    var bal = await getBalance();
+                    let bal = await getBalance();
                     console.log(bal);
                 }
                 if(ulogovan===false){
