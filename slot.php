@@ -279,6 +279,7 @@ include "SECRETS.php";
             <h1 id="nagrada"></h1>
         </div>
         <script src="slot.js"></script>
+        <button class="button" id="spin" onclick="buttonClick();">Spin!</button>
         <script>
             function getRandomInt(max) {
                 return Math.floor(Math.random() * max);
@@ -310,6 +311,7 @@ include "SECRETS.php";
                     showToast("Napišite validan broj!");
                 }
                 else{
+                    document.getElementById("spin").disabled = true;
                     //createCookie("wager", wager, 1);
                     var rand1 = getRandomInt(10);
                     var rand2 = getRandomInt(10);
@@ -365,6 +367,7 @@ include "SECRETS.php";
                     spin(2, 1);
                     spin(3, 1);
                     spin(4, 1);
+                    document.getElementById("spin").disabled = false;
                 }
             }
             // function createCookie(name, value, days) {
@@ -380,7 +383,6 @@ include "SECRETS.php";
             //     document.cookie = escape(name) + "=" + escape(value) + expires + "; path=/";
             // }
         </script>
-        <button class="button" id="spin" onclick="buttonClick();">Spin!</button>
         
         <?php
         function a($wager){
