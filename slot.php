@@ -318,13 +318,12 @@ $ulogovan = isset($_SESSION["user"]) ? "true" : "false";
                 const balance = await res.text();
                 return balance;
             }
-
             async function buttonClick(){
                 const wager = parseInt(document.getElementById("wager").value);
                 var ulogovan = <?= $ulogovan ?>;
                 console.log(ulogovan);
                 if(ulogovan!=false){
-                    var bal = getBalance();
+                    var bal = await getBalance();
                     console.log(bal);
                 }
                 if(ulogovan===false){
