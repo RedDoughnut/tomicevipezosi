@@ -211,7 +211,7 @@ $ulogovan = isset($_SESSION["user"]) ? "true" : "false";
                     echo "<p style='font-size: 2rem;' id='balLABEL2'>$BAL T₱</p>";
                 }
             ?>
-            <input type="text" id="wager" placeholder="Wager" style="font-size: 1.6rem;">
+            <input type="text" id="wager" placeholder="Wager" style="font-size: 1.6rem;width: min(30rem, 80vw)">
             
             <div class="outer-container">
             <div class="column-container">
