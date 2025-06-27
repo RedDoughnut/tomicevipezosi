@@ -203,38 +203,6 @@ include "SECRETS.php";
         ?>
                 
             </ul>
-        <div class="container" onclick="myFunction(this)">
-            <div class="bar1"></div>
-            <div class="bar2"></div>
-            <div class="bar3"></div>
-        </div>
-        <div class = "mobile-container" id = "mob-cont">
-            <ul class="mobile">
-                <!--<a href="" class="close"></a> -->
-                <li class="mobile"> <a href="index.php"> <button class = "navbut">Home</button> </a> </li>
-                <li class="mobile"> <a href="company.php"> <button class = "navbut2">My Company</button> </a></li>
-                <?php
-        if(isset($_SESSION["user"])){
-            $conn = mysqli_connect('sql209.infinityfree.com', $DB_User, $DB_Pass, 'if0_37883576_tomicevipezosi');
-            if($conn->connect_error){
-                die('Connection Failed : '.$conn->connect_error);
-            }else{
-                $email = $_SESSION['user'];
-                $sql = "SELECT firstName, balance FROM user WHERE email = '$email'";
-                $res = $conn->query($sql);
-                $res = $res -> fetch_assoc();
-                echo "<li class = 'mobile'><a href='user.php'><button class='navbut2'>" . $res['firstName'] . "</button></a></li>";
-                echo "<li class = 'mobile' style='font-size: 2rem;'>" . $res['balance'] . "T₱</li>";
-                $conn->close();
-            }
-        }
-        else{
-            echo "<li class='mobile'> <a href='login.php'> <button class = 'navbut2'>Log-In</button> </a></li>
-                <li class='mobile'> <a href='register.php'> <button class = 'navbut2'>Register</button> </a></li>";
-        }
-        ?>
-                
-            </ul>
         </div>
         <div class="up showup" id="up"><span>Pogledajte naše <a href="tos.php">uslove korišćenja</a>!</span><a style="text-align: right;font-size:1.2rem;cursor:pointer;" onclick="XClick();">✕</a></div>
         <div id="snackbar"></div>
