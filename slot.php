@@ -279,6 +279,7 @@ $ulogovan = isset($_SESSION["user"]) ? "true" : "false";
             </ul>
         </div>
         <div class="large-container">
+            <h2>↓Statistike iz sesije↓</h2>
             <?php
                 if(isset($_SESSION["user"])){
                     echo "<p style='font-size: 2rem;' id='balLABEL2'>$BAL T₱</p>";
@@ -387,6 +388,16 @@ $ulogovan = isset($_SESSION["user"]) ? "true" : "false";
         <p>2 para istih brojeva: 66991, 17671, ...</p>
         <h2>7. Jedan par - 0.5X</h2>
         <p>2 istih brojeva: 88709, 19481, ...</p>
+        <br>
+        <h1>Statistike sesije</h1>
+        <p>Five of a kind: <span id="fiveofakind">0</span></p>
+        <p>Straight: <span id="straight">0</span></p>
+        <p>Four of a kind: <span id="fourofakind">0</span></p>
+        <p>Full House: <span id="fullhouse">0</span></p>
+        <p>Triling: <span id="triling">0</span></p>
+        <p>Dva para: <span id="dvapara">0</span></p>
+        <p>Jedan par: <span id="jedanpar">0</span></p>
+        <p>Ukupno odigranih: <span id="ukupno">0</span></p>
         <script>
             function getRandomInt(max) {
                 return Math.floor(Math.random() * max);
@@ -460,6 +471,7 @@ $ulogovan = isset($_SESSION["user"]) ? "true" : "false";
                     if(maks1===5){
                         document.getElementById("nagrada").innerText = "5 Istih! 7,500X !!!";
                         document.getElementById("pop-up").style.visibility = "visible";
+                        document.getElementById("fiveofakind").innerText = parseInt(document.getElementById("fiveofakind").innerText) + 1;
                         plusMinus = 7500*wager - wager;
                     }
                     else if((rand5===rand4+1 && rand4===rand3+1 && rand3===rand2+1 && rand2===rand1+1) || (rand5===rand4-1 && rand4===rand3-1 && rand3===rand2-1 && rand2===rand1-1)){
@@ -490,6 +502,7 @@ $ulogovan = isset($_SESSION["user"]) ? "true" : "false";
                     else if(maks1===2){
                         document.getElementById("nagrada").innerText = "Jedan par! 0.5X !!!";
                         document.getElementById("pop-up").style.visibility = "visible";
+                        document.getElementById("jedanpar").innerText = parseInt(document.getElementById("jedanpar").innerText) + 1;
                         plusMinus = 0.5*wager - wager;
                     }
                     var finalBal = parseInt(bal) + plusMinus;
