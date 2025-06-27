@@ -293,7 +293,7 @@ include "SECRETS.php";
 
                     setTimeout(() => {
                     resolve(); 
-                    }, 800);
+                    }, 1500);
                 });
             }
             async function spinAll(num1, num2, num3, num4, num5) {
