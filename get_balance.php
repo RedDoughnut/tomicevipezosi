@@ -1,10 +1,10 @@
 <?php
 session_start();
 include "SECRETS.php";
-
-$conn = new mysqli('sql209.infinityfree.com', $DB_User, $DB_Pass, 'if0_37883576_tomicevipezosi')
 echo $DB_User;
 echo $DB_Pass;
+$conn = new mysqli('sql209.infinityfree.com', $DB_User, $DB_Pass, 'if0_37883576_tomicevipezosi')
+
 // Provera konekcije
 if ($conn->connect_error) {
     http_response_code(500);
