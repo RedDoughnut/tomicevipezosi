@@ -206,7 +206,7 @@ $ulogovan = isset($_SESSION["user"]) ? "true" : "false";
         <div class="large-container">
             <?php
                 if(isset($_SESSION["user"])){
-                    echo "<h2 id='balLABEL2'>$BAL</h2>";
+                    echo "<p style='font-size: 2rem;' id='balLABEL2'>$BAL T₱</p>";
                 }
             ?>
             <input type="text" id="wager" placeholder="Wager" style="font-size: 1.6rem;">
@@ -401,8 +401,8 @@ $ulogovan = isset($_SESSION["user"]) ? "true" : "false";
                     .then(response => {
                     console.log("Odgovor servera:", response);
                     });
-                    document.getElementById("balLabel").innerText = bal + plusMinus;
-                    document.getElementById("balLABEL2").innerText = bal + plusMinus;
+                    document.getElementById("balLabel").innerText = bal + plusMinus + "T₱";
+                    document.getElementById("balLABEL2").innerText = bal + plusMinus + "T₱";
                     await sleep(2000);
                     document.getElementById("pop-up").style.visibility = "hidden";
                     spin(0, 1);
