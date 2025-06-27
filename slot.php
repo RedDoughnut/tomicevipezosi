@@ -401,8 +401,9 @@ $ulogovan = isset($_SESSION["user"]) ? "true" : "false";
                     .then(response => {
                     console.log("Odgovor servera:", response);
                     });
-                    document.getElementById("balLabel").innerText = bal + parseInt(plusMinus) + "T₱";
-                    document.getElementById("balLABEL2").innerText = bal + parseInt(plusMinus) + "T₱";
+                    var finalBal = bal + plusMinus;
+                    document.getElementById("balLabel").innerText = finalBal + "T₱";
+                    document.getElementById("balLABEL2").innerText = finalBal + "T₱";
                     await sleep(2000);
                     document.getElementById("pop-up").style.visibility = "hidden";
                     spin(0, 1);
