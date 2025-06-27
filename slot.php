@@ -309,13 +309,14 @@ $ulogovan = isset($_SESSION["user"]) ? "true" : "false";
             async function buttonClick(){
                 const wager = parseInt(document.getElementById("wager").value);
                 var ulogovan = <?= $ulogovan ?>;
+                if(ulogovan!="false"){
                 var bal = 0;
-                fetch("get_balance.php")
-                .then(res => res.text())
-                .then(balance => {
-                    bal = balance;
-                });
-
+                    fetch("get_balance.php")
+                    .then(res => res.text())
+                    .then(balance => {
+                        bal = balance;
+                    });
+                }
                 if(ulogovan==="false"){
                     showToast("Morate da se ulogujete!");
                 }
@@ -323,6 +324,7 @@ $ulogovan = isset($_SESSION["user"]) ? "true" : "false";
                     showToast("Napišite validan broj!");
                 }
                 else{
+                    
                     document.getElementById("spin").disabled = true;
                     //createCookie("wager", wager, 1);
                     var rand1 = getRandomInt(10);
