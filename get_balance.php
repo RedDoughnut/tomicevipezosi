@@ -2,7 +2,7 @@
 session_start();
 include "SECRETS.php";
 
-$conn = new mysqli("localhost", $db_user, $db_pass, $db_name);
+$conn = new mysqli('sql209.infinityfree.com', $DB_User, $DB_Pass, 'if0_37883576_tomicevipezosi')
 
 // Provera konekcije
 if ($conn->connect_error) {
