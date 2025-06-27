@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "secrets.php";
+include "SECRETS.php";
 
 $conn = new mysqli("localhost", $db_user, $db_pass, $db_name);
 
