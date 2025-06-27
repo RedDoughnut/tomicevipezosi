@@ -62,10 +62,15 @@ $ulogovan = isset($_SESSION["user"]) ? "true" : "false";
         .outer-container{
             display: flex;
             background-color: rgb(10,10,10);
-            padding: 4rem;
+            padding: 5rem;
             width: min(30rem, 90vw);
             border-radius: 1.5rem;
             justify-content: space-between;
+        }
+        @media only screen and (min-width: 851px){
+            .outer-container{
+                padding: 3rem;
+            }
         }
         .column-container{
             overflow: hidden;
