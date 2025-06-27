@@ -288,12 +288,11 @@ include "SECRETS.php";
             }
             function spinWrapper(index, target) {
                 return new Promise((resolve) => {
-                    spin(index, target); // poziv tvoje originalne spin funkcije
+                    spin(index, target); 
 
-                    // simuliramo da animacija traje 2 sekunde
                     setTimeout(() => {
-                    resolve(); // kaži da je spin završen
-                    }, 2000);
+                    resolve(); 
+                    }, 800);
                 });
             }
             async function spinAll(num1, num2, num3, num4, num5) {
@@ -304,8 +303,6 @@ include "SECRETS.php";
                     spinWrapper(3, num4),
                     spinWrapper(4, num5),
                 ]);
-
-                await sleep(800);
             }
             async function buttonClick(){
                 const wager = parseInt(document.getElementById("wager").value);
