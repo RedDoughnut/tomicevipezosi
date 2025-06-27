@@ -390,7 +390,7 @@ $ulogovan = isset($_SESSION["user"]) ? "true" : "false";
                         document.getElementById("pop-up").style.visibility = "visible";
                         plusMinus = 2*wager - wager;
                     }
-                    var finalBal = Number(bal) + plusMinus;
+                    var finalBal = parseInt(bal) + plusMinus;
                     fetch("update_balance.php", {
                     method: "POST",
                     headers: {
