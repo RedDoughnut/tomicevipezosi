@@ -265,7 +265,7 @@ session_start();
     <div style="text-align: center;">
     <h3 class="text-title">Slot</h3>
     </div>
-    <p class="text-body">Vrtite slotove i ostvarujte neverovatne bonuse! Vrtite 5 brojeva i sakupljajte kombinacije za X!</p>
+    <p class="text-body">Vrtite slotove i ostvarujte neverovatne bonuse! Sakupljajte kombinacije za X!</p>
   </div>
   <button class="card-button" onclick="location.href = 'slot.php'">Igraj</button>
 </div>
