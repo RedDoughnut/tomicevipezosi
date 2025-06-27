@@ -347,12 +347,13 @@ $ulogovan = isset($_SESSION["user"]) ? "true" : "false";
                 return balance;
             }
             async function buttonClick(){
+                var ulogovan = <?= $ulogovan ?>;
                 if(ulogovan==false || ulogovan=="false"){
                     showToast("Morate da se ulogujete!");
                     return;
                 }
                 const wager = parseInt(document.getElementById("wager").value);
-                var ulogovan = <?= $ulogovan ?>;
+                
                 console.log(ulogovan);
                 let bal = await getBalance();
                 console.log(bal);
