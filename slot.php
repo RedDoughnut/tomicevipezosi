@@ -440,11 +440,6 @@ $ulogovan = isset($_SESSION["user"]) ? "true" : "false";
                     document.getElementById("balLABEL2").innerText = finalBal + "T₱";
                     await sleep(2000);
                     document.getElementById("pop-up").style.visibility = "hidden";
-                    spin(0, 1);
-                    spin(1, 1);
-                    spin(2, 1);
-                    spin(3, 1);
-                    spin(4, 1);
                     document.getElementById("spin").disabled = false;
                     if(document.getElementById("autospin").checked){
                         buttonClick();
