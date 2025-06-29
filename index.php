@@ -269,6 +269,7 @@ include "SECRETS.php";
 
                     $cenaAkcije = max(round($cenaAkcije + $rnd, 2), 0.0);
                 }
+                $cenaAkcije = round($cenaAkcije, 2);
                 $history = json_decode($row["history"], true); 
                 $history[] = $cenaAkcije;
                 $id = $row["id"];
