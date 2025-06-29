@@ -276,7 +276,7 @@ include "SECRETS.php";
                     array_shift($history);
                 }
 
-                $historyJson = mysqli_real_escape_string($conn, json_encode($history));
+                $historyJson = mysqli_real_escape_string($conn, json_encode($history, JSON_PRESERVE_ZERO_FRACTION));
                 $sql = "UPDATE `kompanija` SET `history` = '$historyJson' WHERE `id` = $id";
                 if(!mysqli_query($conn, $sql)){
                     echo "<h1>Error: " . mysqli_error($conn) . "</h1>";
