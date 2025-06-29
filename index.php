@@ -271,7 +271,7 @@ include "SECRETS.php";
                 }
                 $history = json_decode($row["history"], true); 
                 $history[] = $novaCena;
-
+                $id = $row["id"];
                 if (count($history) > 2160) {
                     array_shift($history);
                 }
