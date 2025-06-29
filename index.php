@@ -278,7 +278,9 @@ include "SECRETS.php";
 
                 $historyJson = mysqli_real_escape_string($conn, json_encode($history));
                 $sql = "UPDATE `kompanija` SET `value` = $novaCena, `history` = '$historyJson' WHERE `id` = $id";
-                mysqli_query($conn, $sql);
+                if(!mysqli_query($conn, $sql)){
+                    echo "<h1>Error: " . mysqli_error($conn) . "</h1>"
+                }
 
                 $sql = "UPDATE `kompanija` SET `value`=$cenaAkcije WHERE `id`=" . $row['id'];
                 if($cenaAkcije>0)
