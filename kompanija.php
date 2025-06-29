@@ -291,7 +291,7 @@ error_reporting(E_ALL);
                 }
             }
             $sql = "SELECT history FROM kompanija WHERE id=$id";
-            $labels = array_fill(0, 720, "");
+            $labels = array_fill(0, 360, "");
             $data = json_decode(mysqli_fetch_assoc(mysqli_query($conn, $sql))['history'], true);
             $chart = [
                 "type" => "line",
