@@ -321,8 +321,12 @@ include "SECRETS.php";
             curl_setopt($ch, CURLOPT_HTTPHEADER, [
                 "Content-Type: application/json"
             ]);
-            if($response==false)
-                echo "ERROR: " . curl_error($ch);
+            if($response==false){
+                echo "<h2>ERROR: " . curl_error($ch) . "</h2>";
+            }
+            else{
+                echo "<h2>USPESNO</h2>";
+            }
             $response = curl_exec($ch);
             curl_close($ch);
             echo "<h2>$response</h2>";
