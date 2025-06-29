@@ -269,7 +269,7 @@
             </ul>
         </div>
         <div id="snackbar"></div>
-        <form action="napravi_kompaniju" method="POST" accept-charset="utf-8">
+        <form method="POST" accept-charset="utf-8">
         <center>
             <h1>Registracija Kompanije</h1>
             <div class="inputs">
