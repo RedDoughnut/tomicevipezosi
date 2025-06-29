@@ -270,7 +270,9 @@ include "SECRETS.php";
                     $cenaAkcije = max(round($cenaAkcije + $rnd, 2), 0.0);
                 }
                 $history = json_decode($row["history"], true); 
-                $history[] = round($cenaAkcije, 2);
+                $zaokruzenaCena = number_format($cenaAkcije, 2, '.', '');
+                echo "<h1>$zaokruzenaCena</h1>";
+                $history[] = $zaokruzenaCena;
                 $id = $row["id"];
                 if (count($history) > 2160) {
                     array_shift($history);
