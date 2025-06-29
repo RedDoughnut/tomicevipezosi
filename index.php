@@ -270,14 +270,14 @@ include "SECRETS.php";
                     $cenaAkcije = max(round($cenaAkcije + $rnd, 2), 0.0);
                 }
                 $history = json_decode($row["history"], true); 
-                $history[] = $novaCena;
+                $history[] = $cenaAkcije;
                 $id = $row["id"];
                 if (count($history) > 2160) {
                     array_shift($history);
                 }
 
                 $historyJson = mysqli_real_escape_string($conn, json_encode($history));
-                $sql = "UPDATE `kompanija` SET `value` = $novaCena, `history` = '$historyJson' WHERE `id` = $id";
+                $sql = "UPDATE `kompanija` SET `history` = '$historyJson' WHERE `id` = $id";
                 if(!mysqli_query($conn, $sql)){
                     echo "<h1>Error: " . mysqli_error($conn) . "</h1>";
                 }
