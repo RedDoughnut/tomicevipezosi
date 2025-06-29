@@ -246,7 +246,7 @@ include "SECRETS.php";
     $conn = mysqli_connect('sql209.infinityfree.com', $DB_User, $DB_Pass, 'if0_37883576_tomicevipezosi');
     mysqli_set_charset($conn, "utf8");
     $time_rn = time();
-    $time_interval = 600;
+    $time_interval = 3600;
     $time = mysqli_query($conn, $sql)->fetch_assoc()['time'];
     $hours = floor(($time_rn-$time)/$time_interval);
     //echo "<h1>" . $time_rn - $time . "</h1>";
@@ -270,7 +270,7 @@ include "SECRETS.php";
                 for ($i = 0; $i < $hours; $i++) {
                     $rnd = mt_rand(-10, 10) / 100 * $cenaAkcije;
                     $cenaAkcije = max(round($cenaAkcije + $rnd, 2), 0.0);
-                    
+
                     $zaokruzenaCena = number_format($cenaAkcije, 2, '.', '');
                     $history[] = $zaokruzenaCena;  
                     if (count($history) > 2160) {
