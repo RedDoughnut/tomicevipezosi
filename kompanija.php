@@ -184,6 +184,9 @@ error_reporting(E_ALL);
         .label1{
             margin: 0;
         }
+        .grafik{
+            width: min(80vw, 40rem);
+        }
 </style>
 <body>
 <ul>
@@ -329,7 +332,7 @@ error_reporting(E_ALL);
             $result = json_decode($response, true);
 
             $result = $result['url'];
-            echo "<img src='$result' />";
+            echo "<img src='$result' class='grafik'/>";
         ?>
         <form method="POST">
             <h1 class="label1">Invest</h1>
