@@ -269,7 +269,7 @@ include "SECRETS.php";
 
                     $cenaAkcije = max(round($cenaAkcije + $rnd, 2), 0.0);
                 }
-                $sql = "SELECT history FROM kompanija WHERE id=$id";
+                $sql = "SELECT history FROM kompanija WHERE `id`=$id";
                 $historyDATA = mysqli_fetch_assoc(mysqli_query($conn, $sql))["history"];
                 $history = json_decode($historyDATA, true); 
                 $zaokruzenaCena = number_format($cenaAkcije, 2, '.', '');
