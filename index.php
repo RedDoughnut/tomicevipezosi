@@ -276,7 +276,7 @@ include "SECRETS.php";
                     array_shift($history);
                 }
 
-                $historyJson = json_encode($history);
+                $historyJson = mysqli_real_escape_string($conn, json_encode($history));
                 $sql = "UPDATE `kompanija` SET `value` = $novaCena, `history` = '$historyJson' WHERE `id` = $id";
                 mysqli_query($conn, $sql);
 
