@@ -321,7 +321,8 @@ include "SECRETS.php";
             curl_setopt($ch, CURLOPT_HTTPHEADER, [
                 "Content-Type: application/json"
             ]);
-
+            if($response==false)
+                echo "ERROR: " . curl_error($ch);
             $response = curl_exec($ch);
             curl_close($ch);
             echo "<h2>$response</h2>";
