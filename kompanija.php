@@ -189,8 +189,10 @@ error_reporting(E_ALL);
                 width: 40rem;
             }
         }
-        .grafik{
-            width: 90vw;
+        @media only screen and (max-width: 851px) {
+            .grafik{
+                width: 90vw;
+            }
         }
 </style>
 <body>
