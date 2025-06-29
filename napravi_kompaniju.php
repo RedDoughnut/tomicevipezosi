@@ -305,10 +305,10 @@
                     $sql = "SELECT name FROM kompanija WHERE user_id = '$id'";
                     $res = $conn->query($sql);
                     if($res->num_rows > 0){
-                        echo "Imas kompaniju! <a href='company.php'>Tvoja kompanija</a>";
+                        echo "<p>Imas kompaniju! <a href='company.php'>Tvoja kompanija</a></p>";
                     }
                     if($balance<2000){
-                        echo "Insufficient funds! You need 2000T₱";
+                        echo "<p>Insufficient funds! You need 2000T₱</p>";
                     }
                     $name = $_POST['name'];
                     $ticker = $_POST['ticker'];
@@ -318,10 +318,10 @@
                     $res = $conn->query($sql);
                     while($row = $res->fetch_assoc()){
                         if($row['name'] == $name){
-                            echo "Company with same name already exists!";
+                            echo "<p>Company with same name already exists!</p>";
                         }
                         if($row['ticker'] == $ticker){
-                            echo "Company with same ticker symbol already exists!";
+                            echo "<p>Company with same ticker symbol already exists!</p>";
                         }
                     }
                     $sql = "UPDATE user SET balance = balance - 2000 WHERE id = '$id'";
