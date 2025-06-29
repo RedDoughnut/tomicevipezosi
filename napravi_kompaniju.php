@@ -335,6 +335,7 @@
                         $conn->query($sql);
                         die("Error: " . $conn->error);
                     }
+                    echo "Kompanija uspesno napravljena!";
                     $conn->close();
                     
                 }
