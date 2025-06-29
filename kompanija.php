@@ -289,7 +289,7 @@ include "SECRETS.php";
             }
             $sql = "SELECT history FROM kompanije WHERE id=$id";
             $labels = array_fill(0, 2160, "");
-            $data = json_decode(mysqli_fetch_assoc(mysqli_query($conn, $sql))['history']);
+            $data = json_decode(mysqli_fetch_assoc(mysqli_query($conn, $sql))['history'], true);
             $chart = [
                 "type" => "line",
                 "data" => [
