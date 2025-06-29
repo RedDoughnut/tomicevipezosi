@@ -324,8 +324,9 @@ include "SECRETS.php";
 
             $response = curl_exec($ch);
             curl_close($ch);
-
+            echo "<h2>$response</h2>";
             $result = json_decode($response, true);
+
             $result = $result['url'];
             echo "<img src='$result' />";
         ?>
