@@ -258,6 +258,7 @@ include "SECRETS.php";
         mysqli_query($conn, $sql);
         $sql = "SELECT * FROM kompanija";
         $res = mysqli_query($conn, $sql);
+
         if($res->num_rows>0){
             while($row = $res->fetch_assoc()){
                 $menjanje = 3;
@@ -268,15 +269,18 @@ include "SECRETS.php";
 
                     $cenaAkcije = max(round($cenaAkcije + $rnd, 2), 0.0);
                 }
-                if ($cenaAkcije <= 0) {
-                        $sql = "UPDATE `kompanija` SET `value`=0.01 WHERE `id`=" . $row['id'];
-                        if (!mysqli_query($conn, $sql)) {
-                            echo "Error: " . mysqli_error($conn);
-                        }
+                $history = json_decode($row["history"], true); 
+                $history[] = $novaCena;
+
+                if (count($history) > 2160) {
+                    array_shift($history);
                 }
-                else{
-                    $sql = "UPDATE `kompanija` SET `value`=$cenaAkcije WHERE `id`=" . $row['id'];
-                }
+
+                $historyJson = json_encode($history);
+                $sql = "UPDATE `kompanija` SET `value` = $novaCena, `history` = '$historyJson' WHERE `id` = $id";
+                mysqli_query($conn, $sql);
+
+                $sql = "UPDATE `kompanija` SET `value`=$cenaAkcije WHERE `id`=" . $row['id'];
                 if($cenaAkcije>0)
                     mysqli_query($conn, $sql);
 

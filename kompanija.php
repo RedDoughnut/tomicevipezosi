@@ -259,12 +259,13 @@ include "SECRETS.php";
         </div>
 
         <?php
+            $id = $_GET["id"];
             $conn = mysqli_connect('sql209.infinityfree.com', $DB_User, $DB_Pass, 'if0_37883576_tomicevipezosi');
             mysqli_set_charset($conn, "utf8");
             if($conn->connect_error){
                 die('Connection Failed : '.$conn->connect_error);
             }else{
-                $id = $_GET["id"];
+                
                 $sql = "SELECT name, ticker, description, user_id, value, stocks_sold, stocks_available FROM kompanija WHERE id='$id'";
                 
                 $result = $conn->query($sql);
@@ -285,8 +286,48 @@ include "SECRETS.php";
                 else{
                     echo "<h1>Nepostojeca kompanija!</h1>";
                 }
-                $conn->close();
             }
+            $sql = "SELECT history FROM kompanije WHERE id=$id";
+            $labels = array_fill(0, 2160, "");
+            $data = mysqli_fetch_assoc(mysqli_query($conn, $sql))['history'];
+            $chart = [
+                "type" => "line",
+                "data" => [
+                    "labels" => $labels,
+                    "datasets" => [[
+                        "label" => "Cena",
+                        "data" => $data,
+                        "borderColor" => "blue",
+                        "fill" => false
+                    ]]
+                ],
+                "options" => [
+                    "scales" => [
+                        "x" => [
+                            "ticks" => [
+                                "autoSkip" => true,
+                                "maxTicksLimit" => 30
+                            ]
+                        ]
+                    ]
+                ]
+            ];
+
+            $payload = json_encode(["chart" => $chart]);
+
+            $ch = curl_init("https://quickchart.io/chart/create");
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, [
+                "Content-Type: application/json"
+            ]);
+
+            $response = curl_exec($ch);
+            curl_close($ch);
+
+            $result = json_decode($response, true);
+            $result = $result['url'];
+            echo "<img src='$result' />";
         ?>
         <form method="POST">
             <h1 class="label1">Invest</h1>
