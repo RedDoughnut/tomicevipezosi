@@ -264,7 +264,7 @@ include "SECRETS.php";
                 $cenaAkcije = $row["value"];
 
                 for ($i = 0; $i < $hours; $i++) {
-                    $rnd = mt_rand(-$cenaAkcije * 0.1, $cenaAkcije * 0.1);
+                    $rnd = mt_rand(-10, 10) / 100 * $cenaAkcije;
 
                     $cenaAkcije = max(round($cenaAkcije + $rnd, 2), 0.0);
                 }
@@ -274,7 +274,9 @@ include "SECRETS.php";
                             echo "Error: " . mysqli_error($conn);
                         }
                 }
-                $sql = "UPDATE `kompanija` SET `value`=$cenaAkcije WHERE `id`=" . $row['id'];
+                else{
+                    $sql = "UPDATE `kompanija` SET `value`=$cenaAkcije WHERE `id`=" . $row['id'];
+                }
                 if($cenaAkcije>0)
                     mysqli_query($conn, $sql);
 
