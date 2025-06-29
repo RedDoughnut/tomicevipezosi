@@ -290,7 +290,7 @@ error_reporting(E_ALL);
                     echo "<h1>Nepostojeca kompanija!</h1>";
                 }
             }
-            $sql = "SELECT history FROM kompanije WHERE id=$id";
+            $sql = "SELECT history FROM kompanija WHERE id=$id";
             $labels = array_fill(0, 2160, "");
             $data = json_decode(mysqli_fetch_assoc(mysqli_query($conn, $sql))['history'], true);
             $chart = [
