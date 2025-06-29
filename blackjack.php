@@ -136,7 +136,7 @@ include "SECRETS.php";
             <li class = "nav"><a href="casino.php" class="nav"><button class = "navbut2">Casino</button></a></li>
             <?php
         if(isset($_SESSION["user"])){
-            $conn = mysqli_connect('sql209.infinityfree.com', 'if0_37883576', 'Sigurno0612', 'if0_37883576_tomicevipezosi');
+            $conn = mysqli_connect('sql209.infinityfree.com', $DB_User, $DB_Pass, 'if0_37883576_tomicevipezosi');
             if($conn->connect_error){
                 die('Connection Failed : '.$conn->connect_error);
             }else{
@@ -168,7 +168,7 @@ include "SECRETS.php";
                 <li class = "nav"><a href="casino.php" class="nav"><button class = "navbut2">Casino</button></a></li>
                 <?php
         if(isset($_SESSION["user"])){
-            $conn = mysqli_connect('sql209.infinityfree.com', 'if0_37883576', 'Sigurno0612', 'if0_37883576_tomicevipezosi');
+            $conn = mysqli_connect('sql209.infinityfree.com', $DB_User, $DB_Pass, 'if0_37883576_tomicevipezosi');
             if($conn->connect_error){
                 die('Connection Failed : '.$conn->connect_error);
             }else{
@@ -191,7 +191,7 @@ include "SECRETS.php";
         </div>
         <?php
             if($_SERVER['REQUEST_METHOD']=="POST" && isset($_POST["wager"]) && isset($_SESSION['user'])){
-                $conn = mysqli_connect('sql209.infinityfree.com', 'if0_37883576', 'Sigurno0612', 'if0_37883576_tomicevipezosi');
+                $conn = mysqli_connect('sql209.infinityfree.com', $DB_User, $DB_Pass, 'if0_37883576_tomicevipezosi');
                 if($conn->connect_error)
                     die("Error: " . $conn->connect_error);
                 $wager = $_POST["wager"];
@@ -207,7 +207,7 @@ include "SECRETS.php";
                 $startGame = true;
             }
             if($_SERVER['REQUEST_METHOD']=="POST" && isset($_POST["code"]) && isset($_SESSION["user"])){
-                $conn = mysqli_connect('sql209.infinityfree.com', 'if0_37883576', 'Sigurno0612', 'if0_37883576_tomicevipezosi');
+                $conn = mysqli_connect('sql209.infinityfree.com', $DB_User, $DB_Pass, 'if0_37883576_tomicevipezosi');
                 if($conn->connect_error)
                     die("Error: " . $conn->connect_error);
                 $code = $_POST["code"];

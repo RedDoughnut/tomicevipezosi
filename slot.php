@@ -224,7 +224,7 @@ $ulogovan = isset($_SESSION["user"]) ? "true" : "false";
             <li class = "nav"><a href="casino.php" class="nav"><button class = "navbut">Casino</button></a></li>
             <?php
         if(isset($_SESSION["user"])){
-            $conn = mysqli_connect('sql209.infinityfree.com', 'if0_37883576', 'Sigurno0612', 'if0_37883576_tomicevipezosi');
+            $conn = mysqli_connect('sql209.infinityfree.com', $DB_User, $DB_Pass, 'if0_37883576_tomicevipezosi');
             if($conn->connect_error){
                 die('Connection Failed : '.$conn->connect_error);
             }else{
@@ -256,7 +256,7 @@ $ulogovan = isset($_SESSION["user"]) ? "true" : "false";
                 <li class = "nav"><a href="casino.php" class="nav"><button class = "navbut">Casino</button></a></li>
                 <?php
         if(isset($_SESSION["user"])){
-            $conn = mysqli_connect('sql209.infinityfree.com', 'if0_37883576', 'Sigurno0612', 'if0_37883576_tomicevipezosi');
+            $conn = mysqli_connect('sql209.infinityfree.com', $DB_User, $DB_Pass, 'if0_37883576_tomicevipezosi');
             if($conn->connect_error){
                 die('Connection Failed : '.$conn->connect_error);
             }else{
