@@ -282,6 +282,9 @@
         </form>
 
         <?php
+        function toast($message){
+            echo "<script>showToast($message)</script>";
+        }
         if($_SERVER["REQUEST_METHOD"] == "POST"){
             $conn = mysqli_connect('sql209.infinityfree.com', $DB_User, $DB_Pass, 'if0_37883576_tomicevipezosi');
             mysqli_set_charset($conn, "utf8");
@@ -302,10 +305,10 @@
                     $sql = "SELECT name FROM kompanija WHERE user_id = '$id'";
                     $res = $conn->query($sql);
                     if($res->num_rows > 0){
-                        die("Imas kompaniju! <a href='company.php'>Tvoja kompanija</a>");
+                        toast("Imas kompaniju! <a href='company.php'>Tvoja kompanija</a>");
                     }
                     if($balance<2000){
-                        die("Insufficient funds! You need 2000T₱");
+                        toast("Insufficient funds! You need 2000T₱");
                     }
                     $name = $_POST['name'];
                     $ticker = $_POST['ticker'];
@@ -315,10 +318,10 @@
                     $res = $conn->query($sql);
                     while($row = $res->fetch_assoc()){
                         if($row['name'] == $name){
-                            die("Company with same name already exists!");
+                            toast("Company with same name already exists!");
                         }
                         if($row['ticker'] == $ticker){
-                            die("Company with same ticker symbol already exists!");
+                            toast("Company with same ticker symbol already exists!");
                         }
                     }
                     $sql = "UPDATE user SET balance = balance - 2000 WHERE id = '$id'";
