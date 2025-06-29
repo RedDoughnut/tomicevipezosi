@@ -184,8 +184,13 @@ error_reporting(E_ALL);
         .label1{
             margin: 0;
         }
+        @media only screen and (min-width: 851px) {
+            .grafik{
+                width: 40rem;
+            }
+        }
         .grafik{
-            width: min(80vw, 40rem);
+            width: 90vw;
         }
 </style>
 <body>
