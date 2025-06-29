@@ -273,7 +273,7 @@ include "SECRETS.php";
 
                     $zaokruzenaCena = number_format($cenaAkcije, 2, '.', '');
                     $history[] = $zaokruzenaCena;  
-                    if (count($history) > 2160) {
+                    if (count($history) > 720) {
                         array_shift($history);
                     }
                 }

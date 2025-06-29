@@ -291,7 +291,7 @@ error_reporting(E_ALL);
                 }
             }
             $sql = "SELECT history FROM kompanija WHERE id=$id";
-            $labels = array_fill(0, 2160, "");
+            $labels = array_fill(0, 720, "");
             $data = json_decode(mysqli_fetch_assoc(mysqli_query($conn, $sql))['history'], true);
             $chart = [
                 "type" => "line",
@@ -324,15 +324,8 @@ error_reporting(E_ALL);
             curl_setopt($ch, CURLOPT_HTTPHEADER, [
                 "Content-Type: application/json"
             ]);
-            if($response==false){
-                echo "<h2>ERROR: " . curl_error($ch) . "</h2>";
-            }
-            else{
-                echo "<h2>USPESNO</h2>";
-            }
             $response = curl_exec($ch);
             curl_close($ch);
-            echo "<h2>$response</h2>";
             $result = json_decode($response, true);
 
             $result = $result['url'];
