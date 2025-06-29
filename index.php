@@ -269,14 +269,16 @@ include "SECRETS.php";
 
                     $cenaAkcije = max(round($cenaAkcije + $rnd, 2), 0.0);
                 }
-                $history = json_decode($row["history"], true); 
+                $sql = "SELECT history FROM kompanija WHERE id=$id";
+                $historyDATA = mysqli_fetch_assoc(mysqli_query($conn, $sql))["history"];
+                $history = json_decode($historyDATA, true); 
                 $zaokruzenaCena = number_format($cenaAkcije, 2, '.', '');
                 $history[] = $zaokruzenaCena;
                 $id = $row["id"];
                 if (count($history) > 2160) {
                     array_shift($history);
                 }
-
+                
                 $historyJson = mysqli_real_escape_string($conn, json_encode($history, JSON_PRESERVE_ZERO_FRACTION));
                 $sql = "UPDATE `kompanija` SET `history` = '$historyJson' WHERE `id` = $id";
                 if(!mysqli_query($conn, $sql)){
