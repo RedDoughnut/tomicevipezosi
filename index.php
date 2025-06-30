@@ -275,7 +275,7 @@ error_reporting(E_ALL);
                     $event = mt_rand(1,24);
                     if($event==24){
                         $plusminus = mt_rand(1,24);
-                        $rnd = mt_rand(150,200) / 1000 * $cenaAkcije;
+                        $rnd = mt_rand(50,150) / 1000 * $cenaAkcije;
                         $sql = "";
                         if(($plusminus-$uzastopnih)<=12){
                             $cenaAkcije = max(round($cenaAkcije - $rnd, 2), 0.0);
