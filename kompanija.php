@@ -308,7 +308,7 @@ error_reporting(E_ALL);
                 "data" => [
                     "labels" => $labels,
                     "datasets" => [[
-                        "label" => "Cena",
+                        "label" => "Cena Akcije",
                         "data" => $data,
                         "borderColor" => "blue",
                         "fill" => false
