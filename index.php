@@ -267,10 +267,10 @@ error_reporting(E_ALL);
                 $cenaAkcije = $row["value"];
                 $id = $row["id"];
                 $sql = "SELECT `history`, `uzastopnih` FROM kompanija WHERE `id`=$id";
-                $res = mysqli_fetch_assoc(mysqli_query($conn, $sql));
-                $historyDATA = $res["history"];
+                $result = mysqli_fetch_assoc(mysqli_query($conn, $sql));
+                $historyDATA = $result["history"];
                 $history = json_decode($historyDATA, true); 
-                $uzastopnih = $res["uzastopnih"];
+                $uzastopnih = $result["uzastopnih"];
                 for ($i = 0; $i < $hours; $i++) {
                     $event = mt_rand(1,24);
                     if($event==24){
