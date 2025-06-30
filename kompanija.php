@@ -304,7 +304,7 @@ error_reporting(E_ALL);
             $labels = array_fill(0, 72, "");
             $labels[0] = "Pre 3 dana";
             $labels[23] = "Pre 2 dana";
-            $labels[47] = "Juče";
+            $labels[47] = "Juce";
             $labels[71] = "Danas";
             $data = json_decode(mysqli_fetch_assoc(mysqli_query($conn, $sql))['history'], true);
             $chart = [
