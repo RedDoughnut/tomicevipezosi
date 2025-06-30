@@ -191,7 +191,7 @@ error_reporting(E_ALL);
         }
         @media only screen and (max-width: 851px) {
             .grafik{
-                width: 100vw;
+                width: 90vw;
             }
         }
 </style>
