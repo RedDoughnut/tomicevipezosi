@@ -301,7 +301,7 @@ error_reporting(E_ALL);
                 }
             }
             $sql = "SELECT history FROM kompanija WHERE id=$id";
-            $labels = array_fill(0, 72, "");
+            $labels = array_fill(0, 72, null);
             $labels[0] = "Pre 3 dana";
             $labels[23] = "Pre 2 dana";
             $labels[47] = "Juce";
