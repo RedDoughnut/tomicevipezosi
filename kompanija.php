@@ -337,7 +337,15 @@ error_reporting(E_ALL);
                             ]
                         ]
                     ]
-                ]
+                ],
+                "plugins" => [
+                    "legend" => [
+                        "labels" => [
+                            "color" => "white"
+                        ]
+                    ]
+                ],
+                "backgroundColor" => "black"
             ];
 
             $payload = json_encode(["chart" => $chart]);
