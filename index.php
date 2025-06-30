@@ -279,17 +279,11 @@ error_reporting(E_ALL);
                         $sql = "";
                         if(($plusminus-$uzastopnih)<=12){
                             $cenaAkcije = max(round($cenaAkcije - $rnd, 2), 0.0);
-                            if($uzastopnih>0)
-                                $sql = "UPDATE `kompanija` SET `uzastopnih`=-1 WHERE `id`=$id";
-                            else
-                                $sql = "UPDATE `kompanija` SET `uzastopnih`=`uzastopnih`-1 WHERE `id`=$id";
+                            $sql = "UPDATE `kompanija` SET `uzastopnih`=`uzastopnih`-1 WHERE `id`=$id";
                         }
                         else{
                             $cenaAkcije = max(round($cenaAkcije + $rnd, 2), 0.0);
-                            if($uzastopnih<0)
-                                $sql = "UPDATE `kompanija` SET `uzastopnih`=1 WHERE `id`=$id";
-                            else
-                                $sql = "UPDATE `kompanija` SET `uzastopnih`=`uzastopnih`+1 WHERE `id`=$id";
+                            $sql = "UPDATE `kompanija` SET `uzastopnih`=`uzastopnih`+1 WHERE `id`=$id";
                         }
                         mysqli_query($conn, $sql);
                     }
