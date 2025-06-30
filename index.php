@@ -266,7 +266,7 @@ error_reporting(E_ALL);
             while($row = $res->fetch_assoc()){
                 $cenaAkcije = $row["value"];
                 $id = $row["id"];
-                $sql = "SELECT history, uzastopnih FROM kompanija WHERE `id`=$id";
+                $sql = "SELECT `history`, `uzastopnih` FROM kompanija WHERE `id`=$id";
                 $res = mysqli_query($conn, $sql);
                 $historyDATA = mysqli_fetch_assoc($res)["history"];
                 $history = json_decode($historyDATA, true); 
