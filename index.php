@@ -275,7 +275,7 @@ error_reporting(E_ALL);
                     $event = mt_rand(1,24);
                     if($event==24){
                         $plusminus = mt_rand(1,24);
-                        $rnd = mt_rand(100,150) / 1000 * $cenaAkcije;
+                        $rnd = mt_rand(150,200) / 1000 * $cenaAkcije;
                         $sql = "";
                         if(($plusminus-$uzastopnih)<=12){
                             $cenaAkcije = max(round($cenaAkcije - $rnd, 2), 0.0);
@@ -294,7 +294,7 @@ error_reporting(E_ALL);
                         mysqli_query($conn, $sql);
                     }
                     else{
-                        $rnd = mt_rand(-10, 10) / 200 * $cenaAkcije;
+                        $rnd = mt_rand(-10, 10) / 400 * $cenaAkcije;
                         $cenaAkcije = max(round($cenaAkcije + $rnd, 2), 0.0);
                     }
                     $zaokruzenaCena = number_format($cenaAkcije, 2, '.', '');
