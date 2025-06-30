@@ -324,6 +324,16 @@ error_reporting(E_ALL);
                             "ticks" => [
                                 "autoSkip" => true,
                                 "maxTicksLimit" => 4
+                            ],
+                            "grid" => [
+                                "display" => true,
+                                "color" => "rgba(255, 255, 255, 0.1)"
+                            ]
+                        ],
+                        "y" => [
+                            "grid" => [
+                                "display" => true,
+                                "color" => "rgba(0,0,0,0.1)"
                             ]
                         ]
                     ]
