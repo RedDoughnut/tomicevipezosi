@@ -245,11 +245,11 @@ error_reporting(E_ALL);
     </div>
     </center>
     <?php
-    function newStock($current_price, $mu = -0.0001, $sigma = 0.01) {
-        $rand = rand_normal(); // standard normal
+    function newStock($current_price, $mu = 0.00005, $sigma = 0.005) {
+        $rand = rand_normal();
         $change = ($mu - 0.5 * $sigma ** 2) + $sigma * $rand;
         $new_price = $current_price * exp($change);
-        return round(max(0.01, $new_price), 4); // minimalna cena 0.01
+        return round(max(0.01, $new_price), 4);
     }
     function rand_normal($mean = 0, $stddev = 1) {
         $u = 1 - mt_rand() / mt_getrandmax();
