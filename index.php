@@ -251,7 +251,7 @@ error_reporting(E_ALL);
         $new_price = $start_price * (1 + $change);
         return $new_price;
     }
-    function rand_normal($mean = 0, $stddev = 1) {
+    function rand_normal($mean = -0.5, $stddev = 1) {
         $u = 1 - mt_rand() / mt_getrandmax();
         $v = 1 - mt_rand() / mt_getrandmax();
         $z = sqrt(-2.0 * log($u)) * cos(2.0 * M_PI * $v);
