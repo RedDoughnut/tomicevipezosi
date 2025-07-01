@@ -248,7 +248,7 @@ error_reporting(E_ALL);
     function newStock($start_price, $trend = 0.0005, $noise = 0.01) {
         $noise_component = rand_normal(0, $noise);
         $change = $trend + $noise_component;
-        $new_price = $prices[$i - 1] * (1 + $change);
+        $new_price = $start_price * (1 + $change);
         return $new_price;
     }
     function rand_normal($mean = 0, $stddev = 1) {
