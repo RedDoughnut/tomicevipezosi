@@ -245,7 +245,7 @@ error_reporting(E_ALL);
     </div>
     </center>
     <?php
-    function newStock($current_price, $mu = -0.01, $sigma = 0.01) {
+    function newStock($current_price, $mu = -0.001, $sigma = 0.01) {
         $rand = rand_normal(); // standard normal
         $change = ($mu - 0.5 * $sigma ** 2) + $sigma * $rand;
         $new_price = $current_price * exp($change);
