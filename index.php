@@ -245,13 +245,13 @@ error_reporting(E_ALL);
     </div>
     </center>
     <?php
-    function newStock($start_price, $trend = 0.0005, $noise = 0.01) {
-        $noise_component = rand_normal(0, $noise);
-        $change = $trend + $noise_component;
-        $new_price = $start_price * (1 + $change);
-        return $new_price;
+    function simulate_price_step($current_price, $mu = -0.01, $sigma = 0.01) {
+        $rand = rand_normal(); // standard normal
+        $change = ($mu - 0.5 * $sigma ** 2) + $sigma * $rand;
+        $new_price = $current_price * exp($change);
+        return round(max(0.01, $new_price), 4); // minimalna cena 0.01
     }
-    function rand_normal($mean = -0.5, $stddev = 1) {
+    function rand_normal($mean = 0, $stddev = 1) {
         $u = 1 - mt_rand() / mt_getrandmax();
         $v = 1 - mt_rand() / mt_getrandmax();
         $z = sqrt(-2.0 * log($u)) * cos(2.0 * M_PI * $v);
