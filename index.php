@@ -251,6 +251,13 @@ error_reporting(E_ALL);
         $new_price = $current_price * exp($change);
         return round(max(0.01, $new_price), 4);
     }
+    function random_mu() {
+        $raw = rand_normal(-0.001, 0.001);
+        return min(max($raw, -0.005), 0.005);
+    }
+    function random_sigma() {
+        return rand_normal(0.02, 0.005);
+    }
     function rand_normal($mean = 0, $stddev = 1) {
         $u = 1 - mt_rand() / mt_getrandmax();
         $v = 1 - mt_rand() / mt_getrandmax();
