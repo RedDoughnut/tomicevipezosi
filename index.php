@@ -245,6 +245,18 @@ error_reporting(E_ALL);
     </div>
     </center>
     <?php
+    function newStock($start_price, $trend = 0.0005, $noise = 0.01) {
+        $noise_component = rand_normal(0, $noise);
+        $change = $trend + $noise_component;
+        $new_price = $prices[$i - 1] * (1 + $change);
+        return $new_price;
+    }
+    function rand_normal($mean = 0, $stddev = 1) {
+        $u = 1 - mt_rand() / mt_getrandmax();
+        $v = 1 - mt_rand() / mt_getrandmax();
+        $z = sqrt(-2.0 * log($u)) * cos(2.0 * M_PI * $v);
+        return $z * $stddev + $mean;
+    }
     $sql = "SELECT time FROM last_updated WHERE id=1";
     $conn = mysqli_connect('sql209.infinityfree.com', $DB_User, $DB_Pass, 'if0_37883576_tomicevipezosi');
     mysqli_set_charset($conn, "utf8");
@@ -266,37 +278,17 @@ error_reporting(E_ALL);
             while($row = $res->fetch_assoc()){
                 $cenaAkcije = $row["value"];
                 $id = $row["id"];
-                $sql = "SELECT `history`, `uzastopnih` FROM kompanija WHERE `id`=$id";
+                $sql = "SELECT `history` FROM kompanija WHERE `id`=$id";
                 $result = mysqli_fetch_assoc(mysqli_query($conn, $sql));
                 $historyDATA = $result["history"];
                 $history = json_decode($historyDATA, true); 
-                $uzastopnih = $result["uzastopnih"];
                 for ($i = 0; $i < $hours; $i++) {
-                    $event = mt_rand(1,24);
-                    if($event==24){
-                        $plusminus = mt_rand(1,24);
-                        $rnd = mt_rand(50,150) / 1000 * $cenaAkcije;
-                        $sql = "";
-                        if(($plusminus-$uzastopnih)<=12){
-                            $cenaAkcije = max(round($cenaAkcije - $rnd, 2), 0.0);
-                            $sql = "UPDATE `kompanija` SET `uzastopnih`=`uzastopnih`-1 WHERE `id`=$id";
-                        }
-                        else{
-                            $cenaAkcije = max(round($cenaAkcije + $rnd, 2), 0.0);
-                            $sql = "UPDATE `kompanija` SET `uzastopnih`=`uzastopnih`+1 WHERE `id`=$id";
-                        }
-                        mysqli_query($conn, $sql);
-                    }
-                    else{
-                        $rnd = mt_rand(-10, 10) / 400 * $cenaAkcije;
-                        $cenaAkcije = max(round($cenaAkcije + $rnd, 2), 0.0);
-                    }
+                    $cenaAkcije = newStock($cenaAkcije);
                     $zaokruzenaCena = number_format($cenaAkcije, 2, '.', '');
                     $history[] = $zaokruzenaCena;  
                     if (count($history) > 72) {
                         array_shift($history);
                     }
-
                 }
                 $historyJson = mysqli_real_escape_string($conn, json_encode($history, JSON_PRESERVE_ZERO_FRACTION));
                 $sql = "UPDATE `kompanija` SET `history` = '$historyJson' WHERE `id` = $id";
