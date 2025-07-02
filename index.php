@@ -245,26 +245,29 @@ error_reporting(E_ALL);
     </div>
     </center>
     <?php
-    function newStock($current_price) {
-        $mu = random_mu();
-        $sigma = random_sigma();
-        $rand = rand_normal();
-        $change = ($mu - 0.5 * $sigma ** 2) + $sigma * $rand;
-        $new_price = $current_price * exp($change);
-        return round(max(0.01, $new_price), 4);
-    }
-    function random_mu() {
-        $raw = rand_normal(-0.001, 0.001);
-        return min(max($raw, -0.005), 0.005);
-    }
-    function random_sigma() {
-        return rand_normal(0.02, 0.005);
-    }
-    function rand_normal($mean = 0, $stddev = 1) {
-        $u = 1 - mt_rand() / mt_getrandmax();
-        $v = 1 - mt_rand() / mt_getrandmax();
-        $z = sqrt(-2.0 * log($u)) * cos(2.0 * M_PI * $v);
-        return $z * $stddev + $mean;
+    function newStock(float $staraCena): float {
+        if ($staraCena <= 0.05) {
+            return 0.0;
+        }
+
+        $trend = 0.001;
+        $volatilnost = 0.03; 
+        if ($staraCena < 0.2) {
+            $trend = -0.003;
+        }
+        $randomPromena = mt_rand(-1000, 1000) / 1000 * $volatilnost;
+        $promena = $trend + $randomPromena;
+
+        $novaCena = $staraCena * (1 + $promena);
+
+        if (mt_rand(1, 1000) == 1) {
+            $novaCena *= mt_rand(85,95)/100; 
+        }
+
+        if ($novaCena < 0.05) {
+            return 0.0;
+        }
+        return $novaCena;
     }
     $sql = "SELECT time FROM last_updated WHERE id=1";
     $conn = mysqli_connect('sql209.infinityfree.com', $DB_User, $DB_Pass, 'if0_37883576_tomicevipezosi');
