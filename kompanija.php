@@ -395,6 +395,7 @@ error_reporting(E_ALL);
                     $value = $res['value'];
                     $amount = $_POST['amount'];
                     $ticker = $res['ticker'];
+                    echo "<h2>$ticker</h2>";
                     $inv_KOMPANIJA = json_decode($res['investicije'], true);
                     if($VLASNIK_id===$KORISNIK_id){
                         die("Ne možeš da kupiš svoje akcije!");
@@ -414,6 +415,8 @@ error_reporting(E_ALL);
                     // mysqli_query($conn, $sql);
                     $sql = "UPDATE kompanija SET stocks_sold = stocks_sold + $amount WHERE user_id = '$VLASNIK_id'";
                     mysqli_query($conn, $sql);
+
+                    
                     if($inv_KORISNIK[$ticker]!=NULL){
                         $inv_KORISNIK[$ticker] += $amount;
                     }
