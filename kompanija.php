@@ -379,7 +379,7 @@ error_reporting(E_ALL);
                     die('Connection Failed : '.$conn->connect_error);
                 }else{
                     $email = $_SESSION['user'];
-                    $sql = "SELECT balance, investicije FROM user WHERE email = '$email'";
+                    $sql = "SELECT balance, investicije, id FROM user WHERE email = '$email'";
                     $res = $conn->query($sql);
                     $res = $res -> fetch_assoc();
                     $bal = $res['balance'];
@@ -395,7 +395,6 @@ error_reporting(E_ALL);
                     $value = $res['value'];
                     $amount = $_POST['amount'];
                     $ticker = $res['ticker'];
-                    echo "<h2>$ticker</h2>";
                     $inv_KOMPANIJA = json_decode($res['investicije'], true);
                     if($VLASNIK_id===$KORISNIK_id){
                         die("Ne možeš da kupiš svoje akcije!");
@@ -416,7 +415,7 @@ error_reporting(E_ALL);
                     $sql = "UPDATE kompanija SET stocks_sold = stocks_sold + $amount WHERE user_id = '$VLASNIK_id'";
                     mysqli_query($conn, $sql);
 
-                    
+
                     if($inv_KORISNIK[$ticker]!=NULL){
                         $inv_KORISNIK[$ticker] += $amount;
                     }
